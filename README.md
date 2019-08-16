@@ -1,0 +1,2 @@
+# incubator-simplefeign
+Simple Feign.
