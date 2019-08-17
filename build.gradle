@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.1.6.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.7.RELEASE'
+}
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+}
+
+group 'org.warless'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+project.ext {
+    fastjsonVersion = '1.2.58'
+    swaggerVersion = '2.9.2'
+    commonsLangVersion = '3.8'
+    zxingVersion = '3.4.0'
+    easyexcelVersion = '1.1.2-beta5'
+}
+
+dependencies {
+    implementation(
+            'org.springframework.boot:spring-boot-starter-web',
+            "com.alibaba:fastjson:${fastjsonVersion}",
+            "com.alibaba:easyexcel:${easyexcelVersion}",
+            "org.apache.commons:commons-lang3:${commonsLangVersion}",
+            "com.google.zxing:core:${zxingVersion}",
+            "com.google.zxing:javase:${zxingVersion}",
+            "io.springfox:springfox-swagger2:${swaggerVersion}",
+            "io.springfox:springfox-swagger-ui:${swaggerVersion}"
+    )
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
