@@ -1,0 +1,3 @@
+rootProject.name = 'incubator-projects'
+include 'incubator-project-simplefeign'
+
