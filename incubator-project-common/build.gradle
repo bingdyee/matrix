@@ -1,0 +1,10 @@
+
+dependencies {
+    implementation(
+            'org.apache.commons:commons-lang3',
+            'com.alibaba:easyexcel',
+            'com.google.zxing:core',
+            'com.google.zxing:javase'
+    )
+}
+

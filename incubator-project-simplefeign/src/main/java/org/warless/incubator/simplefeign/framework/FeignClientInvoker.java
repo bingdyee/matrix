@@ -4,10 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.util.ParameterizedTypeImpl;
 import org.springframework.web.client.RestTemplate;
+import org.warless.incubator.common.utils.CommonUtils;
 import org.warless.incubator.simplefeign.annotations.FeignBody;
 import org.warless.incubator.simplefeign.annotations.FeignClient;
 import org.warless.incubator.simplefeign.annotations.FeignRequest;
-import org.warless.incubator.simplefeign.utils.CommonUtils;
 
 import java.lang.reflect.*;
 import java.util.ArrayList;

@@ -71,6 +71,7 @@ configure(allprojects) { project ->
             dependency "mysql:mysql-connector-java:${mysqlVersion}"
             dependency "com.alibaba:druid:${druidVersion}"
             dependency "com.alibaba:fastjson:${fastjsonVersion}"
+            dependency "com.alibaba:easyexcel:${easyexcelVersion}"
             dependency "com.google.zxing:core:${zxingVersion}"
             dependency "com.google.zxing:javase:${zxingVersion}"
             dependency "io.springfox:springfox-swagger2:${swaggerVersion}"
@@ -99,6 +100,10 @@ configure(subprojects) { project ->
             java {
                 srcDirs 'src/main/java'
             }
+            resources {
+                srcDir 'src/main/java'
+                srcDir 'src/main/resources'
+            }
         }
     }
 
@@ -118,6 +123,7 @@ configure(rootProject) {
 
     dependencies {
         testCompile(
+                project(":incubator-project-common"),
                 project(":incubator-project-oauth2"),
                 project(":incubator-project-simplefeign")
         )

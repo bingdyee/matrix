@@ -1,4 +1,4 @@
-package org.warless.incubator.simplefeign.utils;
+package org.warless.incubator.common.utils;
 
 import java.io.*;
 import java.util.ArrayList;

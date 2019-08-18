@@ -1,4 +1,5 @@
 rootProject.name = 'incubator-projects'
 include 'incubator-project-simplefeign'
 include 'incubator-project-oauth2'
+include 'incubator-project-common'
 
