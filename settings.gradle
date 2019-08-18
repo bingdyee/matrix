@@ -2,4 +2,6 @@ rootProject.name = 'incubator-projects'
 include 'incubator-project-simplefeign'
 include 'incubator-project-oauth2'
 include 'incubator-project-common'
+include 'incubator-project-oauth2:incubator-project-oauth2-memory'
+findProject(':incubator-project-oauth2:incubator-project-oauth2-memory')?.name = 'incubator-project-oauth2-memory'
 
