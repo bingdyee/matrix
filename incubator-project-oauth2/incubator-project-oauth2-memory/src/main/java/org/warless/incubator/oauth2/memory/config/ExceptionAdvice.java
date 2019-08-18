@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.warless.incubator.common.ResponseEntity;
-import org.warless.incubator.common.exception.CommonException;
+import org.warless.incubator.common.exception.SystemErrorException;
 
 import java.util.Objects;
 
@@ -35,7 +35,7 @@ public class ExceptionAdvice {
     @ResponseBody
     public ResponseEntity handle(Exception exception){
         LOGGER.error("Controller API调用失败：" + exception.getMessage(), exception);
-        if (exception instanceof CommonException) {
+        if (exception instanceof SystemErrorException) {
             return ResponseEntity.error(exception.getMessage());
         }
         if (exception instanceof NoHandlerFoundException) {
