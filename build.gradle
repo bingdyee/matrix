@@ -25,7 +25,7 @@ ext {
 }
 
 def env = System.getProperty("env") ?: "dev"
-def versionSuffix = "dev" == env ? "SNAPSHOT" : "RELEASE"
+def versionSuffix = "prod" == env ? "RELEASE" : "SNAPSHOT"
 
 configure(allprojects) { project ->
 
@@ -103,8 +103,28 @@ configure(subprojects) { project ->
     }
 
     dependencies {
+        implementation  'org.springframework.boot:spring-boot-starter'
         developmentOnly 'org.springframework.boot:spring-boot-devtools'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+
+}
+
+configure(rootProject) {
+
+    description = "Incubator Projects"
+
+    apply plugin: 'application'
+
+    dependencies {
+        testCompile(
+                project(":incubator-project-oauth2"),
+                project(":incubator-project-simplefeign")
+        )
+    }
+
+    artifacts {
+        archives distZip
     }
 
 }
