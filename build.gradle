@@ -24,10 +24,13 @@ ext {
     pagehelperVersion = '1.2.12'
 }
 
+def env = System.getProperty("env") ?: "dev"
+def versionSuffix = "dev" == env ? "SNAPSHOT" : "RELEASE"
+
 configure(allprojects) { project ->
 
     group 'org.warless'
-    version '1.0-SNAPSHOT'
+    version "1.0-${versionSuffix}"
 
     apply plugin: 'java'
     apply plugin: 'idea'
@@ -88,6 +91,14 @@ configure(subprojects) { project ->
         developmentOnly
         runtimeClasspath {
             extendsFrom developmentOnly
+        }
+    }
+
+    sourceSets {
+        main {
+            java {
+                srcDirs 'src/main/java'
+            }
         }
     }
 

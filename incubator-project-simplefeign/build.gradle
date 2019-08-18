@@ -8,3 +8,9 @@ dependencies {
             'io.springfox:springfox-swagger-ui'
     )
 }
+
+jar {
+    if (!configurations.runtime.isEmpty()) {
+        manifest.attributes('Class-Path': '. libs/' + configurations.runtime.collect { it.name }.join(' libs/'))
+    }
+}
