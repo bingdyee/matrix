@@ -4,4 +4,6 @@ include 'incubator-project-oauth2'
 include 'incubator-project-common'
 include 'incubator-project-oauth2:incubator-project-oauth2-memory'
 findProject(':incubator-project-oauth2:incubator-project-oauth2-memory')?.name = 'incubator-project-oauth2-memory'
+include 'incubator-project-oauth2:incubator-project-oauth2-database'
+findProject(':incubator-project-oauth2:incubator-project-oauth2-database')?.name = 'incubator-project-oauth2-database'
 

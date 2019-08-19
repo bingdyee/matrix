@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: org.warless.incubator.oauth2.database.pojo.po
+  config-location: classpath:mybatis-config.xml
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/attend_manager?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=CONVERT_TO_NULL&rewriteBatchedStatements=true&useAffectedRows=true&useSSL=false&requireSSL=false&serverTimezone=GMT%2B8
+    username: EAF2175E8402910BB3B28F8FB04E97C8
+    password: 0C0A9215071495B09194582525A3AAEF
+    max-active: 50
+    initial-size: 1
+    max-wait: 30000
+    min-idle: 1
+    filters: mergeStat,wall,slf4j,config
+    validation-query: select 'x'
