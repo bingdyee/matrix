@@ -70,8 +70,8 @@ public class DruidDataSourceConfiguration {
     }
 
     public static void main(String[] args) {
-        String username = AES.encrypt("test", USERNAME_KEY);
-        String password = AES.encrypt("test", PASSWORD_KEY);
+        String username = AES.encrypt("root", USERNAME_KEY);
+        String password = AES.encrypt("root", PASSWORD_KEY);
         System.err.println("username: " + username);
         System.err.println("password: " + password);
     }
