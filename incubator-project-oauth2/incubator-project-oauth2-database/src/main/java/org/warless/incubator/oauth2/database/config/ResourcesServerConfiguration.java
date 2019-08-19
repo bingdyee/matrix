@@ -6,6 +6,8 @@ import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.error.OAuth2AuthenticationEntryPoint;
+import org.springframework.security.web.AuthenticationEntryPoint;
 
 /**
  * @author yubb
@@ -29,13 +31,7 @@ public class ResourcesServerConfiguration extends ResourceServerConfigurerAdapte
             String auth = request.getHeader("Authorization");
             return auth != null && auth.startsWith(OAuth2AccessToken.BEARER_TYPE);
         }).authorizeRequests()
-                .antMatchers("/api/user/login",
-                        "/api/user/logout",
-                        "/oauth/token",
-                        "/swagger-resources/**",
-                        "/webjars/**",
-                        "/v2/**",
-                        "/swagger-ui.html/**")
+                .antMatchers("/oauth/token")
                 .permitAll()
                 .anyRequest()
                 .authenticated();

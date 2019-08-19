@@ -10,6 +10,7 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.approval.ApprovalStore;
 import org.springframework.security.oauth2.provider.approval.JdbcApprovalStore;
@@ -37,6 +38,14 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     private AuthenticationManager authenticationManager;
     @Autowired
     private UserDetailsService userDetailsService;
+    @Autowired
+    private TokenStore tokenStore;
+    @Autowired
+    private JdbcClientDetailsService clientDetailsService;
+    @Autowired
+    private ApprovalStore approvalStore;
+    @Autowired
+    private AuthorizationCodeServices authorizationCodeServices;
 
     @Bean
     public TokenStore tokenStore() {
@@ -44,7 +53,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     }
 
     @Bean
-    public ClientDetailsService jdbcClientDetailsService() {
+    public JdbcClientDetailsService jdbcClientDetailsService() {
         return new JdbcClientDetailsService(dataSource);
     }
 
@@ -64,12 +73,18 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     }
 
     @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        // 允许Form授权获取access_token
+        security.allowFormAuthenticationForClients();
+    }
+
+    @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.authenticationManager(authenticationManager)
-                .tokenStore(tokenStore())
+                .tokenStore(tokenStore)
                 .userDetailsService(userDetailsService)
-                .approvalStore(approvalStore())
-                .authorizationCodeServices(authorizationCodeServices())
+                .approvalStore(approvalStore)
+                .authorizationCodeServices(authorizationCodeServices)
                 .tokenEnhancer((accessToken, authentication) -> accessToken);
         // TokenServices config
         DefaultTokenServices tokenServices = new DefaultTokenServices();
@@ -83,7 +98,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.withClientDetails(jdbcClientDetailsService());
+        clients.withClientDetails(clientDetailsService);
     }
 
 }
