@@ -48,6 +48,9 @@ CREATE TABLE `oauth_client_details`  (
   PRIMARY KEY (`client_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
+INSERT INTO `oauth_client_details` VALUES ('client', NULL, '$2a$10$Gel0zdveyr8nfE6cWnsV3OuaxxA3RZdBpCcJObzpJHO6Bwwim/S9e', 'app', 'password,authorization_code,client_credentials,implicit,refresh_token', NULL, NULL, 7200, 72000, '{\"project\": \"incubator-projects-oauth2\"}', NULL);
+INSERT INTO `oauth_client_details` VALUES ('system', NULL, '$2a$10$0VZq9w6xFjXRdeQtMXuEnO92DutOBBRAAH1Co1Lyu0gN7zfvYkyIK', 'all', 'password,authorization_code,client_credentials,implicit,refresh_token', NULL, NULL, 7200, 72000, '{\"project\": \"incubator-projects-oauth2\"}', NULL);
+
 -- ----------------------------
 -- Table structure for oauth_client_token
 -- ----------------------------
