@@ -1,22 +1,22 @@
 package org.warless.incubator.oauth2.rbac.pojo.po;
 
 import org.apache.ibatis.type.Alias;
-import org.warless.incubator.oauth2.database.pojo.BaseEntity;
+import org.warless.incubator.oauth2.rbac.pojo.BaseEntity;
 
 
 /**
- * description: SysUser
+ * description: User
  *
- * @author : yubb
+ * @author : fetaxyu
  * @date : 2019-08-08
  */
-@Alias("SysUser")
-public class SysUser extends BaseEntity {
+@Alias("User")
+public class User extends BaseEntity {
 
     private String username;
     private String password;
     private String realName;
-    private String roles;
+    private String email;
     private String telephone;
     private Integer status;
 
@@ -44,12 +44,12 @@ public class SysUser extends BaseEntity {
         this.realName = realName;
     }
 
-    public String getRoles() {
-        return roles;
+    public String getEmail() {
+        return email;
     }
 
-    public void setRoles(String roles) {
-        this.roles = roles;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getTelephone() {

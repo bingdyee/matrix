@@ -7,6 +7,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.warless.incubator.common.utils.SnowflakeWorker;
 import org.warless.incubator.oauth2.rbac.OAuth2Application;
 
 /**
@@ -22,8 +23,10 @@ public class OAuth2DatabaseTest {
     private MockMvc mockMvc;
 
     @Test
-    public void one() {
-
+    public void initDatabase() {
+        for (int i = 0; i < 100; ++i) {
+            System.err.println(SnowflakeWorker.nextId());
+        }
     }
 
 }

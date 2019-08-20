@@ -4,7 +4,7 @@ server:
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: org.warless.incubator.oauth2.database.pojo.po
+  type-aliases-package: org.warless.incubator.oauth2.rbac.pojo.po
   config-location: classpath:mybatis-config.xml
 
 spring:

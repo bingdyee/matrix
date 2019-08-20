@@ -4,7 +4,7 @@
 <configuration>
 
     <plugins>
-        <plugin interceptor="org.warless.incubator.oauth2.database.config.ParameterInterceptor"/>
+        <plugin interceptor="org.warless.incubator.oauth2.rbac.config.ParameterInterceptor"/>
     </plugins>
 
 </configuration>
