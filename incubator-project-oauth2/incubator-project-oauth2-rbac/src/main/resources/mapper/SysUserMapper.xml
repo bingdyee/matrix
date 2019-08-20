@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.warless.incubator.oauth2.rbac.mapper.SysUserMapper">
+    
+    <sql id="Base_Column_List">
+      t.id AS id,
+      t.username AS username,
+      t.password AS password,
+      t.real_name AS realName,
+      t.roles AS roles,
+      t.telephone AS telephone,
+      t.create_time AS createTime,
+      t.update_time AS updateTime,
+      t.status AS status,
+      t.has_deleted AS hasDeleted
+    </sql>
+
+    <select id="selectUserByUsername" resultType="SysUser">
+        SELECT
+          id, username, password, real_name as realName, roles, status
+        FROM
+          sys_user
+        where
+          username=#{username} AND has_deleted=0
+    </select>
+
+</mapper>
