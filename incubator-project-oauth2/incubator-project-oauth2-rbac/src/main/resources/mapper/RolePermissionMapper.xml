@@ -3,7 +3,11 @@
 <mapper namespace="org.warless.incubator.oauth2.rbac.mapper.RolePermissionMapper">
 
     <select id="selectUserRolePermissions" resultType="RolePermission">
-
+        SELECT m.id, r.id AS roleId, p.id AS permissionId, r.code AS roleCode, p.code AS permissionCode FROM
+        sys_role_permission AS m
+        LEFT JOIN sys_role  AS r ON r.id=m.role_id
+        LEFT JOIN sys_permission as p ON p.id=m.permission_id
+        WHERE r.id IN (SELECT role_id FROM sys_user_role WHERE user_id=#{id})
     </select>
 
 </mapper>
