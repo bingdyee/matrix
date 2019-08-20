@@ -15,7 +15,7 @@
       t.has_deleted AS hasDeleted
     </sql>
 
-    <select id="selectUserByUsername" resultMap="UserResultMap">
+    <select id="selectUserByUsername" resultType="SysUser">
         SELECT
           id, username, password, real_name as realName, email, status
         FROM

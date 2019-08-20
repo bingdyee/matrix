@@ -23,6 +23,7 @@ import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 import javax.sql.DataSource;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -34,40 +35,21 @@ import java.util.concurrent.TimeUnit;
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
-    private DataSource dataSource;
-    @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
     private UserDetailsService userDetailsService;
     @Autowired
-    private TokenStore tokenStore;
-    @Autowired
     private RedisConnectionFactory redisConnectionFactory;
     @Autowired
-    private JdbcClientDetailsService clientDetailsService;
+    private RedisAuthorizationCodeServices redisAuthorizationCodeServices;
     @Autowired
-    private ApprovalStore approvalStore;
-    @Autowired
-    private AuthorizationCodeServices authorizationCodeServices;
+    private RedisClientDetailsService redisClientDetailsService;
 
     @Bean
     public TokenStore tokenStore() {
-        return new RedisTokenStore(redisConnectionFactory);
-    }
-
-    @Bean
-    public JdbcClientDetailsService jdbcClientDetailsService() {
-        return new JdbcClientDetailsService(dataSource);
-    }
-
-    @Bean
-    public ApprovalStore approvalStore() {
-        return new JdbcApprovalStore(dataSource);
-    }
-
-    @Bean
-    public AuthorizationCodeServices authorizationCodeServices() {
-        return new JdbcAuthorizationCodeServices(dataSource);
+        RedisTokenStore redisTokenStore = new RedisTokenStore(redisConnectionFactory);
+        redisTokenStore.setAuthenticationKeyGenerator(oAuth2Authentication -> UUID.randomUUID().toString());
+        return redisTokenStore;
     }
 
     @Bean
@@ -75,37 +57,34 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public DefaultTokenServices tokenServices() {
-        DefaultTokenServices tokenServices = new DefaultTokenServices();
-        tokenServices.setTokenStore(tokenStore);
-        tokenServices.setSupportRefreshToken(true);
-        tokenServices.setClientDetailsService(clientDetailsService);
-        tokenServices.setTokenEnhancer((accessToken, authentication) -> accessToken);
-        tokenServices.setAccessTokenValiditySeconds( (int) TimeUnit.DAYS.toSeconds(30));
-        return tokenServices;
-    }
-
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         // 允许Form授权获取access_token
-        security.allowFormAuthenticationForClients();
+        security.allowFormAuthenticationForClients()
+                .tokenKeyAccess("permitAll()")
+                .checkTokenAccess("isAuthenticated()");
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.authenticationManager(authenticationManager)
-                .tokenStore(tokenStore)
+                .tokenStore(tokenStore())
                 .userDetailsService(userDetailsService)
-                .approvalStore(approvalStore)
-                .authorizationCodeServices(authorizationCodeServices)
-                .tokenEnhancer((accessToken, authentication) -> accessToken)
-                .tokenServices(tokenServices());
+                .authorizationCodeServices(redisAuthorizationCodeServices)
+                .tokenEnhancer((accessToken, authentication) -> accessToken);
+        DefaultTokenServices tokenServices = new DefaultTokenServices();
+        tokenServices.setTokenStore(endpoints.getTokenStore());
+        tokenServices.setSupportRefreshToken(true);
+        tokenServices.setClientDetailsService(endpoints.getClientDetailsService());
+        tokenServices.setTokenEnhancer(endpoints.getTokenEnhancer());
+        tokenServices.setAccessTokenValiditySeconds( (int) TimeUnit.DAYS.toSeconds(30));
+        endpoints.tokenServices(tokenServices);
     }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.withClientDetails(clientDetailsService);
+        clients.withClientDetails(redisClientDetailsService);
+        redisClientDetailsService.loadAllClientToCache();
     }
 
 }

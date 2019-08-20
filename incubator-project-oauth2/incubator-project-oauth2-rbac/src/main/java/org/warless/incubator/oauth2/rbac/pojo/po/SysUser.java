@@ -11,8 +11,8 @@ import java.util.List;
  * @author : fetaxyu
  * @date : 2019-08-08
  */
-@Alias("User")
-public class User extends BaseEntity {
+@Alias("SysUser")
+public class SysUser extends BaseEntity {
 
     private String username;
     private String password;
@@ -20,8 +20,6 @@ public class User extends BaseEntity {
     private String email;
     private String telephone;
     private Integer status;
-    private List<Role> roles;
-    private List<Permission> permissions;
 
     public String getUsername() {
         return username;
@@ -71,19 +69,4 @@ public class User extends BaseEntity {
         this.status = status;
     }
 
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
-
-    public List<Permission> getPermissions() {
-        return permissions;
-    }
-
-    public void setPermissions(List<Permission> permissions) {
-        this.permissions = permissions;
-    }
 }

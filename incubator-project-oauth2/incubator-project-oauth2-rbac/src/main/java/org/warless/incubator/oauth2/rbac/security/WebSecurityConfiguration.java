@@ -90,7 +90,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     public AuthenticationSuccessHandler authenticationSuccessHandler() {
         return (request, response, authentication) -> {
             response.setContentType("application/json;charset=utf-8");
-            UserDetailsImpl userDetails = (UserDetailsImpl)authentication.getPrincipal();
             response.getWriter()
                     .write(JSONObject.toJSONString(ResponseEntity.ok(authentication.getPrincipal())));
         };

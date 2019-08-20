@@ -1,10 +1,7 @@
 package org.warless.incubator.oauth2.rbac.mapper;
 
 import org.apache.ibatis.annotations.Param;
-import org.warless.incubator.oauth2.rbac.pojo.po.Role;
-import org.warless.incubator.oauth2.rbac.pojo.po.User;
-
-import java.util.List;
+import org.warless.incubator.oauth2.rbac.pojo.po.SysUser;
 
 /**
  * @author : yubb
@@ -18,6 +15,6 @@ public interface UserMapper {
      * @param username
      * @return
      */
-    User selectUserByUsername(@Param("username") String username);
+    SysUser selectUserByUsername(@Param("username") String username);
 
 }
