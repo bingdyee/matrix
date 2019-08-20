@@ -1,7 +1,10 @@
 package org.warless.incubator.oauth2.rbac.mapper;
 
 import org.apache.ibatis.annotations.Param;
+import org.warless.incubator.oauth2.rbac.pojo.po.Role;
 import org.warless.incubator.oauth2.rbac.pojo.po.User;
+
+import java.util.List;
 
 /**
  * @author : yubb

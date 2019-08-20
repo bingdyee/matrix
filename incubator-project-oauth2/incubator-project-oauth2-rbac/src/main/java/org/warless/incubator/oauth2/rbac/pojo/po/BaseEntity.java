@@ -1,4 +1,4 @@
-package org.warless.incubator.oauth2.rbac.pojo;
+package org.warless.incubator.oauth2.rbac.pojo.po;
 
 import java.util.Date;
 

@@ -1,7 +1,6 @@
 package org.warless.incubator.oauth2.rbac.pojo.po;
 
 import org.apache.ibatis.type.Alias;
-import org.warless.incubator.oauth2.rbac.pojo.BaseEntity;
 
 /**
  * @author fetaxyu
@@ -13,7 +12,7 @@ public class Permission extends BaseEntity {
     private Long parentId;
     private String name;
     private Integer type;
-    private String permission;
+    private String code;
     private String uri;
     private String method;
     private String description;
@@ -42,12 +41,12 @@ public class Permission extends BaseEntity {
         this.type = type;
     }
 
-    public String getPermission() {
-        return permission;
+    public String getCode() {
+        return code;
     }
 
-    public void setPermission(String permission) {
-        this.permission = permission;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getUri() {

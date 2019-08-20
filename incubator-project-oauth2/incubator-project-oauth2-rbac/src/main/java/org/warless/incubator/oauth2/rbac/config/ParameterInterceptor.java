@@ -6,7 +6,7 @@ import org.apache.ibatis.mapping.SqlCommandType;
 import org.apache.ibatis.plugin.*;
 import org.warless.incubator.common.Constants;
 import org.warless.incubator.common.utils.SnowflakeWorker;
-import org.warless.incubator.oauth2.rbac.pojo.BaseEntity;
+import org.warless.incubator.oauth2.rbac.pojo.po.BaseEntity;
 
 import java.util.Date;
 import java.util.List;

@@ -1,7 +1,6 @@
 package org.warless.incubator.oauth2.rbac.pojo.po;
 
 import org.apache.ibatis.type.Alias;
-import org.warless.incubator.oauth2.rbac.pojo.BaseEntity;
 
 /**
  * @author fetaxyu

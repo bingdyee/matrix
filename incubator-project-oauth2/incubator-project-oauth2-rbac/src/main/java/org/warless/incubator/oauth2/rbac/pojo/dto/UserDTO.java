@@ -1,27 +1,29 @@
-package org.warless.incubator.oauth2.rbac.pojo.po;
+package org.warless.incubator.oauth2.rbac.pojo.dto;
 
-import org.apache.ibatis.type.Alias;
-
-import java.util.List;
-
+import java.io.Serializable;
 
 /**
- * description: User
- *
- * @author : fetaxyu
- * @date : 2019-08-08
+ * @author yubb
+ * @date 2019-08-20
  */
-@Alias("User")
-public class User extends BaseEntity {
+public class UserDTO implements Serializable {
 
+    private static final long serialVersionUID = -7626864762389824202L;
+
+    private Long id;
     private String username;
     private String password;
     private String realName;
     private String email;
     private String telephone;
-    private Integer status;
-    private List<Role> roles;
-    private List<Permission> permissions;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -63,27 +65,4 @@ public class User extends BaseEntity {
         this.telephone = telephone;
     }
 
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
-
-    public List<Permission> getPermissions() {
-        return permissions;
-    }
-
-    public void setPermissions(List<Permission> permissions) {
-        this.permissions = permissions;
-    }
 }

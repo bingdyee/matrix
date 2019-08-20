@@ -13,7 +13,13 @@
 
  Date: 20/08/2019 12:40:56
 */
+-- ----------------------------
+-- New database
+-- ----------------------------
+CREATE DATABASE IF NOT EXISTS incubator_oauth2 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE incubator_oauth2;
 
+-- ----------------------------
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
