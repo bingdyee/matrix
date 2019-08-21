@@ -4,7 +4,6 @@ dependencies {
             'org.springframework.security.oauth:spring-security-oauth2',
             'org.springframework.boot:spring-boot-starter-data-redis',
             'org.mybatis.spring.boot:mybatis-spring-boot-starter',
-            'com.alibaba:druid',
             'mysql:mysql-connector-java',
             'org.apache.commons:commons-lang3',
             'com.alibaba:fastjson'

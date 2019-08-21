@@ -2,7 +2,7 @@ package org.warless.incubator.oauth2.rbac.pojo.po;
 
 import org.apache.ibatis.type.Alias;
 
-import java.util.List;
+import java.util.Date;
 
 
 /**
@@ -12,14 +12,26 @@ import java.util.List;
  * @date : 2019-08-08
  */
 @Alias("SysUser")
-public class SysUser extends BaseEntity {
+public class SysUser {
 
+    private Long id;
     private String username;
     private String password;
     private String realName;
     private String email;
     private String telephone;
     private Integer status;
+    private Date createTime;
+    private Date updateTime;
+    private Integer hasDeleted;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -69,4 +81,27 @@ public class SysUser extends BaseEntity {
         this.status = status;
     }
 
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public Integer getHasDeleted() {
+        return hasDeleted;
+    }
+
+    public void setHasDeleted(Integer hasDeleted) {
+        this.hasDeleted = hasDeleted;
+    }
 }

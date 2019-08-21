@@ -1,9 +1,9 @@
-package org.warless.incubator.oauth2.rbac.pojo.po;
+package org.warless.incubator.oauth2.sso.pojo;
 
 import java.util.Date;
 
 /**
- * @author : yubb
+ * @author : fetaxyu
  * @date : 2019-08-19
  */
 public class BaseEntity {
