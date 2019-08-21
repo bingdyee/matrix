@@ -1,0 +1,8 @@
+server:
+  port: 8080
+# 1. genkey
+# keytool -genkey -alias incubator_oauth2 -keyalg RSA -keystore ${path}
+# 2. export cert
+# keytool -export -trustcacerts -alias incubator_oauth2 -file ${certpath} -keystore ${keypath}
+# 3. import to jdk
+#  keytool -import -file ${cerpath} -keystore "%JAVA_HOME%\jre\lib\security\cacerts" -alias incubator_oauth2
