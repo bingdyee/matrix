@@ -6,9 +6,10 @@ security:
     client:
       client-id: client_2
       client-secret: secret_2
-      grant-type: authorization_code
       user-authorization-uri: http://localhost:8080/oauth/authorize
       access-token-uri: http://localhost:8080/oauth/token
+      registered-redirect-uri: http://localhost:8082/
+      use-current-uri: true
     resource:
       id: clientB
       user-info-uri: http://localhost:8080/oauth/user-info

@@ -17,7 +17,6 @@ import org.warless.incubator.common.ResponseEntity;
  * @author : fetaxyu
  * @date : 2019-08-21
  */
-@EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableOAuth2Sso
 @SpringBootApplication

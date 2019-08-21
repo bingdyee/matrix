@@ -10,6 +10,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
@@ -18,6 +19,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
@@ -35,6 +37,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2019-08-21
  */
 @SpringBootApplication
+@EnableResourceServer
 public class OAuth2SsoAuthServer {
 
     @Configuration
@@ -72,7 +75,9 @@ public class OAuth2SsoAuthServer {
 
         @Override
         public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-            security.tokenKeyAccess("isAuthenticated()");
+            security.tokenKeyAccess("permitAll()")
+                    .checkTokenAccess("isAuthenticated()")
+                    .allowFormAuthenticationForClients();
         }
 
         @Override
@@ -82,13 +87,15 @@ public class OAuth2SsoAuthServer {
                     .secret(passwordEncoder.encode("secret_1"))
                     .authorizedGrantTypes("authorization_code", "refresh_token")
                     .scopes("all")
-                    .autoApprove(false)
+                    .autoApprove(true)
+                    .redirectUris("http:/localhost:8081/")
                     .and()
                     .withClient("client_2")
                     .secret(passwordEncoder.encode("secret_2"))
                     .authorizedGrantTypes("authorization_code", "refresh_token")
                     .scopes("all")
-                    .autoApprove(false);
+                    .autoApprove(true)
+                    .redirectUris("http:/localhost:8082/");
         }
 
     }
@@ -121,15 +128,24 @@ public class OAuth2SsoAuthServer {
         }
 
         @Override
+        public void configure(WebSecurity web) throws Exception {
+            web.ignoring().antMatchers(
+                    "/oauth/**", "/login", "/logout/**"
+            );
+        }
+
+        @Override
         protected void configure(HttpSecurity http) throws Exception {
-            http.requestMatchers()
-                    .antMatchers("/oauth/**", "/login/**", "/logout/**")
+            http.csrf().disable()
+                    .requestMatchers()
+                    .antMatchers("/oauth/**","/login","/home")
                     .and()
                     .authorizeRequests()
-                    .antMatchers("/oauth/**")
-                    .authenticated()
+                    .antMatchers("/oauth/**").authenticated()
                     .and()
-                    .formLogin().permitAll();
+                    .formLogin()
+                    .loginPage("/login")
+                    .permitAll();
         }
 
         @Bean
