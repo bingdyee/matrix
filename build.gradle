@@ -23,6 +23,7 @@ ext {
     zxingVersion = '3.4.0'
     easyexcelVersion = '1.1.2-beta5'
     pagehelperVersion = '1.2.12'
+    wiremockVersion = '2.24.1'
 }
 
 def env = System.getProperty("env") ?: "dev"
@@ -79,6 +80,7 @@ configure(allprojects) { project ->
             dependency "io.springfox:springfox-swagger2:${swaggerVersion}"
             dependency "io.springfox:springfox-swagger-ui:${swaggerVersion}"
             dependency "org.apache.commons:commons-lang3:${commonsLangVersion}"
+            dependency "com.github.tomakehurst:wiremock:${wiremockVersion}"
         }
     }
 
@@ -112,7 +114,10 @@ configure(subprojects) { project ->
     dependencies {
         implementation  'org.springframework.boot:spring-boot-starter'
         developmentOnly 'org.springframework.boot:spring-boot-devtools'
-        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation (
+                'org.springframework.boot:spring-boot-starter-test',
+                'com.github.tomakehurst:wiremock'
+        )
     }
 
 }
