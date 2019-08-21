@@ -23,8 +23,8 @@ public class RedisAuthorizationCodeServices extends RandomValueAuthorizationCode
     private RedisTemplate<Object, Object> redisTemplate;
 
     /**
-     * 存储code到redis，并设置过期时间，10分钟<br>
-     * value为OAuth2Authentication序列化后的字节<br>
+     * cache code to redis，Expiration:10min <br>
+     * value: OAuth2Authentication serialize byte<br>
      */
     @Override
     protected void store(String code, OAuth2Authentication authentication) {
@@ -49,7 +49,7 @@ public class RedisAuthorizationCodeServices extends RandomValueAuthorizationCode
     }
 
     /**
-     * 拼装redis中key的前缀
+     * cache key prefix
      *
      * @param code
      */
