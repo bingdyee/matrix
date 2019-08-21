@@ -4,7 +4,7 @@ package org.warless.incubator.common;
  * @author : yubb
  * @date : 2019-08-19
  */
-public class Constants {
+public abstract class Constants {
 
     /** MySQL record Normal status */
     public static final int DELETE_STATUS_NORMAL = 0;
