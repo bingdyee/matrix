@@ -14,6 +14,7 @@ buildscript {
 
 ext {
     oauth2Version = '2.3.5.RELEASE'
+    oauth2AutoConfigVersion = '2.1.6.RELEASE'
     springMybatisVersion = '2.1.0'
     mybatisPlusVersion = '3.1.2'
     druidVersion = '1.1.18'
@@ -70,6 +71,7 @@ configure(allprojects) { project ->
                 mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
             }
             dependency "org.springframework.security.oauth:spring-security-oauth2:${oauth2Version}"
+            dependency "org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:${oauth2AutoConfigVersion}"
             dependency "com.github.pagehelper:pagehelper-spring-boot-starter:${pagehelperVersion}"
             dependency "org.mybatis.spring.boot:mybatis-spring-boot-starter:${springMybatisVersion}"
             dependency "com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}"

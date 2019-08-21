@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS oauth2_database DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE oauth2_database;
+
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 

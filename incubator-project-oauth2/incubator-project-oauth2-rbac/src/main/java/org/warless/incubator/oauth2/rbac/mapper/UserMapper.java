@@ -1,6 +1,5 @@
 package org.warless.incubator.oauth2.rbac.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.warless.incubator.oauth2.rbac.pojo.po.SysUser;
@@ -10,7 +9,7 @@ import org.warless.incubator.oauth2.rbac.pojo.po.SysUser;
  * @date : 2019-08-19
  */
 @Mapper
-public interface UserMapper extends BaseMapper<SysUser> {
+public interface UserMapper {
 
     /**
      * query with username

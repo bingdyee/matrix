@@ -1,4 +1,4 @@
-package org.warless.incubator.oauth2.rbac.security;
+package org.warless.incubator.oauth2.rbac.config;
 
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.StringUtils;

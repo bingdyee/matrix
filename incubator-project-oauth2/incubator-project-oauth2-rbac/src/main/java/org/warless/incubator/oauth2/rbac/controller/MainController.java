@@ -1,4 +1,4 @@
-package org.warless.incubator.oauth2.database.controller;
+package org.warless.incubator.oauth2.rbac.controller;
 
 import org.springframework.web.bind.annotation.*;
 import org.warless.incubator.common.ResponseEntity;

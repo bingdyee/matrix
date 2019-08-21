@@ -1,4 +1,4 @@
-package org.warless.incubator.oauth2.rbac.security;
+package org.warless.incubator.oauth2.rbac.config;
 
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,11 +37,6 @@ import static org.springframework.security.config.Elements.REMEMBER_ME;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private DataSource dataSource;
-    @Autowired
-    private UserDetailsService userDetailsService;
-
     /**
      * CORS
      *
@@ -65,16 +60,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         return super.authenticationManager();
     }
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers(
-                "/swagger-resources/**",
-                "/webjars/**",
-                "/v2/**",
-                "/swagger-ui.html/**"
-        );
-    }
-
     /**
      * http安全配置
      *
@@ -83,63 +68,15 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-                .and()
-                .formLogin()
-                .loginProcessingUrl("/api/user/login")
-                .successHandler(authenticationSuccessHandler())
-                .failureHandler(authenticationFailureHandler())
+        http.sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 .and()
                 .authorizeRequests()
                 .anyRequest()
                 .authenticated()
-                .and()
-                .logout()
-                .logoutUrl("/api/user/logout")
-                .logoutSuccessHandler(logoutSuccessHandler())
-                .deleteCookies("JSESSIONID")
-                .permitAll()
-                .and()
-                .rememberMe()
-                .rememberMeServices(rememberMeServices())
                 .and().csrf().disable();
     }
 
-    @Bean
-    public RememberMeServices rememberMeServices() {
-        JdbcTokenRepositoryImpl rememberMeTokenRepository = new JdbcTokenRepositoryImpl();
-        rememberMeTokenRepository.setDataSource(dataSource);
-        PersistentTokenBasedRememberMeServices rememberMeServices =
-                new PersistentTokenBasedRememberMeServices(REMEMBER_ME, userDetailsService, rememberMeTokenRepository);
-        rememberMeServices.setParameter(REMEMBER_ME);
-        rememberMeServices.setTokenValiditySeconds(1209600);
-        return rememberMeServices;
-    }
 
-    @Bean
-    public AuthenticationSuccessHandler authenticationSuccessHandler() {
-        return (request, response, authentication) -> {
-            response.setContentType("application/json;charset=utf-8");
-            response.getWriter()
-                    .write(JSONObject.toJSONString(ResponseEntity.ok(authentication.getPrincipal())));
-        };
-    }
-
-    @Bean
-    public AuthenticationFailureHandler authenticationFailureHandler() {
-        return (request, response, e) -> {
-            response.setContentType("application/json;charset=utf-8");
-            response.getWriter()
-                    .write(JSONObject.toJSONString(ResponseEntity.error("Login Failed!")));
-        };
-    }
-    @Bean
-    public LogoutSuccessHandler logoutSuccessHandler() {
-        return (request, response, authentication) -> {
-            response.setContentType("application/json;charset=utf-8");
-            response.getWriter()
-                    .write(JSONObject.toJSONString(ResponseEntity.ok(null, "Logout Succeed!")));
-        };
-    }
 
 }

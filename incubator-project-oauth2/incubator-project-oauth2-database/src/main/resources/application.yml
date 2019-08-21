@@ -5,12 +5,12 @@ server:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: org.warless.incubator.oauth2.database.pojo.po
-  config-location: classpath:mybatis-config.xml
+
 
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/incubator_oauth2?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=CONVERT_TO_NULL&rewriteBatchedStatements=true&useAffectedRows=true&useSSL=false&requireSSL=false&serverTimezone=GMT%2B8
+    url: jdbc:mysql://127.0.0.1:3306/oauth2_database?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=CONVERT_TO_NULL&rewriteBatchedStatements=true&useAffectedRows=true&useSSL=false&requireSSL=false&serverTimezone=GMT%2B8
     username: 3B92E4F552325AF622CAB9C6948F176F
     password: D11604E78CDC0207E2AC405136B2BBC4
     max-active: 50
@@ -20,13 +20,3 @@ spring:
     filters: mergeStat,wall,slf4j,config
     validation-query: select 'x'
 
-swagger:
-  enable: true
-  api-info:
-    author: fetaxyu
-    contact: https://github.com/fetaxyu
-    email: fetaxy@gmail.com
-    title: OAuth2 InMemory
-    description: OAuth2 InMemory Mode
-    url: https://fetaxyu.github.io
-    version: 1.0

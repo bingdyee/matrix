@@ -134,10 +134,10 @@ CREATE TABLE `sys_permission`  (
 -- ----------------------------
 -- Records of sys_permission
 -- ----------------------------
-INSERT INTO `sys_permission` VALUES (613335937463746563, NULL, '新增用户', 1, 'user:insert', '/api/v1/user', 'POST', '新增用户', '2019-08-20 11:56:51', '2019-08-20 11:56:53', 0);
-INSERT INTO `sys_permission` VALUES (613335937463746564, NULL, '修改用户', 1, 'user:update', '/api/v1/user', 'PUT', '修改用户', '2019-08-20 11:57:41', '2019-08-20 11:57:44', 0);
-INSERT INTO `sys_permission` VALUES (613335937463746565, NULL, '删除用户', 1, 'user:delete', '/api/v1/user', 'DELETE', '删除用户', '2019-08-20 11:58:26', '2019-08-20 11:58:28', 0);
-INSERT INTO `sys_permission` VALUES (613335937463746566, NULL, '查询用户', 1, 'user:select', '/api/v1/user', 'GET', '查询用户', '2019-08-20 11:59:12', '2019-08-20 11:59:13', 0);
+INSERT INTO `sys_permission` VALUES (613335937463746563, NULL, '新增', 1, 'main:insert', '/api/v1/main', 'POST', '新增', '2019-08-20 11:56:51', '2019-08-20 11:56:53', 0);
+INSERT INTO `sys_permission` VALUES (613335937463746564, NULL, '修改', 1, 'main:update', '/api/v1/main', 'PUT', '修改', '2019-08-20 11:57:41', '2019-08-20 11:57:44', 0);
+INSERT INTO `sys_permission` VALUES (613335937463746565, NULL, '删除', 1, 'main:delete', '/api/v1/main', 'DELETE', '删除', '2019-08-20 11:58:26', '2019-08-20 11:58:28', 0);
+INSERT INTO `sys_permission` VALUES (613335937463746566, NULL, '查询', 1, 'main:select', '/api/v1/main', 'GET', '查询', '2019-08-20 11:59:12', '2019-08-20 11:59:13', 0);
 
 -- ----------------------------
 -- Table structure for sys_role

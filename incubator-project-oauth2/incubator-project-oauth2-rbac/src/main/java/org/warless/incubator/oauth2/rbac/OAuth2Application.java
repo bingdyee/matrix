@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @author : yubb
+ * @author : fetaxyu
  * @date : 2019-08-19
  */
 @MapperScan("org.warless.incubator.oauth2.rbac.mapper")

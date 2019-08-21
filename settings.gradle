@@ -8,4 +8,6 @@ include 'incubator-project-oauth2:incubator-project-oauth2-database'
 findProject(':incubator-project-oauth2:incubator-project-oauth2-database')?.name = 'incubator-project-oauth2-database'
 include 'incubator-project-oauth2:incubator-project-oauth2-rbac'
 findProject(':incubator-project-oauth2:incubator-project-oauth2-rbac')?.name = 'incubator-project-oauth2-rbac'
+include 'incubator-project-oauth2:incubator-project-oauth2-security'
+findProject(':incubator-project-oauth2:incubator-project-oauth2-security')?.name = 'incubator-project-oauth2-security'
 

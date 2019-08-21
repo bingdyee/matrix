@@ -1,7 +1,7 @@
-package org.warless.incubator.oauth2.rbac.security;
+package org.warless.incubator.oauth2.rbac.config;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -10,7 +10,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
 /**
- * @author yubb
+ * @author fetaxyu
  * @date 2019-08-19
  */
 @Configuration
@@ -26,13 +26,15 @@ public class ResourcesServerConfiguration extends ResourceServerConfigurerAdapte
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.requestMatcher(requestMatcher())
+        http.requestMatcher(authRequestMatcher())
                 .authorizeRequests()
-                .anyRequest()
-                .authenticated();
+                .antMatchers(HttpMethod.POST, "/api/v1/main").hasAuthority("main:insert")
+                .antMatchers(HttpMethod.GET, "/api/v1/main").hasAuthority("main:select")
+                .antMatchers(HttpMethod.PUT, "/api/v1/main").hasAuthority("main:update")
+                .antMatchers(HttpMethod.DELETE, "/api/v1/main").hasAuthority("main:delete");
     }
 
-    private RequestMatcher requestMatcher() {
+    private RequestMatcher authRequestMatcher() {
         return request -> {
             if (request.getParameter(OAuth2AccessToken.ACCESS_TOKEN) != null) {
                 return Boolean.TRUE;

@@ -10,15 +10,5 @@ security:
     validity-seconds: 7200
     refresh-seconds: 7200
 
-swagger:
-  enable: true
-  api-info:
-    author: fetaxyu
-    contact: https://github.com/fetaxyu
-    email: fetaxy@gmail.com
-    title: OAuth2 InMemory
-    description: OAuth2 InMemory Mode
-    url: https://fetaxyu.github.io
-    version: 1.0
 
 

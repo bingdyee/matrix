@@ -1,4 +1,4 @@
-package org.warless.incubator.oauth2.rbac.security;
+package org.warless.incubator.oauth2.rbac.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
