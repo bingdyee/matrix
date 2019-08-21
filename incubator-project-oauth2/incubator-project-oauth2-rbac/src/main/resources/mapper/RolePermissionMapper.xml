@@ -14,7 +14,7 @@
             LEFT JOIN sys_role AS r ON r.id = ur.role_id
             LEFT JOIN sys_role_permission AS rp ON r.id = rp.role_id
             LEFT JOIN sys_permission AS p ON p.id = rp.permission_id
-        WHERE u.id=#{userId}
+        WHERE u.id=#{userId, jdbcType=BIGINT}
     </select>
 
 </mapper>

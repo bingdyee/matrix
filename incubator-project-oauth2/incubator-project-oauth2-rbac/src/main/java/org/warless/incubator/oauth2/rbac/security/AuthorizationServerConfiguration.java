@@ -15,14 +15,10 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
-import org.springframework.security.web.authentication.RememberMeServices;
-import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-import static org.springframework.security.config.Elements.REMEMBER_ME;
 
 /**
  * @author yubb
@@ -31,6 +27,7 @@ import static org.springframework.security.config.Elements.REMEMBER_ME;
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
+
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -42,6 +39,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     private RedisAuthorizationCodeServices redisAuthorizationCodeServices;
     @Autowired
     private RedisClientDetailsService redisClientDetailsService;
+
 
     @Bean
     public TokenStore tokenStore() {
@@ -85,13 +83,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         redisClientDetailsService.loadAllClientToCache();
     }
 
-    @Bean
-    public RememberMeServices rememberMeServices() {
-        JdbcTokenRepositoryImpl rememberMeTokenRepository = new JdbcTokenRepositoryImpl();
-        PersistentTokenBasedRememberMeServices rememberMeServices =
-                new PersistentTokenBasedRememberMeServices("RememberMe", userDetailsService, rememberMeTokenRepository);
-        rememberMeServices.setParameter(REMEMBER_ME);
-        return rememberMeServices;
-    }
+
 
 }

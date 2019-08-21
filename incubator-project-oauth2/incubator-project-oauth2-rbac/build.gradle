@@ -2,7 +2,7 @@ dependencies {
     implementation(
             'org.springframework.boot:spring-boot-starter-security',
             'org.springframework.security.oauth:spring-security-oauth2',
-            'org.mybatis.spring.boot:mybatis-spring-boot-starter',
+            'com.baomidou:mybatis-plus-boot-starter',
             'org.springframework.boot:spring-boot-starter-data-redis',
             'com.alibaba:druid',
             'mysql:mysql-connector-java',

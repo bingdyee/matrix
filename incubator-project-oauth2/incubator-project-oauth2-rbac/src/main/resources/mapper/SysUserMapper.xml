@@ -21,7 +21,7 @@
         FROM
           sys_user
         where
-          username=#{username} AND has_deleted=0
+          username=#{username, jdbcType=VARCHAR} AND has_deleted=0
     </select>
 
 </mapper>

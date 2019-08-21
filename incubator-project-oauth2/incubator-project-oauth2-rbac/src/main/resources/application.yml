@@ -1,12 +1,10 @@
 server:
   port: 8080
 
-
-mybatis:
+mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: org.warless.incubator.oauth2.rbac.pojo.po
   config-location: classpath:mybatis-config.xml
-
 
 spring:
   datasource:

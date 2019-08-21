@@ -16,9 +16,9 @@ public interface RolePermissionMapper {
     /**
      *  query user role&permission list
      *
-     * @param id
-     * @return
+     * @param userId sys_user.id
+     * @return rolePermissionList
      */
-    List<RolePermission> selectUserRolePermissions(@Param("userId") Long id);
+    List<RolePermission> selectUserRolePermissions(@Param("userId") Long userId);
 
 }

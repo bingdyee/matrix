@@ -3,6 +3,7 @@ package org.warless.incubator.oauth2.rbac.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 import org.warless.incubator.common.ResponseEntity;
@@ -42,8 +43,8 @@ public class UserController {
 
     @ApiOperation("Get user by id.")
     @GetMapping("/v1/user")
-    public ResponseEntity<UserDTO> getUserById() {
-        return null;
+    public ResponseEntity<UserDTO> getUserById(@RequestParam("id") Long id) {
+        return ResponseEntity.ok(userService.getUserById(id));
     }
 
 }

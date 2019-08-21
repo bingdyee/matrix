@@ -11,16 +11,22 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.warless.incubator.common.ResponseEntity;
 
+import javax.sql.DataSource;
 import java.util.Arrays;
+
+import static org.springframework.security.config.Elements.REMEMBER_ME;
 
 /**
  * @author fetaxyu
@@ -32,7 +38,9 @@ import java.util.Arrays;
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private RememberMeServices rememberMeServices;
+    private DataSource dataSource;
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     /**
      * CORS
@@ -93,8 +101,19 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .rememberMe()
-                .rememberMeServices(rememberMeServices)
+                .rememberMeServices(rememberMeServices())
                 .and().csrf().disable();
+    }
+
+    @Bean
+    public RememberMeServices rememberMeServices() {
+        JdbcTokenRepositoryImpl rememberMeTokenRepository = new JdbcTokenRepositoryImpl();
+        rememberMeTokenRepository.setDataSource(dataSource);
+        PersistentTokenBasedRememberMeServices rememberMeServices =
+                new PersistentTokenBasedRememberMeServices(REMEMBER_ME, userDetailsService, rememberMeTokenRepository);
+        rememberMeServices.setParameter(REMEMBER_ME);
+        rememberMeServices.setTokenValiditySeconds(1209600);
+        return rememberMeServices;
     }
 
     @Bean
