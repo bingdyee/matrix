@@ -1,5 +1,9 @@
 server:
   port: 8080
+
+logging:
+  level:
+    org.springframework.security: DEBUG
 # 1. genkey
 # keytool -genkey -alias incubator_oauth2 -keyalg RSA -keystore ${path}
 # 2. export cert
