@@ -1,15 +1,17 @@
 server:
   port: 8082
 
+oauth2-server: http://localhost:8080
+
 security:
   oauth2:
     client:
-      client-id: client_2
-      client-secret: secret_2
-      user-authorization-uri: http://localhost:8080/oauth/authorize
-      access-token-uri: http://localhost:8080/oauth/token
-      registered-redirect-uri: http://localhost:8082/
-      use-current-uri: true
+      clientId: client_2
+      clientSecret: secret_2
+      userAuthorizationUri: ${oauth2-server}/oauth/authorize
+      accessTokenUri: ${oauth2-server}/oauth/token
+      registeredRedirectUri: http://localhost:8082/
+      useCurrentUri: true
     resource:
       id: clientB
-      user-info-uri: http://localhost:8080/oauth/user-info
+      userInfoUri: ${oauth2-server}/oauth/me

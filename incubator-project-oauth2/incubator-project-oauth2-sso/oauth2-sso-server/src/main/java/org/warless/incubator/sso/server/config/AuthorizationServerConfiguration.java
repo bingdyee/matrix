@@ -69,14 +69,14 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .authorizedGrantTypes("authorization_code", "refresh_token")
                 .scopes("all")
                 .autoApprove(true)
-                .redirectUris("http:/localhost:8081/")
+                .redirectUris("http:/localhost:8081/login")
                 .and()
                 .withClient("client_2")
                 .secret(passwordEncoder.encode("secret_2"))
                 .authorizedGrantTypes("authorization_code", "refresh_token")
                 .scopes("all")
                 .autoApprove(true)
-                .redirectUris("http:/localhost:8082/");
+                .redirectUris("http:/localhost:8082/login");
     }
 
 }

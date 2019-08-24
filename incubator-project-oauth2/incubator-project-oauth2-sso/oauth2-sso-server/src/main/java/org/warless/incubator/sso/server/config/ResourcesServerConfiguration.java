@@ -12,7 +12,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 
 
 /**
- * @author yubb
+ * @author fetaxyu
  * @date 2019-08-07
  */
 @Configuration
@@ -20,13 +20,9 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 public class ResourcesServerConfiguration extends ResourceServerConfigurerAdapter {
 
     @Override
-    public void configure(ResourceServerSecurityConfigurer resources) {
-        resources.resourceId("main").stateless(true);
-    }
-
-    @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.antMatcher("/oauth/user-info")
+        http.requestMatchers().antMatchers("/oauth/me")
+                .and()
                 .authorizeRequests()
                 .anyRequest()
                 .authenticated();

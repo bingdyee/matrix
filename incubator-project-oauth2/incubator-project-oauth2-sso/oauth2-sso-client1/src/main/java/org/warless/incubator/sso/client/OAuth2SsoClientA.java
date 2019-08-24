@@ -3,8 +3,6 @@ package org.warless.incubator.sso.client;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 import org.springframework.web.bind.annotation.*;
 import org.warless.incubator.common.ResponseEntity;
 
@@ -12,8 +10,6 @@ import org.warless.incubator.common.ResponseEntity;
  * @author : fetaxyu
  * @date : 2019-08-21
  */
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-@EnableOAuth2Client
 @SpringBootApplication
 public class OAuth2SsoClientA {
 
