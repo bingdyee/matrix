@@ -1,7 +1,7 @@
 server:
   port: 8081
 
-oauth2-server: http://localhost:8080
+oauth2-server: http://127.0.0.1:8080
 
 security:
   oauth2:
@@ -10,7 +10,7 @@ security:
       clientSecret: secret_1
       accessTokenUri: ${oauth2-server}/oauth/token
       userAuthorizationUri: ${oauth2-server}/oauth/authorize
-      useCurrentUri: true
-      registeredRedirectUri: http://localhost:8081/login
+#      useCurrentUri: true
+#      registeredRedirectUri: http://localhost:8081/login
     resource:
       userInfoUri: ${oauth2-server}/oauth/me
