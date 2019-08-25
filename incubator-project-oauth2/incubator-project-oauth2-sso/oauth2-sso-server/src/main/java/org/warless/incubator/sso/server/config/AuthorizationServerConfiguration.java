@@ -26,8 +26,6 @@ import java.util.concurrent.TimeUnit;
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
-    private TokenStore tokenStore;
-    @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
     UserDetailsService userDetailsService;
@@ -43,7 +41,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints.authenticationManager(this.authenticationManager)
                 .userDetailsService(userDetailsService)
-                .tokenStore(tokenStore)
+                .tokenStore(tokenStore())
                 .tokenEnhancer((accessToken, authentication) -> accessToken);
         DefaultTokenServices tokenServices = (DefaultTokenServices) endpoints.getDefaultAuthorizationServerTokenServices();
         tokenServices.setTokenStore(endpoints.getTokenStore());
@@ -69,14 +67,14 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .authorizedGrantTypes("authorization_code", "refresh_token")
                 .scopes("all")
                 .autoApprove(true)
-                .redirectUris("http:/localhost:8081/login")
+                .redirectUris("http://localhost:8081/login")
                 .and()
                 .withClient("client_2")
                 .secret(passwordEncoder.encode("secret_2"))
                 .authorizedGrantTypes("authorization_code", "refresh_token")
                 .scopes("all")
                 .autoApprove(true)
-                .redirectUris("http:/localhost:8082/login");
+                .redirectUris("http://localhost:8082/login");
     }
 
 }

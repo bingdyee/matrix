@@ -13,7 +13,7 @@ buildscript {
 }
 
 ext {
-    oauth2Version = '2.3.5.RELEASE'
+    oauth2Version = '2.3.6.RELEASE'
     oauth2AutoConfigVersion = '2.1.6.RELEASE'
     springMybatisVersion = '2.1.0'
     mybatisPlusVersion = '3.1.2'
