@@ -10,6 +10,7 @@ security:
       clientSecret: secret_2
       userAuthorizationUri: ${oauth2-server}/oauth/authorize
       accessTokenUri: ${oauth2-server}/oauth/token
-      registeredRedirectUri: http://localhost:8082/
     resource:
       userInfoUri: ${oauth2-server}/oauth/me
+#      jwt:
+#        keyUri: ${oauth2-server}/oauth/token_key

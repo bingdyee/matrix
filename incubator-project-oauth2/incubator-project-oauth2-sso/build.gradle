@@ -1,5 +1,6 @@
 dependencies {
    implementation(
+           'org.springframework.boot:spring-boot-starter-security',
            'org.apache.commons:commons-lang3',
            'com.alibaba:fastjson'
    )

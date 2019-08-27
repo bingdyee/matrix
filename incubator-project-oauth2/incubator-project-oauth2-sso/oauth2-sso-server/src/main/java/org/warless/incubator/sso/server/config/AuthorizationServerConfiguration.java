@@ -1,6 +1,7 @@
 package org.warless.incubator.sso.server.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,6 +15,8 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import java.util.concurrent.TimeUnit;
 
@@ -31,10 +34,12 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     UserDetailsService userDetailsService;
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+    @Value("${usingJwt:false}")
+    private boolean usingJwt;
 
     @Bean
     public TokenStore tokenStore() {
-        return new InMemoryTokenStore();
+        return usingJwt ? new JwtTokenStore(jwtAccessTokenConverter()) : new InMemoryTokenStore();
     }
 
     @Override
@@ -43,13 +48,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .userDetailsService(userDetailsService)
                 .tokenStore(tokenStore())
                 .tokenEnhancer((accessToken, authentication) -> accessToken);
-        DefaultTokenServices tokenServices = (DefaultTokenServices) endpoints.getDefaultAuthorizationServerTokenServices();
-        tokenServices.setTokenStore(endpoints.getTokenStore());
-        tokenServices.setSupportRefreshToken(true);
-        tokenServices.setClientDetailsService(endpoints.getClientDetailsService());
-        tokenServices.setTokenEnhancer(endpoints.getTokenEnhancer());
-        tokenServices.setAccessTokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(1));
-        endpoints.tokenServices(tokenServices);
+        if (usingJwt) {
+            endpoints.accessTokenConverter(jwtAccessTokenConverter());
+        }
     }
 
     @Override
@@ -75,6 +76,13 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .scopes("all")
                 .autoApprove(true)
                 .redirectUris("http://localhost:8082/login");
+    }
+
+    @Bean
+    public JwtAccessTokenConverter jwtAccessTokenConverter() {
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        converter.setSigningKey("client");
+        return converter;
     }
 
 }
