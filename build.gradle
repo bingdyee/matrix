@@ -135,10 +135,15 @@ configure(rootProject) {
     apply plugin: 'application'
 
     dependencies {
+        implementation(
+                'org.springframework.boot:spring-boot-starter',
+                'org.springframework.boot:spring-boot-starter-aop'
+        )
         testCompile(
                 project(":incubator-project-common"),
                 project(":incubator-project-oauth2"),
-                project(":incubator-project-simplefeign")
+                project(":incubator-project-simplefeign"),
+                project(":incubator-project-dubbo")
         )
     }
 
