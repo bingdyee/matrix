@@ -144,7 +144,6 @@ configure(rootProject) {
                 project(":incubator-project-oauth2"),
                 project(":incubator-project-simplefeign"),
                 project(":incubator-project-dubbo"),
-                project(":incubator-project-web")
         )
     }
 
