@@ -27,6 +27,7 @@ ext {
     easyexcelVersion = '1.1.2-beta5'
     pagehelperVersion = '1.2.12'
     wiremockVersion = '2.24.1'
+    jolVersion = '0.9'
 }
 
 def env = System.getProperty("env") ?: "dev"
@@ -87,6 +88,7 @@ configure(allprojects) { project ->
             dependency "io.springfox:springfox-swagger-ui:${swaggerVersion}"
             dependency "org.apache.commons:commons-lang3:${commonsLangVersion}"
             dependency "com.github.tomakehurst:wiremock:${wiremockVersion}"
+            dependency "org.openjdk.jol:jol-core:${jolVersion}"
         }
     }
 
@@ -137,9 +139,10 @@ configure(rootProject) {
     dependencies {
         implementation(
                 'org.springframework.boot:spring-boot-starter',
-                'org.springframework.boot:spring-boot-starter-aop'
+                'org.springframework.boot:spring-boot-starter-aop',
         )
         testCompile(
+                'org.openjdk.jol:jol-core',
                 project(":incubator-project-common"),
                 project(":incubator-project-oauth2"),
                 project(":incubator-project-simplefeign"),
