@@ -19,4 +19,13 @@ include 'incubator-project-oauth2:incubator-project-oauth2-sso:oauth2-sso-client
 findProject(':incubator-project-oauth2:incubator-project-oauth2-sso:oauth2-sso-client1')?.name = 'oauth2-sso-client1'
 include 'incubator-project-oauth2:incubator-project-oauth2-sso:oauth2-sso-client2'
 findProject(':incubator-project-oauth2:incubator-project-oauth2-sso:oauth2-sso-client2')?.name = 'oauth2-sso-client2'
+include 'incubator-project-dubbo:incubator-project-dubbo-provider'
+findProject(':incubator-project-dubbo:incubator-project-dubbo-provider')?.name = 'incubator-project-dubbo-provider'
+include 'incubator-project-dubbo:incubator-project-dubbo-consumer'
+findProject(':incubator-project-dubbo:incubator-project-dubbo-consumer')?.name = 'incubator-project-dubbo-consumer'
+include 'incubator-project-dubbo:incubator-project-dubbo-api'
+findProject(':incubator-project-dubbo:incubator-project-dubbo-api')?.name = 'incubator-project-dubbo-api'
+include 'incubator-project-microservice'
+include 'incubator-project-dubbo:incubator-project-dubbo-simpledubbo'
+findProject(':incubator-project-dubbo:incubator-project-dubbo-simpledubbo')?.name = 'incubator-project-dubbo-simpledubbo'
 
