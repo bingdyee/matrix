@@ -22,6 +22,7 @@ ext {
     druidVersion = '1.1.18'
     mysqlVersion = '8.0.12'
     fastjsonVersion = '1.2.58'
+    nettyVersion = '4.1.36.Final'
     swaggerVersion = '2.9.2'
     commonsLangVersion = '3.8.1'
     zxingVersion = '3.4.0'
@@ -29,6 +30,7 @@ ext {
     pagehelperVersion = '1.2.12'
     wiremockVersion = '2.24.1'
     jolVersion = '0.9'
+    commonsioVersion = '2.6'
 }
 
 def env = System.getProperty("env") ?: "dev"
@@ -92,6 +94,8 @@ configure(allprojects) { project ->
             dependency "org.apache.commons:commons-lang3:${commonsLangVersion}"
             dependency "com.github.tomakehurst:wiremock:${wiremockVersion}"
             dependency "org.openjdk.jol:jol-core:${jolVersion}"
+            dependency "io.netty:netty-all:${nettyVersion}"
+            dependency "commons-io:commons-io:${commonsioVersion}"
         }
     }
 
