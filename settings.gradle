@@ -28,4 +28,5 @@ findProject(':incubator-project-dubbo:incubator-project-dubbo-api')?.name = 'inc
 include 'incubator-project-microservice'
 include 'incubator-project-dubbo:incubator-project-dubbo-simpledubbo'
 findProject(':incubator-project-dubbo:incubator-project-dubbo-simpledubbo')?.name = 'incubator-project-dubbo-simpledubbo'
+include 'incubator-project-blockchain'
 
