@@ -31,6 +31,7 @@ ext {
     wiremockVersion = '2.24.1'
     jolVersion = '0.9'
     commonsioVersion = '2.6'
+    dubboVersion = '2.7.3'
 }
 
 def env = System.getProperty("env") ?: "dev"
@@ -96,6 +97,8 @@ configure(allprojects) { project ->
             dependency "org.openjdk.jol:jol-core:${jolVersion}"
             dependency "io.netty:netty-all:${nettyVersion}"
             dependency "commons-io:commons-io:${commonsioVersion}"
+            dependency "org.apache.dubbo:dubbo-spring-boot-starter:${dubboVersion}"
+            dependency "org.apache.dubbo:dubbo-dependencies-zookeeper:${dubboVersion}"
         }
     }
 

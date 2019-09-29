@@ -1,2 +1,10 @@
 dependencies {
+    implementation(
+            'org.apache.dubbo:dubbo-spring-boot-starter',
+            project(":incubator-project-dubbo:incubator-project-dubbo-api")
+    )
+    implementation('org.apache.dubbo:dubbo-dependencies-zookeeper') {
+        exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+    }
+
 }
