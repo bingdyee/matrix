@@ -10,7 +10,7 @@ dubbo:
     base-packages: org.warless.incubator.dubbo.provider.service
   protocol:
     name: dubbo
-    port: -1
+    port: 20880
   registry:
     address: zookeeper://127.0.0.1:2181
     file: ${user.home}/dubbo-cache/${spring.application.name}/dubbo.cache

@@ -99,6 +99,7 @@ configure(allprojects) { project ->
             dependency "commons-io:commons-io:${commonsioVersion}"
             dependency "org.apache.dubbo:dubbo-spring-boot-starter:${dubboVersion}"
             dependency "org.apache.dubbo:dubbo-dependencies-zookeeper:${dubboVersion}"
+            dependency "org.apache.dubbo:dubbo:${dubboVersion}"
         }
     }
 
