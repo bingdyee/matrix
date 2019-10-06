@@ -29,4 +29,6 @@ include 'incubator-project-microservice'
 include 'incubator-project-dubbo:incubator-project-dubbo-simpledubbo'
 findProject(':incubator-project-dubbo:incubator-project-dubbo-simpledubbo')?.name = 'incubator-project-dubbo-simpledubbo'
 include 'incubator-project-blockchain'
+include 'incubator-project-dubbo:incubator-project-dubbo-configcenter'
+findProject(':incubator-project-dubbo:incubator-project-dubbo-configcenter')?.name = 'incubator-project-dubbo-configcenter'
 
