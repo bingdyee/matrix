@@ -19,7 +19,7 @@ public class DemoTest extends SpringIntegrationTest {
 
     @Test
     public void testFindUserById() {
-        System.err.println("testFindUserById()");
+        LOGGER.info("testFindUserById()");
         UserDTO user = defaultService.findUserById(Long.MAX_VALUE);
         Assert.assertNotNull(user);
     }

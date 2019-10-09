@@ -20,13 +20,11 @@ public class DefaultServiceImpl implements DefaultService {
 
     @Override
     public String hello(String name) {
-        System.err.println("Invoke hello()");
         return String.format("[%s] : Hello, %s", serviceName, name);
     }
 
     @Override
     public UserDTO findUserById(Long id) {
-        System.err.println("Invoke findUserById(id)");
         UserDTO user = new UserDTO();
         user.setBirth(new Date());
         user.setId(id);
