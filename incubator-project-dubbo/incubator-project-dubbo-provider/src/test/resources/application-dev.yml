@@ -1,0 +1,20 @@
+
+spring:
+  application:
+    name: dubbo-provider
+
+dubbo:
+  provider:
+    export: false
+  application:
+    name: ${spring.application.name}
+  scan:
+    base-packages: org.warless.incubator.dubbo.provider.service
+  protocol:
+    name: dubbo
+    port: 20880
+  registry:
+    address: zookeeper://127.0.0.1:2181
+    file: ${user.home}/dubbo-cache/${spring.application.name}/dubbo.cache
+  service:
+    version: 1.0.0
