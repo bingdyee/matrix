@@ -1,6 +1,7 @@
 dependencies {
     implementation(
             'org.apache.dubbo:dubbo-spring-boot-starter',
+            'org.springframework.cloud:spring-cloud-starter-netflix-hystrix',
             project(":incubator-project-dubbo:incubator-project-dubbo-api")
     )
     implementation('org.apache.dubbo:dubbo-dependencies-zookeeper') {

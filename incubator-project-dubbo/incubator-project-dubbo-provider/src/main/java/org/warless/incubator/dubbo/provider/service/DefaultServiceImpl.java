@@ -1,5 +1,7 @@
 package org.warless.incubator.dubbo.provider.service;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Value;
 import org.warless.incubator.dubbo.api.demo.DefaultService;
@@ -23,6 +25,12 @@ public class DefaultServiceImpl implements DefaultService {
         return String.format("[%s] : Hello, %s", serviceName, name);
     }
 
+    @HystrixCommand(
+            commandProperties = {
+                    @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
+                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "2000")
+            }
+    )
     @Override
     public UserDTO findUserById(Long id) {
         UserDTO user = new UserDTO();
