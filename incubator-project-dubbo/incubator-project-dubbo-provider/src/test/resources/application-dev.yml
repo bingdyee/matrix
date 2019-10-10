@@ -1,7 +1,7 @@
 
 spring:
   application:
-    name: dubbo-provider
+    name: dubbo-provider-test
 
 dubbo:
   provider:
@@ -13,6 +13,8 @@ dubbo:
   protocol:
     name: dubbo
     port: 20880
+    serialization: kryo
+    optimizer: org.warless.incubator.dubbo.provider.config.SerializationOptimizerImpl
   registry:
     address: zookeeper://127.0.0.1:2181
     file: ${user.home}/dubbo-cache/${spring.application.name}/dubbo.cache
