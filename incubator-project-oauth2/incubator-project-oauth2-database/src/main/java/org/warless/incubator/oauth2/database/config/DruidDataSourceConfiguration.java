@@ -3,6 +3,7 @@ package org.warless.incubator.oauth2.database.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DatabaseDriver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -42,6 +43,7 @@ public class DruidDataSourceConfiguration {
     @Value("${spring.datasource.validation-query}")
     private String validationQuery;
 
+    @ConfigurationProperties(prefix = "spring.datasource")
     @Bean
     public DataSource dataSource() {
         DruidDataSource dataSource = new DruidDataSource();
