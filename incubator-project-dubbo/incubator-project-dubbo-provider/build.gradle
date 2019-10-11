@@ -9,6 +9,7 @@ dependencies {
             project(":incubator-project-dubbo:incubator-project-dubbo-api"),
             project(":incubator-project-common")
     )
+    annotationProcessor 'org.projectlombok:lombok'
     implementation('org.apache.dubbo:dubbo-dependencies-zookeeper') {
         exclude group: 'org.slf4j', module: 'slf4j-log4j12'
     }
