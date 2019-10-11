@@ -35,6 +35,7 @@ ext {
     dubboRegistryNacosVersion = '2.7.3'
     nacosClientVersion = '1.1.3'
     lombokVersion = '1.18.10'
+    websocketVersion = '2.1.6.RELEASE'
 }
 
 def env = System.getProperty("env") ?: "dev"
@@ -79,6 +80,7 @@ configure(allprojects) { project ->
             imports {
                 mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
             }
+            dependency "org.springframework.boot:spring-boot-starter-websocket:${websocketVersion}"
             dependency "org.apache.dubbo:dubbo-spring-boot-starter:${dubboVersion}"
             dependency "org.apache.dubbo:dubbo:${dubboVersion}"
             dependency "org.springframework.security.oauth:spring-security-oauth2:${oauth2Version}"

@@ -1,0 +1,9 @@
+
+dependencies {
+    implementation (
+            'org.springframework.boot:spring-boot-starter-web',
+            'org.springframework.boot:spring-boot-starter-websocket',
+            'com.alibaba:fastjson',
+            project(':incubator-project-common')
+    )
+}

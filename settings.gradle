@@ -31,4 +31,5 @@ findProject(':incubator-project-dubbo:incubator-project-dubbo-simpledubbo')?.nam
 include 'incubator-project-blockchain'
 include 'incubator-project-dubbo:incubator-project-dubbo-configcenter'
 findProject(':incubator-project-dubbo:incubator-project-dubbo-configcenter')?.name = 'incubator-project-dubbo-configcenter'
+include 'incubator-project-webapp'
 
