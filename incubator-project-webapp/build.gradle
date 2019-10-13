@@ -4,6 +4,7 @@ dependencies {
             'org.springframework.boot:spring-boot-starter-web',
             'org.springframework.boot:spring-boot-starter-websocket',
             'com.alibaba:fastjson',
+            'io.netty:netty-all',
             project(':incubator-project-common')
     )
 }
