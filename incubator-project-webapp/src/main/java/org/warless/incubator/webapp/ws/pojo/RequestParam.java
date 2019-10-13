@@ -2,15 +2,15 @@ package org.warless.incubator.webapp.ws.pojo;
 
 public class RequestParam<T> {
 
-    private String id;
+    private Long id;
     private String event;
     private T data;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

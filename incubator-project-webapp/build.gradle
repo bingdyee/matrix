@@ -3,6 +3,7 @@ dependencies {
     implementation (
             'org.springframework.boot:spring-boot-starter-web',
             'org.springframework.boot:spring-boot-starter-websocket',
+            'org.apache.commons:commons-lang3',
             'com.alibaba:fastjson',
             'io.netty:netty-all',
             project(':incubator-project-common')

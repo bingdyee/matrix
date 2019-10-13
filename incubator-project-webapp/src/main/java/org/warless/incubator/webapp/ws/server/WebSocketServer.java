@@ -12,6 +12,9 @@ import io.netty.handler.stream.ChunkedWriteHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.InetSocketAddress;
+
+
 public class WebSocketServer {
 
     private static final Logger logger = LoggerFactory.getLogger(WebSocketServer.class);
@@ -40,18 +43,20 @@ public class WebSocketServer {
                             pipeline.addLast(channelHandler);
                         }
                     });
-            Channel ch = server.bind(port).sync().channel();
-            if (ch.isOpen()) {
+
+            Channel channel = server.bind(new InetSocketAddress(port)).sync().channel();
+            if (channel.isOpen()) {
                 logger.info("WebSocket Server Started! >> ws://127.0.0.1:{}", port);
             }
-            ch.closeFuture().sync();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        } finally {
             workerGroup.shutdownGracefully();
             bossGroup.shutdownGracefully();
         }
     }
+
+
+
 
 
 }
