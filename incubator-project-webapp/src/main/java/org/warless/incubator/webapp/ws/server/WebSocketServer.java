@@ -21,13 +21,16 @@ public class WebSocketServer {
 
     private int port;
 
+    EventLoopGroup bossGroup;
+    EventLoopGroup workerGroup;
+
     public WebSocketServer(int port) {
         this.port = port;
     }
 
     public void start(ChannelHandler channelHandler) {
-        EventLoopGroup bossGroup = new NioEventLoopGroup();
-        EventLoopGroup workerGroup = new NioEventLoopGroup();
+        bossGroup = new NioEventLoopGroup();
+        workerGroup = new NioEventLoopGroup();
         try {
             ServerBootstrap server = new ServerBootstrap();
             server.group(bossGroup, workerGroup)
@@ -47,12 +50,24 @@ public class WebSocketServer {
             Channel channel = server.bind(new InetSocketAddress(port)).sync().channel();
             if (channel.isOpen()) {
                 logger.info("WebSocket Server Started! >> ws://127.0.0.1:{}", port);
+                addStopHook();
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
             workerGroup.shutdownGracefully();
             bossGroup.shutdownGracefully();
         }
+    }
+
+    public void addStopHook() {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            if (workerGroup != null) {
+                workerGroup.shutdownGracefully();
+            }
+            if (bossGroup != null) {
+                bossGroup.shutdownGracefully();
+            }
+        }));
     }
 
 

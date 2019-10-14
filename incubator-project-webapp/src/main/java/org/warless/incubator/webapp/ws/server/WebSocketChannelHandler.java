@@ -1,6 +1,7 @@
 package org.warless.incubator.webapp.ws.server;
 
 import com.alibaba.fastjson.JSONObject;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.socket.nio.NioSocketChannel;
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.warless.incubator.webapp.utils.RemoteUtil;
 import org.warless.incubator.webapp.ws.pojo.RequestParam;
 
+@ChannelHandler.Sharable
 public class WebSocketChannelHandler extends SimpleChannelInboundHandler<Object> {
 
     private static final Logger logger = LoggerFactory.getLogger(WebSocketServer.class);
