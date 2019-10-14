@@ -1,4 +1,4 @@
-package org.warless.incubator.webapp;
+package org.warless.incubator.webapp.api;
 
 import org.springframework.stereotype.Service;
 import org.warless.incubator.webapp.ws.server.WebSocketChannelHandler;
