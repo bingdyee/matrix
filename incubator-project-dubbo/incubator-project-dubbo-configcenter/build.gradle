@@ -1,8 +1,0 @@
-dependencies {
-    implementation(
-        'org.apache.curator:curator-framework',
-        'org.apache.curator:curator-recipes',
-        'org.apache.commons:commons-lang3',
-        'commons-io:commons-io'
-    )
-}
