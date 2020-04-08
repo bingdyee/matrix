@@ -20,10 +20,6 @@ import java.util.Map;
  */
 public class QRCodeUtil {
 
-    private static final int DEFAULT_MARGIN = 2;
-
-    private static MultiFormatWriter multiWriter = new MultiFormatWriter();
-
     public static BitMatrix encode(String content, int width, int height) throws Exception {
         return encodeQRCode(content, width, height);
     }
@@ -48,8 +44,8 @@ public class QRCodeUtil {
         final Map<EncodeHintType, Object> hints = new HashMap<>(4);
         hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
         hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
-        hints.put(EncodeHintType.MARGIN, DEFAULT_MARGIN);
-        return multiWriter.encode(content, BarcodeFormat.QR_CODE, width, height, hints);
+        hints.put(EncodeHintType.MARGIN, 2);
+        return new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, width, height, hints);
 
     }
 

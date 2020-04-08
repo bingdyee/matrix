@@ -17,4 +17,4 @@ Code Lab
 Simple feign
 
 ## hikari-transaction
-Simple distributed transaction solution for microservices architecture.
+Simple distributed transaction for microservices architecture.
