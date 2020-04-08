@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.hikari.transaction.storage.mapper.StorageMapper">
+
+    <update id="updateStorage">
+        UPDATE tb_storage SET count = count-${count} WHERE commodity_code=#{commodityCode}
+    </update>
+
+    <select id="selectStorageCount" resultType="int">
+        SELECT count FROM tb_storage WHERE commodity_code=#{commodityCode}
+    </select>
+
+</mapper>

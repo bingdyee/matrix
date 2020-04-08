@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.hikari.transaction.order.mapper.OrderMapper">
+
+    <insert id="insert" parameterType="io.hikari.transaction.order.pojo.domain.OrderDO">
+        INSERT INTO tb_order(id, order_no, user_id, commodity_code, `count`, amount) VALUES(
+            #{order.id}, #{order.orderNo}, #{order.userId},
+            #{order.commodityCode}, #{order.count}, #{order.amount}
+        )
+    </insert>
+
+</mapper>
