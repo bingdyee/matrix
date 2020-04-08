@@ -1,0 +1,12 @@
+jar.enabled(true)
+
+dependencies {
+    implementation (
+            'org.springframework.boot:spring-boot-starter-web',
+            'io.github.openfeign:feign-core',
+            'io.netty:netty-all',
+            'com.alibaba:fastjson',
+            project(':hikari-transaction:hikari-transaction-common')
+    )
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
