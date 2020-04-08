@@ -1,0 +1,122 @@
+plugins {
+    id "org.springframework.boot" version "2.2.6.RELEASE"
+    id "io.spring.dependency-management" version '1.0.9.RELEASE'
+    id "com.github.node-gradle.node" version "2.1.1"
+    id "java"
+    id "idea"
+    id "maven"
+}
+
+ext {
+    set('springCloudVersion', 'Hoxton.SR1')
+    set('springMybatisVersion', '2.1.0')
+    set('mysqlVersion', '8.0.12')
+    set('guavaVersion', '28.2-jre')
+    set('swaggerVersion', '2.9.2')
+    set('cglibVersion', '3.3.0')
+    set('fastjsonVersion', '1.2.58')
+    set('nettyVersion', '4.1.48.Final')
+    set('reflectAsmVersion', '1.11.9')
+    set('swaggerVersion', '2.9.2')
+    set('zxingVersion', '3.4.0')
+    set('dubboVersion', '2.7.4.1')
+}
+
+configure(allprojects) { project ->
+    group 'io.hikari'
+
+    apply plugin: 'application'
+    apply plugin: 'io.spring.dependency-management'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+
+    repositories {
+        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        mavenCentral()
+    }
+
+    dependencyManagement {
+        resolutionStrategy {
+            cacheChangingModulesFor 0, "seconds"
+        }
+        applyMavenExclusions = false
+        generatedPomCustomization {
+            enabled = false
+        }
+        overriddenByDependencies = false
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
+        }
+        dependencies {
+            dependency "org.mybatis.spring.boot:mybatis-spring-boot-starter:$springMybatisVersion"
+            dependency "mysql:mysql-connector-java:$mysqlVersion"
+            dependency "com.alibaba:fastjson:$fastjsonVersion"
+            dependency "io.springfox:springfox-swagger2:$swaggerVersion"
+            dependency "io.springfox:springfox-swagger-ui:$swaggerVersion"
+            dependency "io.netty:netty-all:$nettyVersion"
+            dependency "com.esotericsoftware:reflectasm:$reflectAsmVersion"
+            dependency "cglib:cglib:$cglibVersion"
+            dependency "com.google.guava:guava:$guavaVersion"
+            dependency "com.google.zxing:core:$zxingVersion"
+            dependency "com.google.zxing:javase:$zxingVersion"
+            dependency "org.apache.dubbo:dubbo-spring-boot-starter:$dubboVersion"
+            dependency "org.apache.dubbo:dubbo-dependencies-zookeeper:$dubboVersion"
+            dependency  "org.apache.dubbo:dubbo-serialization-kryo:$dubboVersion"
+        }
+    }
+
+    configurations.all {
+        resolutionStrategy.cacheChangingModulesFor 0, "seconds"
+        resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
+    }
+
+    uploadArchives {
+        repositories {
+            flatDir {
+                dirs 'repos'
+            }
+        }
+    }
+
+    artifacts {
+        archives distZip
+    }
+
+}
+
+configure(subprojects.findAll{!it.name.contains('-ui')}) { project ->
+
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'maven'
+    apply plugin: 'org.springframework.boot'
+
+    configurations {
+        developmentOnly
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+        runtimeClasspath {
+            extendsFrom developmentOnly
+        }
+    }
+
+    sourceSets {
+        main {
+            java {
+                srcDirs 'src/main/java'
+            }
+            resources {
+                srcDir 'src/main/java'
+                srcDir 'src/main/resources'
+            }
+        }
+    }
+
+}

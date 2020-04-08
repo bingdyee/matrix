@@ -1,0 +1,11 @@
+dependencies {
+    compile(
+            'com.google.guava:guava',
+            'com.google.zxing:core',
+            'com.google.zxing:javase',
+            'cglib:cglib',
+            'io.netty:netty-all',
+            'org.slf4j:slf4j-api'
+    )
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

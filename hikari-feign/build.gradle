@@ -1,0 +1,9 @@
+
+dependencies {
+    implementation (
+            'org.springframework.boot:spring-boot-starter-web',
+            'com.alibaba:fastjson',
+            project(':hikari-common')
+    )
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
