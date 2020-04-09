@@ -3,8 +3,6 @@ package io.hikari.oauth2.jwt.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
-
 /**
  * @author Noa Swartz
  * @date 2020-04-08

@@ -2,8 +2,10 @@ package io.hikari.oauth2.memory.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.security.oauth2.authserver.AuthorizationServerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.Resource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,7 +18,10 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 import org.springframework.util.StringUtils;
+
+import java.security.KeyPair;
 
 /**
  * @author Noa Swartz
@@ -34,6 +39,14 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     private UserDetailsService userDetailsService;
     @Value("${usingJwt:false}")
     private boolean usingJwt;
+    @Value("${jwt.key-store}")
+    private Resource keystore;
+    @Value("${jwt.key-store-password}")
+    private String keyStorePassword;
+    @Value("${jwt.key-alias}")
+    private String keyAlias;
+    @Value("${jwt.key-password}")
+    private String keyPassword;
 
     @Bean
     public TokenStore tokenStore() {
@@ -71,8 +84,10 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
+        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(keystore, keyStorePassword.toCharArray());
+        KeyPair keyPair = keyStoreKeyFactory.getKeyPair(keyAlias, keyPassword.toCharArray());
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setSigningKey("client");
+        converter.setKeyPair(keyPair);
         return converter;
     }
 

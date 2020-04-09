@@ -20,7 +20,7 @@ public class ResourcesServerConfiguration extends ResourceServerConfigurerAdapte
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) {
-        resources.resourceId("main").tokenStore(new JwtTokenStore(jwtAccessTokenConverter())).stateless(true);
+        resources.resourceId("main").stateless(true);
     }
 
     @Override
@@ -36,11 +36,5 @@ public class ResourcesServerConfiguration extends ResourceServerConfigurerAdapte
                 .authenticated();
     }
 
-    @Bean
-    public JwtAccessTokenConverter jwtAccessTokenConverter() {
-        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setSigningKey("client");
-        return converter;
-    }
 
 }

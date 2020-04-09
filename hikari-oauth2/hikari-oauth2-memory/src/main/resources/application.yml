@@ -2,3 +2,10 @@ server:
   port: 8080
 
 usingJwt: true
+
+# keytool -genkey -alias hikari-jwt -storepass bccfcsuknfxmecbh -keyalg RSA -keysize 2048 -keystore hikari-jwt-store.jks -validity 36500 -deststoretype pkcs12
+jwt:
+  key-store: classpath:/hikari-jwt-store.jks
+  key-store-password: bccfcsuknfxmecbh
+  key-alias: hikari-jwt
+  key-password: bccfcsuknfxmecbh
