@@ -1,3 +1,4 @@
 dependencies {
+    implementation project(":hikari-common")
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
