@@ -5,7 +5,7 @@ Hikari provide a tested, study, tutorial, hands-on coding experience for myself.
 Common ToolKit
 
 ## hikari-dubbo
-Dubbo demo.
+Dubbo 2.7.+.
 
 ## hikari-oauth2
 Spring Security OAuth2.0
