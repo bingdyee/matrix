@@ -1,6 +1,8 @@
-package io.hikari.labs.mio.common;
+package io.hikari.labs.algorithms;
 
 /**
+ * Bitmap
+ *
  * @author Noa Swartz
  * @date 2020-04-10
  */
@@ -10,6 +12,7 @@ public class BitMap {
 
     private byte[] bits;
     private int capacity;
+    private boolean autoGrown;
 
     public BitMap() {
         this(DEFAULT_CAPACITY);
@@ -20,9 +23,15 @@ public class BitMap {
         this.bits = new byte[this.capacity];
     }
 
-    public void add(int num) {
-        grow(num);
-        bits[indexOf(num)] |= (0x80 >> position(num));
+    public boolean add(int num) {
+        if (autoGrown) {
+            grow(num);
+        }
+        if (indexOf(num) < bits.length) {
+            bits[indexOf(num)] |= (0x80 >> position(num));
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
     }
 
     public void remove(int num) {
@@ -43,6 +52,14 @@ public class BitMap {
         return num & 0x07;
     }
 
+    public void disableAutoGrown() {
+        this.autoGrown = false;
+    }
+
+    public void enableAutoGrown() {
+        this.autoGrown = true;
+    }
+
     private void grow(int num) {
         int newCapacity = indexOf(num) + 1;
         if (newCapacity > capacity) {
@@ -53,7 +70,7 @@ public class BitMap {
         }
     }
 
-    private String showAt(int index) {
+    public String showAt(int index) {
         String binary = Integer.toBinaryString(Byte.toUnsignedInt(bits[index]));
         return binary.length() < 8 ?
                 String.format("%0" + (8 - binary.length() % 8) + "d%s", 0, binary) :
