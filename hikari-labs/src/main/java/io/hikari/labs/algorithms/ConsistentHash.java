@@ -47,7 +47,7 @@ public class ConsistentHash<T> {
     }
 
     /**
-     * MurMurHash
+     * Murmur Hash
      *
      * @param key
      * @return
