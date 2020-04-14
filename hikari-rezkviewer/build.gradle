@@ -1,0 +1,8 @@
+dependencies {
+    implementation (
+            'org.apache.curator:curator-recipes',
+            'org.redisson:redisson',
+            'com.google.guava:guava'
+    )
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

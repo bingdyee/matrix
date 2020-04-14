@@ -27,4 +27,5 @@ include 'hikari-transaction:hikari-transaction-samples:storage-service'
 include 'hikari-spring'
 include 'hikari-spring:hikari-spring-es'
 include 'hikari-jvm'
+include 'hikari-rezkviewer'
 
