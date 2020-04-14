@@ -18,5 +18,4 @@ Simple feign
 
 ## hikari-transaction
 Simple distributed transaction for microservices architecture.
-
-> 并发/Lock -> JVM -> Dubbo -> Spring -> MySQL -> Redis -> MyBatis -> RabbitMQ -> ... 
+ 
