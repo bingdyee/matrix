@@ -6,10 +6,6 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.util.Objects;
 
 /**
@@ -23,7 +19,7 @@ public class AES {
 
     private static final String KEY_ALGORITHM = "AES";
     private static final String CIPHER_ALGORITHM = "AES/CBC/PKCS5Padding";
-    private static final String IV_KEY = "1234567890ABCDEF";
+    private static final String IV_KEY = "020F7B4AE7A58B4C";
 
     public static void fileCrypto(String src, String dest, String key, String ivKey, int mode) throws IOException {
         if (mode != Cipher.DECRYPT_MODE && mode != Cipher.ENCRYPT_MODE) {
@@ -37,8 +33,8 @@ public class AES {
             }
             destFile.createNewFile();
         }
-        try(InputStream in = new FileInputStream(src);
-            OutputStream out = new FileOutputStream(dest)) {
+        try (InputStream in = new FileInputStream(src);
+             OutputStream out = new FileOutputStream(dest)) {
             SecretKeySpec secretKey = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "AES");
             SecretKeySpec secKey = new SecretKeySpec(secretKey.getEncoded(), "AES");
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");

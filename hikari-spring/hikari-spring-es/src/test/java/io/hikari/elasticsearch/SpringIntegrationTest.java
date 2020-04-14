@@ -11,6 +11,6 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ElasticsearchApplication.class)
-public class SpringIntegrationTest {
+public abstract class SpringIntegrationTest {
 
 }

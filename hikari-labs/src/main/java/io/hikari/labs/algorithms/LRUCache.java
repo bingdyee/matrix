@@ -58,7 +58,7 @@ public class LRUCache<K, V> {
     /**
      * Move to top
      *
-     * @param node
+     * @param node target node
      */
     private void move2top(LinkedNode<K, V> node) {
         node.pre.next = node.next;
@@ -83,15 +83,6 @@ public class LRUCache<K, V> {
             this.value = v;
         }
 
-    }
-
-
-    public static void main(String[] args) {
-        LRUCache<String, String> lruCache = new LRUCache<>(2);
-        lruCache.put("1", "Hello");
-        lruCache.put("2", "World");
-        lruCache.put("3", "World");
-        lruCache.get("1");
     }
 
 }

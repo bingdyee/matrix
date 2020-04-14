@@ -20,6 +20,7 @@ ext {
     set('swaggerVersion', '2.9.2')
     set('zxingVersion', '3.4.0')
     set('dubboVersion', '2.7.4.1')
+    set('jolVersion', '0.10')
 }
 
 configure(allprojects) { project ->
@@ -68,6 +69,7 @@ configure(allprojects) { project ->
             dependency "org.apache.dubbo:dubbo-spring-boot-starter:$dubboVersion"
             dependency "org.apache.dubbo:dubbo-dependencies-zookeeper:$dubboVersion"
             dependency  "org.apache.dubbo:dubbo-serialization-kryo:$dubboVersion"
+            dependency "org.openjdk.jol:jol-core:$jolVersion"
         }
     }
 

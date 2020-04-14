@@ -77,6 +77,12 @@ public class Hex {
         return sha256Hex(content.getBytes());
     }
 
+    /**
+     * file sha256
+     *
+     * @param path
+     * @return
+     */
     public static String sha256Hex(Path path) {
         try {
             return sha256Hex(Files.readAllBytes(path));
@@ -95,10 +101,6 @@ public class Hex {
             e.printStackTrace();
         }
         return null;
-    }
-
-    public static void main(String[] args) {
-        System.err.println(md5Hex("Hello World"));
     }
 
 }

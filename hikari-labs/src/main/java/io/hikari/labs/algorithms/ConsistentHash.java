@@ -56,9 +56,8 @@ public class ConsistentHash<T> {
         ByteBuffer buf = ByteBuffer.wrap(key.getBytes());
         ByteOrder byteOrder = buf.order();
         buf.order(ByteOrder.LITTLE_ENDIAN);
-        int seed = 0x1234ABCD;
+        int seed = 0x1234ABCD, r = 47;
         long m = 0xc6a4a7935bd1e995L;
-        int r = 47;
         long h = seed ^ (buf.remaining() * m);
         long k;
         while (buf.remaining() >= 8) {
