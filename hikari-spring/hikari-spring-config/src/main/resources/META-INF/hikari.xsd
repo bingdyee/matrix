@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.example.org/schema/hikari"
+        xmlns:tns="http://www.example.org/schema/hikari"
+        elementFormDefault="qualified">
+    <element name="module">
+        <complexType>
+            <attribute name ="id" type = "string"/>
+            <attribute name ="name" type = "string"/>
+            <attribute name ="module" type = "string"/>
+        </complexType>
+    </element>
+</schema>

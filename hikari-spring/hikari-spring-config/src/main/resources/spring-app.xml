@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:hikari="http://www.example.org/schema/hikari"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.example.org/schema/hikari
+        http://www.example.org/schema/hikari.xsd">
+
+    <hikari:module id="module" name="Hikari" module ="hikari-spring-config"/>
+
+</beans>
