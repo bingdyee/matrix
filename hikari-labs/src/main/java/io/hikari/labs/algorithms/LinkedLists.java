@@ -18,7 +18,57 @@ public class LinkedLists {
         return prev;
     }
 
-    public static class Node {
+    public static boolean exitLoop(Node head) {
+        Node fast = head, slow = head;
+        while (slow != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next ;
+            if(slow == fast) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static Node enterPoint(Node head) {
+        Node fast = head, slow = head;
+        while (slow != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next ;
+            if(slow == fast) {
+                break;
+            }
+        }
+        if (slow == null || fast.next == null) { return null; }
+        Node tmp0 = head;
+        Node tmp1 = slow;
+        while (tmp0 != tmp1) {
+            tmp0 = tmp0.next;
+            tmp1 = tmp1.next;
+        }
+        return tmp0;
+    }
+
+    public static int loopLinkedLength(Node head) {
+        Node fast = head, slow = head;
+        while (slow != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next ;
+            if(slow == fast) {
+                break;
+            }
+        }
+        Node tmp = slow;
+        int len = 1;
+        while(slow.next != tmp) {
+            slow = slow.next;
+            ++len;
+        }
+        return len;
+    }
+
+
+    public static final class Node {
         private Integer data;
         private Node next;
 
@@ -62,6 +112,8 @@ public class LinkedLists {
             return str;
         }
     }
+
+
 
 }
 

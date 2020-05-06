@@ -7,7 +7,9 @@ dependencies {
             'com.google.zxing:javase',
             'cglib:cglib',
             'io.netty:netty-all',
-            'org.slf4j:slf4j-api'
+            'org.slf4j:slf4j-api',
+            'redis.clients:jedis',
+            'org.apache.zookeeper:zookeeper'
     )
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

@@ -21,7 +21,9 @@ ext {
     set('zxingVersion', '3.4.0')
     set('dubboVersion', '2.7.4.1')
     set('jolVersion', '0.10')
+    set('jedisVersion', '3.2.0')
     set('redissonVersion', '3.12.4')
+    set('zkVersion', '3.5.7')
 }
 
 configure(allprojects) { project ->
@@ -72,6 +74,8 @@ configure(allprojects) { project ->
             dependency  "org.apache.dubbo:dubbo-serialization-kryo:$dubboVersion"
             dependency "org.openjdk.jol:jol-core:$jolVersion"
             dependency "org.redisson:redisson:$redissonVersion"
+            dependency "redis.clients:jedis:$jedisVersion"
+            dependency "org.apache.zookeeper:zookeeper:$zkVersion"
         }
     }
 

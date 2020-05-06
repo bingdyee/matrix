@@ -6,7 +6,7 @@ security:
     client:
       clientId: client_1
       clientSecret: secret_1
-      userAuthorizationUri: http://127.0.0.1:8080/oauth/authorize
-      accessTokenUri: http://127.0.0.1:8080/oauth/token
+      userAuthorizationUri: http://app.sso.com:8080/oauth/authorize
+      accessTokenUri: http://app.sso.com:8080/oauth/token
     resource:
-      userInfoUri: http://127.0.0.1:8080/oauth/me
+      userInfoUri: http://app.sso.com:8080/oauth/me
