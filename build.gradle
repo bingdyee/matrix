@@ -24,6 +24,7 @@ ext {
     set('jedisVersion', '3.2.0')
     set('redissonVersion', '3.12.4')
     set('zkVersion', '3.5.7')
+    set('jmhVersion', '1.23')
 }
 
 configure(allprojects) { project ->
@@ -76,6 +77,8 @@ configure(allprojects) { project ->
             dependency "org.redisson:redisson:$redissonVersion"
             dependency "redis.clients:jedis:$jedisVersion"
             dependency "org.apache.zookeeper:zookeeper:$zkVersion"
+            dependency "org.openjdk.jmh:jmh-core:$jmhVersion"
+            dependency "org.openjdk.jmh:jmh-generator-annprocess:$jmhVersion"
         }
     }
 
@@ -106,6 +109,7 @@ configure(subprojects.findAll{!it.name.contains('-ui')}) { project ->
     apply plugin: 'org.springframework.boot'
 
     configurations {
+        provided
         developmentOnly
         compileOnly {
             extendsFrom annotationProcessor
@@ -124,6 +128,7 @@ configure(subprojects.findAll{!it.name.contains('-ui')}) { project ->
                 srcDir 'src/main/java'
                 srcDir 'src/main/resources'
             }
+            compileClasspath += configurations.provided
         }
     }
 
