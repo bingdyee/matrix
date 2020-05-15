@@ -28,3 +28,6 @@ include 'hikari-spring:hikari-spring-es'
 include 'hikari-jvm'
 include 'hikari-spring:hikari-spring-config'
 findProject(':hikari-spring:hikari-spring-config')?.name = 'hikari-spring-config'
+include 'hikari-spring:hikari-spring-jooq'
+findProject(':hikari-spring:hikari-spring-jooq')?.name = 'hikari-spring-jooq'
+

@@ -1,0 +1,54 @@
+plugins {
+    id 'nu.studer.jooq' version '4.2'
+    id 'jacoco'
+}
+
+jacoco {
+    applyTo run
+}
+
+jooq {
+    version = '3.11.9'
+    edition = 'OSS'
+    generateSchemaSourceOnCompilation = true
+    sample(sourceSets.main) {
+        jdbc {
+            driver = 'com.mysql.cj.jdbc.Driver'
+            url = 'jdbc:mysql://127.0.0.1:3306/hikari?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=CONVERT_TO_NULL&rewriteBatchedStatements=true&useAffectedRows=true&useSSL=false&requireSSL=false&serverTimezone=GMT%2B8'
+            user = 'root'
+            password = 'root'
+        }
+        generator {
+            name = 'org.jooq.codegen.DefaultGenerator'
+            strategy {
+                name = 'org.jooq.codegen.DefaultGeneratorStrategy'
+            }
+            database {
+                name = 'org.jooq.meta.mysql.MySQLDatabase'
+                inputSchema = 'hikari'
+                includes = '.*'
+            }
+            generate {
+                daos = false
+                pojos = false
+            }
+            target {
+                packageName = 'io.hikari.jooq.generated'
+                directory = 'src/main/java'
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation(
+            'org.springframework.boot:spring-boot-starter-web',
+            'org.springframework.boot:spring-boot-starter-jooq',
+            'mysql:mysql-connector-java',
+            'org.jooq:jooq',
+            'org.jooq:jooq-meta',
+            'org.jooq:jooq-codegen'
+    )
+    jooqRuntime 'mysql:mysql-connector-java'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+}

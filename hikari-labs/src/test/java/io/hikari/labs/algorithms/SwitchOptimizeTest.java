@@ -1,4 +1,4 @@
-package io.hikari.labs;
+package io.hikari.labs.algorithms;
 
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
