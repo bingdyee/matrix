@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * @author Noa Swartz
  */
-public class UserPO {
+public class SysUserPO {
 
     private Long id;
     private String username;

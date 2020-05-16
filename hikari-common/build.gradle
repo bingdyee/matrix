@@ -5,6 +5,7 @@ dependencies {
             'com.google.guava:guava',
             'com.google.zxing:core',
             'com.google.zxing:javase',
+            'org.jooq:jooq',
             'cglib:cglib',
             'io.netty:netty-all',
             'org.slf4j:slf4j-api',

@@ -25,7 +25,7 @@
         </generate>
 
         <target>
-            <packageName>io.hikari.jooq.generated</packageName>
+            <packageName>io.hikari.jooq.domain</packageName>
             <directory>src/main/java</directory>
         </target>
     </generator>

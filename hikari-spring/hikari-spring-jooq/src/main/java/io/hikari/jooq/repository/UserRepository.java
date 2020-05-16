@@ -1,44 +1,29 @@
 package io.hikari.jooq.repository;
 
-import io.hikari.jooq.pojo.dto.UserDTO;
-import io.hikari.jooq.pojo.po.UserPO;
-import org.jooq.DSLContext;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.hikari.common.jooq.BaseRepository;
+import io.hikari.jooq.domain.Tables;
+import io.hikari.jooq.domain.tables.records.SysUserRecord;
+import io.hikari.jooq.pojo.po.SysUserPO;
+import org.jooq.Configuration;
 import org.springframework.stereotype.Repository;
 
-import static io.hikari.jooq.generated.tables.SysUser.SYS_USER;
+import static io.hikari.jooq.domain.Tables.SYS_USER;
 
 /**
  * @author Noa Swartz
  */
 @Repository
-public class UserRepository {
+public class UserRepository extends BaseRepository<SysUserRecord, SysUserPO, Long> {
 
-    @Autowired
-    DSLContext dslContext;
-
-    public UserRepository(DSLContext dslContext) {
-        this.dslContext = dslContext;
+    public UserRepository(Configuration configuration) {
+        super(SYS_USER, SysUserPO.class, configuration);
     }
 
-    public int insert(UserPO user) {
-        return dslContext.insertInto(SYS_USER)
-                .columns(SYS_USER.ID)
-                .values(user.getId())
+    @Override
+    public int logicDeleteById(Long id) {
+        return create.update(SYS_USER)
+                .set(SYS_USER.DEL_FLAG, (byte)1)
+                .where(SYS_USER.ID.eq(id))
                 .execute();
     }
-
-    public int update(UserDTO user) {
-        return 1;
-    }
-
-    public UserDTO selectById(Long id) {
-        return null;
-    }
-
-    public int deleteById(Long id) {
-        return 1;
-    }
-
-
 }

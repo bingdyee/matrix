@@ -1,7 +1,7 @@
 package io.hikari.jooq.repository;
 
 import io.hikari.jooq.JooqApplication;
-import io.hikari.jooq.pojo.po.UserPO;
+import io.hikari.jooq.pojo.po.SysUserPO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +10,15 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 /**
  * @author Noa Swartz
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = JooqApplication.class)
-@Transactional
-@Rollback
+//@Transactional
+//@Rollback
 public class UserRepositoryTest {
 
     @Autowired
@@ -24,9 +26,14 @@ public class UserRepositoryTest {
 
     @Test
     public void testInsert() {
-        UserPO user = new UserPO();
+        SysUserPO user = new SysUserPO();
         user.setId(98L);
-        userRepository.insert(user);
+        user.setUsername("Noa");
+        user.setPassword("123456");
+        user.setDelFlag(false);
+        user.setStatus(0);
+        user.setCreateTime(new Date());
+        userRepository.logicDeleteById(98L);
     }
 
 }
