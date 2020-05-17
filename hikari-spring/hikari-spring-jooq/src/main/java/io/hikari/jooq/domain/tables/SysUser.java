@@ -32,7 +32,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class SysUser extends TableImpl<SysUserRecord> {
 
-    private static final long serialVersionUID = -1177144632;
+    private static final long serialVersionUID = 1483517728;
 
     /**
      * The reference instance of <code>hikari.sys_user</code>
@@ -75,12 +75,12 @@ public class SysUser extends TableImpl<SysUserRecord> {
     /**
      * The column <code>hikari.sys_user.status</code>.
      */
-    public final TableField<SysUserRecord, Byte> STATUS = createField("status", org.jooq.impl.SQLDataType.TINYINT, this, "");
+    public final TableField<SysUserRecord, Integer> STATUS = createField("status", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>hikari.sys_user.del_flag</code>.
      */
-    public final TableField<SysUserRecord, Byte> DEL_FLAG = createField("del_flag", org.jooq.impl.SQLDataType.TINYINT, this, "");
+    public final TableField<SysUserRecord, Integer> DEL_FLAG = createField("del_flag", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
     /**
      * Create a <code>hikari.sys_user</code> table reference

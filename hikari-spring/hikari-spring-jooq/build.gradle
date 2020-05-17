@@ -27,6 +27,13 @@ jooq {
                 name = 'org.jooq.meta.mysql.MySQLDatabase'
                 inputSchema = 'hikari'
                 includes = '.*'
+                forcedTypes {
+                    forcedType {
+                        name = 'INTEGER'
+                        expression = '.*'
+                        types = '(?i:tinyint)'
+                    }
+                }
             }
             generate {
                 deprecated = false
@@ -45,6 +52,7 @@ dependencies {
     implementation(
             'org.springframework.boot:spring-boot-starter-web',
             'org.springframework.boot:spring-boot-starter-jooq',
+            'org.springframework.data:spring-data-commons:2.3.0.RELEASE',
             'mysql:mysql-connector-java',
             'org.jooq:jooq',
             'org.jooq:jooq-meta',

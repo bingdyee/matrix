@@ -60,7 +60,7 @@ public abstract class BaseRepository<R extends UpdatableRecord<R>, P, T> extends
     }
 
     public int logicDeleteById(T id) {
-      return 0;
+       return 0;
     }
 
 }

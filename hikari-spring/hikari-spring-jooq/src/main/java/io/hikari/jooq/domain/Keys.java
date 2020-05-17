@@ -10,12 +10,14 @@ import io.hikari.jooq.domain.tables.OauthClientToken;
 import io.hikari.jooq.domain.tables.SysRole;
 import io.hikari.jooq.domain.tables.SysUser;
 import io.hikari.jooq.domain.tables.SysUserRole;
+import io.hikari.jooq.domain.tables.TbStockBasics;
 import io.hikari.jooq.domain.tables.records.OauthAccessTokenRecord;
 import io.hikari.jooq.domain.tables.records.OauthClientDetailsRecord;
 import io.hikari.jooq.domain.tables.records.OauthClientTokenRecord;
 import io.hikari.jooq.domain.tables.records.SysRoleRecord;
 import io.hikari.jooq.domain.tables.records.SysUserRecord;
 import io.hikari.jooq.domain.tables.records.SysUserRoleRecord;
+import io.hikari.jooq.domain.tables.records.TbStockBasicsRecord;
 
 import org.jooq.Identity;
 import org.jooq.UniqueKey;
@@ -45,6 +47,7 @@ public class Keys {
     public static final UniqueKey<SysRoleRecord> KEY_SYS_ROLE_PRIMARY = UniqueKeys0.KEY_SYS_ROLE_PRIMARY;
     public static final UniqueKey<SysUserRecord> KEY_SYS_USER_PRIMARY = UniqueKeys0.KEY_SYS_USER_PRIMARY;
     public static final UniqueKey<SysUserRoleRecord> KEY_SYS_USER_ROLE_PRIMARY = UniqueKeys0.KEY_SYS_USER_ROLE_PRIMARY;
+    public static final UniqueKey<TbStockBasicsRecord> KEY_TB_STOCK_BASICS_PRIMARY = UniqueKeys0.KEY_TB_STOCK_BASICS_PRIMARY;
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
@@ -66,5 +69,6 @@ public class Keys {
         public static final UniqueKey<SysRoleRecord> KEY_SYS_ROLE_PRIMARY = Internal.createUniqueKey(SysRole.SYS_ROLE, "KEY_sys_role_PRIMARY", SysRole.SYS_ROLE.ID);
         public static final UniqueKey<SysUserRecord> KEY_SYS_USER_PRIMARY = Internal.createUniqueKey(SysUser.SYS_USER, "KEY_sys_user_PRIMARY", SysUser.SYS_USER.ID);
         public static final UniqueKey<SysUserRoleRecord> KEY_SYS_USER_ROLE_PRIMARY = Internal.createUniqueKey(SysUserRole.SYS_USER_ROLE, "KEY_sys_user_role_PRIMARY", SysUserRole.SYS_USER_ROLE.ID);
+        public static final UniqueKey<TbStockBasicsRecord> KEY_TB_STOCK_BASICS_PRIMARY = Internal.createUniqueKey(TbStockBasics.TB_STOCK_BASICS, "KEY_tb_stock_basics_PRIMARY", TbStockBasics.TB_STOCK_BASICS.ID);
     }
 }

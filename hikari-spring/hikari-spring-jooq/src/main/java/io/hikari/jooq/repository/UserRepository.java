@@ -22,7 +22,7 @@ public class UserRepository extends BaseRepository<SysUserRecord, SysUserPO, Lon
     @Override
     public int logicDeleteById(Long id) {
         return create.update(SYS_USER)
-                .set(SYS_USER.DEL_FLAG, (byte)1)
+                .set(SYS_USER.DEL_FLAG, 1)
                 .where(SYS_USER.ID.eq(id))
                 .execute();
     }

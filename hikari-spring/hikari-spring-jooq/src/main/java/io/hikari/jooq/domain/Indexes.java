@@ -10,6 +10,7 @@ import io.hikari.jooq.domain.tables.OauthClientToken;
 import io.hikari.jooq.domain.tables.SysRole;
 import io.hikari.jooq.domain.tables.SysUser;
 import io.hikari.jooq.domain.tables.SysUserRole;
+import io.hikari.jooq.domain.tables.TbStockBasics;
 
 import org.jooq.Index;
 import org.jooq.OrderField;
@@ -32,6 +33,8 @@ public class Indexes {
     public static final Index SYS_ROLE_PRIMARY = Indexes0.SYS_ROLE_PRIMARY;
     public static final Index SYS_USER_PRIMARY = Indexes0.SYS_USER_PRIMARY;
     public static final Index SYS_USER_ROLE_PRIMARY = Indexes0.SYS_USER_ROLE_PRIMARY;
+    public static final Index TB_STOCK_BASICS_IDX_CODE_COMPANY_INDUSTRY = Indexes0.TB_STOCK_BASICS_IDX_CODE_COMPANY_INDUSTRY;
+    public static final Index TB_STOCK_BASICS_PRIMARY = Indexes0.TB_STOCK_BASICS_PRIMARY;
 
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
@@ -44,5 +47,7 @@ public class Indexes {
         public static Index SYS_ROLE_PRIMARY = Internal.createIndex("PRIMARY", SysRole.SYS_ROLE, new OrderField[] { SysRole.SYS_ROLE.ID }, true);
         public static Index SYS_USER_PRIMARY = Internal.createIndex("PRIMARY", SysUser.SYS_USER, new OrderField[] { SysUser.SYS_USER.ID }, true);
         public static Index SYS_USER_ROLE_PRIMARY = Internal.createIndex("PRIMARY", SysUserRole.SYS_USER_ROLE, new OrderField[] { SysUserRole.SYS_USER_ROLE.ID }, true);
+        public static Index TB_STOCK_BASICS_IDX_CODE_COMPANY_INDUSTRY = Internal.createIndex("idx_code_company_industry", TbStockBasics.TB_STOCK_BASICS, new OrderField[] { TbStockBasics.TB_STOCK_BASICS.STOCK_CODE, TbStockBasics.TB_STOCK_BASICS.COMPANY_NAME, TbStockBasics.TB_STOCK_BASICS.INDUSTRY }, false);
+        public static Index TB_STOCK_BASICS_PRIMARY = Internal.createIndex("PRIMARY", TbStockBasics.TB_STOCK_BASICS, new OrderField[] { TbStockBasics.TB_STOCK_BASICS.ID }, true);
     }
 }

@@ -13,6 +13,7 @@ import io.hikari.jooq.domain.tables.OauthRefreshToken;
 import io.hikari.jooq.domain.tables.SysRole;
 import io.hikari.jooq.domain.tables.SysUser;
 import io.hikari.jooq.domain.tables.SysUserRole;
+import io.hikari.jooq.domain.tables.TbStockBasics;
 
 
 /**
@@ -65,4 +66,9 @@ public class Tables {
      * The table <code>hikari.sys_user_role</code>.
      */
     public static final SysUserRole SYS_USER_ROLE = io.hikari.jooq.domain.tables.SysUserRole.SYS_USER_ROLE;
+
+    /**
+     * The table <code>hikari.tb_stock_basics</code>.
+     */
+    public static final TbStockBasics TB_STOCK_BASICS = io.hikari.jooq.domain.tables.TbStockBasics.TB_STOCK_BASICS;
 }

@@ -13,6 +13,7 @@ import io.hikari.jooq.domain.tables.OauthRefreshToken;
 import io.hikari.jooq.domain.tables.SysRole;
 import io.hikari.jooq.domain.tables.SysUser;
 import io.hikari.jooq.domain.tables.SysUserRole;
+import io.hikari.jooq.domain.tables.TbStockBasics;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,7 +30,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Hikari extends SchemaImpl {
 
-    private static final long serialVersionUID = -292557738;
+    private static final long serialVersionUID = -381309703;
 
     /**
      * The reference instance of <code>hikari</code>
@@ -82,6 +83,11 @@ public class Hikari extends SchemaImpl {
     public final SysUserRole SYS_USER_ROLE = io.hikari.jooq.domain.tables.SysUserRole.SYS_USER_ROLE;
 
     /**
+     * The table <code>hikari.tb_stock_basics</code>.
+     */
+    public final TbStockBasics TB_STOCK_BASICS = io.hikari.jooq.domain.tables.TbStockBasics.TB_STOCK_BASICS;
+
+    /**
      * No further instances allowed
      */
     private Hikari() {
@@ -114,6 +120,7 @@ public class Hikari extends SchemaImpl {
             OauthRefreshToken.OAUTH_REFRESH_TOKEN,
             SysRole.SYS_ROLE,
             SysUser.SYS_USER,
-            SysUserRole.SYS_USER_ROLE);
+            SysUserRole.SYS_USER_ROLE,
+            TbStockBasics.TB_STOCK_BASICS);
     }
 }
