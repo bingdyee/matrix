@@ -1,66 +1,88 @@
 package io.hikari.common.jooq;
 
-import org.jooq.Configuration;
+import io.hikari.common.exception.InvalidDataAccessException;
+import io.hikari.common.pojo.BasePO;
+import org.jooq.Condition;
 import org.jooq.DSLContext;
+import org.jooq.Field;
+import org.jooq.SortField;
 import org.jooq.Table;
+import org.jooq.TableField;
 import org.jooq.UpdatableRecord;
-import org.jooq.impl.DAOImpl;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 /**
+ * Description:
+ *
  * @author Noa Swartz
  */
-public abstract class BaseRepository<R extends UpdatableRecord<R>, P, T> extends DAOImpl<R, P, T> {
+public abstract class BaseRepository<R extends UpdatableRecord<R>, P extends BasePO, ID> {
 
     protected final DSLContext create;
+    protected final Table<R> table;
+    protected final Field<ID> idField;
+    protected final Class<P> poClass;
 
-    protected BaseRepository(Table<R> table, Class<P> type, Configuration configuration) {
-        super (table, type, configuration);
-        create = this.configuration().dsl();
+    public BaseRepository(DSLContext dslContext, Table<R> table, Field<ID> idField, Class<P> poClass) {
+        this.create = dslContext;
+        this.table = table;
+        this.poClass = poClass;
+        this.idField = idField;
     }
 
-    @Override
-    public T getId(P object) {
-        return null;
+    public P selectById(ID id) {
+        TableField f = (TableField) table.field("del_flag");
+        return create
+                .select(table.fields())
+                .from(table)
+                .where(idField.eq(id))
+                .and(f.eq(0))
+                .fetchOneInto(poClass);
     }
 
-    /**
-     * Deprecated: using optimistic lock
-     *
-     * @param object
-     */
-    @Deprecated
-    @Override
-    public final void update(P object) {
-        super.update(object);
+    public int delete(ID id) {
+       return this.create.delete(this.table).where(this.idField.eq(id)).execute();
     }
 
-    /**
-     * Deprecated: using optimistic lock
-     *
-     * @param objects
-     */
-    @SafeVarargs
-    @Deprecated
-    @Override
-    public final void update(P... objects) {
-        super.update(objects);
+    public Page<P> selectPage(Pageable pageable, Collection<? extends Condition> condition) {
+        long count = create.selectCount().from(table).where(condition).fetchOneInto(Long.class);
+        if (count == 0L) {
+            return new PageImpl<>(Collections.emptyList(), pageable, count);
+        }
+        System.err.println(pageable.getOffset());
+        List<P> list = create.selectFrom(table)
+                .where(condition)
+                .orderBy(getSortFields(pageable.getSort()))
+                .limit(pageable.getPageSize())
+                .offset(pageable.getOffset())
+                .fetchInto(poClass);
+        return new PageImpl<>(list, pageable, count);
     }
 
-    /**
-     * Deprecated: using optimistic lock
-     *
-     * @param objects
-     */
-    @Deprecated
-    @Override
-    public final void update(Collection<P> objects) {
-        super.update(objects);
-    }
-
-    public int logicDeleteById(T id) {
-       return 0;
+    private Collection<SortField<?>> getSortFields(Sort sortSpecification) {
+        Collection<SortField<?>> querySortFields = new ArrayList<>();
+        if (sortSpecification == null) {
+            return querySortFields;
+        }
+        Iterator<Sort.Order> specifiedFields = sortSpecification.iterator();
+        while (specifiedFields.hasNext()) {
+            Sort.Order specifiedField = specifiedFields.next();
+            String sortFieldName = specifiedField.getProperty();
+            Sort.Direction sortDirection = specifiedField.getDirection();
+            Field tableField = table.field(sortFieldName);
+            SortField<?> querySortField = sortDirection == Sort.Direction.ASC ? tableField.asc() : tableField.desc();
+            querySortFields.add(querySortField);
+        }
+        return querySortFields;
     }
 
 }

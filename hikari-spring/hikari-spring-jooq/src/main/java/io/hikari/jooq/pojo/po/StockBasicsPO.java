@@ -1,14 +1,15 @@
 package io.hikari.jooq.pojo.po;
 
+import io.hikari.common.pojo.BasePO;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * @author Noa Swartz
  */
-public class StockBasicsPO {
+public class StockBasicsPO extends BasePO {
 
-    private Long id;
     private String stockCode;
     private String companyName;
     private String industry;
@@ -21,15 +22,6 @@ public class StockBasicsPO {
     private BigDecimal reserved;
     private BigDecimal reservedPerShare;
     private Date launchTime;
-    private Integer delFlag;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getStockCode() {
         return stockCode;
@@ -127,18 +119,10 @@ public class StockBasicsPO {
         this.launchTime = launchTime;
     }
 
-    public Integer getDelFlag() {
-        return delFlag;
-    }
-
-    public void setDelFlag(Integer delFlag) {
-        this.delFlag = delFlag;
-    }
 
     @Override
     public String toString() {
         return "StockBasicsPO{" +
-                "id=" + id +
                 ", stockCode='" + stockCode + '\'' +
                 ", companyName='" + companyName + '\'' +
                 ", industry='" + industry + '\'' +
@@ -151,7 +135,6 @@ public class StockBasicsPO {
                 ", reserved=" + reserved +
                 ", reservedPerShare=" + reservedPerShare +
                 ", launchTime=" + launchTime +
-                ", delFlag=" + delFlag +
                 '}';
     }
 }

@@ -26,6 +26,7 @@ ext {
     set('zkVersion', '3.5.7')
     set('jmhVersion', '1.23')
     set('jooqVersion', '3.13.2')
+    set('springDataVersion', '2.3.0.RELEASE')
 }
 
 configure(allprojects) { project ->
@@ -80,6 +81,7 @@ configure(allprojects) { project ->
             dependency "org.apache.zookeeper:zookeeper:$zkVersion"
             dependency "org.openjdk.jmh:jmh-core:$jmhVersion"
             dependency "org.openjdk.jmh:jmh-generator-annprocess:$jmhVersion"
+            dependency "org.springframework.data:spring-data-commons:$springDataVersion"
 //            dependency "org.jooq:jooq:$jooqVersion"
 //            dependency "org.jooq:jooq-meta:$jooqVersion"
 //            dependency "org.jooq:jooq-codegen:$jooqVersion"

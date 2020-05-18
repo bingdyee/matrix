@@ -7,6 +7,7 @@ import io.hikari.jooq.pojo.po.StockBasicsPO;
 import io.hikari.jooq.pojo.po.SysUserPO;
 import io.hikari.jooq.pojo.query.StockBasicsQuery;
 import org.jooq.Configuration;
+import org.jooq.DSLContext;
 import org.jooq.Table;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -24,16 +25,8 @@ import static io.hikari.jooq.domain.Tables.TB_STOCK_BASICS;
 @Repository
 public class StockBasicsRepository extends BaseRepository<TbStockBasicsRecord, StockBasicsPO, Long> {
 
-    protected StockBasicsRepository(Configuration configuration) {
-        super(TB_STOCK_BASICS, StockBasicsPO.class, configuration);
+    protected StockBasicsRepository(DSLContext context) {
+        super(context, TB_STOCK_BASICS, TB_STOCK_BASICS.ID, StockBasicsPO.class);
     }
 
-    public Page<StockBasicsPO> listStockBasics(StockBasicsQuery query, Pageable pageable) {
-        List<StockBasicsPO> queryResults = create.selectFrom(TB_STOCK_BASICS)
-                .orderBy(TB_STOCK_BASICS.ID)
-                .limit(pageable.getPageSize()).offset((int)pageable.getOffset())
-                .fetchInto(StockBasicsPO.class);
-        long totalCount = create.fetchCount(create.select().from(TB_STOCK_BASICS));
-        return new PageImpl<>(queryResults, pageable, totalCount);
-    }
 }
