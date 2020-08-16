@@ -18,7 +18,7 @@
         <alibaba-cloud.version>2.2.0.RELEASE</alibaba-cloud.version>
         <spring-mybatis.version>2.1.2</spring-mybatis.version>
         <security-jwt.version>1.0.9.RELEASE</security-jwt.version>
-        <netty.version>4.1.48.Final</netty.version>
+        <netty.version>4.1.50.Final</netty.version>
         <redisson.version>3.12.4</redisson.version>
         <curator.version>4.3.0</curator.version>
         <zookeeper.version>3.5.7</zookeeper.version>
@@ -33,6 +33,7 @@
         <reflect-asm.version>1.11.9</reflect-asm.version>
         <openjdk-jol.version>0.10</openjdk-jol.version>
         <lombok.version>1.18.2</lombok.version>
+        <javax-validation.version>2.0.1.Final</javax-validation.version>
         <swagger.version>2.9.2</swagger.version>
         <junit.version>4.13</junit.version>
         <approvaltests.version>9.1.0</approvaltests.version>
@@ -169,6 +170,11 @@
                 <artifactId>velocity</artifactId>
                 <version>${velocity.version}</version>
             </dependency>
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${javax-validation.version}</version>
+            </dependency>
             <!-- tools dependencies end -->
 
             <!-- test dependencies start -->
@@ -224,6 +230,25 @@
             </snapshots>
         </repository>
     </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-milestone</id>
+            <name>Spring Milestone</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-snapshot</id>
+            <name>Spring Snapshot</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
     <profiles>
         <profile>
