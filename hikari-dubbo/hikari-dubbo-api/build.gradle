@@ -1,6 +1,0 @@
-jar.enabled(true)
-
-dependencies {
-    implementation "org.apache.dubbo:dubbo:$dubboVersion"
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-}

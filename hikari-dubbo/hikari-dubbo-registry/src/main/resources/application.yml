@@ -1,6 +1,0 @@
-server:
-  port: 8070
-
-embedded:
-  zookeeper:
-    port: 2181

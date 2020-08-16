@@ -1,9 +1,0 @@
-dependencies {
-    implementation(
-            'org.springframework.boot:spring-boot-starter',
-            'org.apache.curator:curator-framework',
-            'org.apache.curator:curator-recipes',
-            'org.springframework.boot:spring-boot-starter-jetty'
-    )
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-}
