@@ -271,17 +271,6 @@
                                     <flattenMode>resolveCiFriendliesOnly</flattenMode>
                                 </configuration>
                             </execution>
-                            <execution>
-                                <id>flatten.clean</id>
-                                <phase>clean</phase>
-                                <goals>
-                                    <goal>clean</goal>
-                                </goals>
-                                <configuration>
-                                    <updatePomFile>true</updatePomFile>
-                                    <flattenMode>resolveCiFriendliesOnly</flattenMode>
-                                </configuration>
-                            </execution>
                         </executions>
                         <configuration>
                             <updatePomFile>true</updatePomFile>
