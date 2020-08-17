@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  io.vbintx.phorcys.PhorcysAutoConfiguration
+  io.phorcys.spring.PhorcysAutoConfiguration
