@@ -202,6 +202,20 @@
                 <version>${swagger.version}</version>
             </dependency>
             <!-- swagger dependencies end -->
+
+            <!-- project start -->
+            <dependency>
+                <groupId>io.phorcys</groupId>
+                <artifactId>phorcys-toolkit</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.phorcys</groupId>
+                <artifactId>phorcys-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- project end -->
+
         </dependencies>
     </dependencyManagement>
 
