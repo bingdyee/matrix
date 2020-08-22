@@ -62,6 +62,17 @@
         </dependency>
     </dependencies>
 
+    <distributionManagement>
+        <repository>
+            <id>rdc-releases</id>
+            <url>https://packages.aliyun.com/maven/repository/2026647-release-WHtcgH/</url>
+        </repository>
+        <snapshotRepository>
+            <id>rdc-snapshots</id>
+            <url>https://packages.aliyun.com/maven/repository/2026647-snapshot-sqWitj/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <build>
         <plugins>
 <!--            <plugin>-->
