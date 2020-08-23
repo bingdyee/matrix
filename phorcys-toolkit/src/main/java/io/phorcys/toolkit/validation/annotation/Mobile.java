@@ -1,6 +1,6 @@
 package io.phorcys.toolkit.validation.annotation;
 
-import io.phorcys.toolkit.validation.PhoneValidator;
+import io.phorcys.toolkit.validation.MobileValidator;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -14,10 +14,10 @@ import javax.validation.Constraint;
  * @author Noa Swartz
  */
 @Documented
-@Constraint(validatedBy = PhoneValidator.class)
+@Constraint(validatedBy = MobileValidator.class)
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Phone {
+public @interface Mobile {
 
     String message() default "Invalid Phone Number!";
 
