@@ -50,6 +50,7 @@
         <security-jwt.version>1.1.1.RELEASE</security-jwt.version>
         <netty.version>4.1.51.Final</netty.version>
         <redisson.version>3.13.4</redisson.version>
+        <fst.version>2.57</fst.version>
         <curator.version>5.1.0</curator.version>
         <zookeeper.version>3.6.1</zookeeper.version>
         <jedis.version>3.3.0</jedis.version>
@@ -142,9 +143,19 @@
                 <version>${redisson.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-hibernate-53</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
                 <version>${jedis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.ruedigermoeller</groupId>
+                <artifactId>fst</artifactId>
+                <version>${fst.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.zookeeper</groupId>

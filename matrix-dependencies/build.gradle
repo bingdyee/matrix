@@ -31,6 +31,7 @@ ext {
     set('swaggerVersion', '3.0.0')
     set('junitJupiterVersion', '5.6.2')
     set('approvaltestsVersion', '9.3.0')
+    set('fstVersion', '2.57')
 }
 
 javaPlatform {
@@ -48,6 +49,8 @@ dependencies {
         api "io.netty:netty-all:$nettyVersion"
         api "org.apache.curator:curator-recipes:$curatorVersion"
         api "org.redisson:redisson:$redissonVersion"
+        api "org.redisson:redisson-hibernate-53:$redissonVersion"
+        api "de.ruedigermoeller:fst:$fstVersion"
         api "redis.clients:jedis:$jedisVersion"
         api "org.apache.zookeeper:zookeeper:$zookeeperVersion"
         api "cglib:cglib:$cglibVersion"
