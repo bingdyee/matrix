@@ -1,6 +1,6 @@
-package io.matrix.spring.support;
+package io.matrix.spring.boot.support;
 
-import io.matrix.spring.annotation.EnableAutoLog;
+import io.matrix.spring.boot.annotation.EnableAutoLog;
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.type.AnnotationMetadata;

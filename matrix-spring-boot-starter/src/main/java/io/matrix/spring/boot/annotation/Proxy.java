@@ -1,4 +1,4 @@
-package io.matrix.spring.annotation;
+package io.matrix.spring.boot.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -7,13 +7,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Enable Phorcys for spring boot application
- *
  * @author Noa Swartz
- * @date 2020/08/15
  */
-@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.TYPE})
 @Documented
-public @interface EnableMatrixConfiguration {
+public @interface Proxy {
 }

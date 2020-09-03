@@ -1,7 +1,4 @@
-package io.matrix.spring.proxy;
-
-import org.springframework.boot.configurationprocessor.json.JSONObject;
-import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
+package io.matrix.spring.boot.proxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

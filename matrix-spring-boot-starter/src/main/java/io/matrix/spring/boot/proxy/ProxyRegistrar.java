@@ -1,6 +1,6 @@
-package io.matrix.spring.proxy;
+package io.matrix.spring.boot.proxy;
 
-import io.matrix.spring.annotation.ProxyScan;
+import io.matrix.spring.boot.annotation.ProxyScan;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 import org.springframework.core.annotation.AnnotationAttributes;

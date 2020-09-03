@@ -1,4 +1,4 @@
-package io.matrix.spring;
+package io.matrix.spring.boot;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

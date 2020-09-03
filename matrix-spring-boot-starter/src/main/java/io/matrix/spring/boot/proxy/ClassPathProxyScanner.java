@@ -1,6 +1,6 @@
-package io.matrix.spring.proxy;
+package io.matrix.spring.boot.proxy;
 
-import io.matrix.spring.annotation.Proxy;
+import io.matrix.spring.boot.annotation.Proxy;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.GenericBeanDefinition;

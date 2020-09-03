@@ -1,4 +1,4 @@
-package io.matrix.spring.annotation;
+package io.matrix.spring.boot.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -9,8 +9,8 @@ import java.lang.annotation.Target;
 /**
  * @author Noa Swartz
  */
+@Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE})
 @Documented
-public @interface Proxy {
+public @interface Logging {
 }

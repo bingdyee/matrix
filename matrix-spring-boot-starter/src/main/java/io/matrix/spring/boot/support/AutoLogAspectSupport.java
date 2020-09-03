@@ -1,6 +1,6 @@
-package io.matrix.spring.support;
+package io.matrix.spring.boot.support;
 
-import io.matrix.spring.annotation.Logging;
+import io.matrix.spring.boot.annotation.Logging;
 import org.springframework.aop.Advisor;
 import org.springframework.aop.TargetSource;
 import org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator;

@@ -1,8 +1,9 @@
-package io.matrix.spring.annotation;
+package io.matrix.spring.boot.annotation;
 
-import io.matrix.spring.support.AutoLogImportSelector;
+import io.matrix.spring.boot.proxy.ProxyRegistrar;
 import org.springframework.context.annotation.Import;
 
+import java.lang.annotation.Annotation;
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -12,9 +13,14 @@ import java.lang.annotation.Target;
 /**
  * @author Noa Swartz
  */
-@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.TYPE})
 @Documented
-@Import(AutoLogImportSelector.class)
-public @interface EnableAutoLog {
+@Import(ProxyRegistrar.class)
+public @interface ProxyScan {
+
+    String value() default "";
+
+    Class<? extends Annotation> annotation() default Annotation.class;
+
 }

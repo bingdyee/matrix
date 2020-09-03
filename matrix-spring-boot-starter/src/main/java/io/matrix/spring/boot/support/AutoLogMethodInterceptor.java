@@ -1,6 +1,6 @@
-package io.matrix.spring.support;
+package io.matrix.spring.boot.support;
 
-import io.matrix.spring.annotation.Logging;
+import io.matrix.spring.boot.annotation.Logging;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.aop.support.AopUtils;

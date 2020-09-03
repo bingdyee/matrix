@@ -1,6 +1,6 @@
-package io.matrix.spring;
+package io.matrix.spring.boot;
 
-import io.matrix.spring.annotation.EnableMatrixConfiguration;
+import io.matrix.spring.boot.annotation.EnableMatrixConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;

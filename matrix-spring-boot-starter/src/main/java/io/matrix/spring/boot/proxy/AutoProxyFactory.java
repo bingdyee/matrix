@@ -1,4 +1,4 @@
-package io.matrix.spring.proxy;
+package io.matrix.spring.boot.proxy;
 
 import org.springframework.beans.factory.FactoryBean;
 
