@@ -9,7 +9,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
- * banner: http://patorjk.com/software/taag
  *
  * @author Noa Swartz
  * @date 2020/09/03
