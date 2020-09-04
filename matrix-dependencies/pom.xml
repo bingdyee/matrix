@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.matrix</groupId>
-    <artifactId>matrix-dependencies</artifactId>
-    <version>${revision</version>
+    <artifactId>matrix-parent</artifactId>
+    <version>${revision}</version>
     <packaging>pom</packaging>
-    <name>Matrix Dependencies</name>
+    <name>Matrix Parent</name>
     <description>Matrix Dependencies</description>
     <url>https://github.com/vbintx/matrix</url>
 
@@ -43,7 +43,9 @@
 
     <properties>
         <revision>1.0.0-SNAPSHOT</revision>
+        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Dependency versions -->
         <spring-boot.version>2.3.3.RELEASE</spring-boot.version>
         <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
         <alibaba-cloud.version>2.2.1.RELEASE</alibaba-cloud.version>
@@ -75,6 +77,7 @@
         <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
         <proguard-maven-plugin.version>2.3.1</proguard-maven-plugin.version>
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
+        <flatten-maven-plugin.version>1.2.2</flatten-maven-plugin.version>
     </properties>
 
     <distributionManagement>
@@ -241,18 +244,6 @@
                 <version>${swagger.version}</version>
             </dependency>
             <!-- swagger dependencies end -->
-            <!-- project start -->
-            <dependency>
-                <groupId>io.matrix</groupId>
-                <artifactId>matrix-toolkit</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.matrix</groupId>
-                <artifactId>matrix-spring-boot-starter</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <!-- project end -->
         </dependencies>
     </dependencyManagement>
 
@@ -279,8 +270,40 @@
                     <artifactId>proguard-maven-plugin</artifactId>
                     <version>${proguard-maven-plugin.version}</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>flatten-maven-plugin</artifactId>
+                    <version>${flatten-maven-plugin.version}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>${flatten-maven-plugin.version}</version>
+                <configuration>
+                    <updatePomFile>true</updatePomFile>
+                    <flattenMode>resolveCiFriendliesOnly</flattenMode>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>flatten.clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 
 </project>
