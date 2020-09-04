@@ -24,4 +24,3 @@ build/
 .gradle/
 .vscode/
 **/target/
-*/gradle.properties
