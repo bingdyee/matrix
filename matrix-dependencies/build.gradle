@@ -6,32 +6,8 @@ plugins {
 
 group = "io.matrix"
 
-ext {
-    set('springBootVersion', '2.3.3.RELEASE')
-    set('springCloudVersion', 'Hoxton.SR8')
-    set('alibabaCloudVersion', '2.2.1.RELEASE')
-    set('springMybatisVersion', '2.1.3')
-    set('securityJwtVersion', '1.1.1.RELEASE')
-    set('nettyVersion', '4.1.51.Final')
-    set('redissonVersion', '3.13.4')
-    set('curatorVersion', '5.1.0')
-    set('zookeeperVersion', '3.6.1')
-    set('jedisVersion', '3.3.0')
-    set('mysqlVersion', '8.0.16')
-    set('guavaVersion', '29.0-jre')
-    set('cglibVersion', '3.3.0')
-    set('fastjsonVersion', '1.2.73')
-    set('commonsLang3Version', '3.11')
-    set('zxingVersion', '3.4.0')
-    set('velocityVersion', '1.7')
-    set('reflectAsmVersion', '1.11.9')
-    set('openjdkJolVersion', '0.13')
-    set('lombokVersion', '1.18.12')
-    set('javaxValidationVersion', '2.0.1.Final')
-    set('swaggerVersion', '3.0.0')
-    set('junitJupiterVersion', '5.6.2')
-    set('approvaltestsVersion', '9.3.0')
-    set('fstVersion', '2.57')
+ext{
+    set('matrixVersion', "$version")
 }
 
 javaPlatform {
@@ -39,34 +15,10 @@ javaPlatform {
 }
 
 dependencies {
-    api platform("org.springframework.boot:spring-boot-dependencies:$springBootVersion")
-    api platform("org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion")
-    api platform("com.alibaba.cloud:spring-cloud-alibaba-dependencies:$alibabaCloudVersion")
+    api platform("io.matrix:matrix-parent:$matrixVersion")
     constraints {
-        api "org.mybatis.spring.boot:mybatis-spring-boot-starter:$springMybatisVersion"
-        api "mysql:mysql-connector-java:$mysqlVersion"
-        api "org.springframework.security:spring-security-jwt:$securityJwtVersion"
-        api "io.netty:netty-all:$nettyVersion"
-        api "org.apache.curator:curator-recipes:$curatorVersion"
-        api "org.redisson:redisson:$redissonVersion"
-        api "org.redisson:redisson-hibernate-53:$redissonVersion"
-        api "de.ruedigermoeller:fst:$fstVersion"
-        api "redis.clients:jedis:$jedisVersion"
-        api "org.apache.zookeeper:zookeeper:$zookeeperVersion"
-        api "cglib:cglib:$cglibVersion"
-        api "com.google.guava:guava:$guavaVersion"
-        api "com.alibaba:fastjson:$fastjsonVersion"
-        api "com.google.zxing:core:$zxingVersion"
-        api "com.google.zxing:javase:$zxingVersion"
-        api "org.openjdk.jol:jol-core:$openjdkJolVersion"
-        api "com.esotericsoftware:reflectasm:$reflectAsmVersion"
-        api "org.apache.commons:commons-lang3:$commonsLang3Version"
-        api "org.apache.velocity:velocity:$velocityVersion"
-        api "javax.validation:validation-api:$javaxValidationVersion"
-        api "org.junit.jupiter:junit-jupiter:$junitJupiterVersion"
-        api "com.approvaltests:approvaltests:$approvaltestsVersion"
-        api "io.springfox:springfox-swagger2:$swaggerVersion"
-        api "io.springfox:springfox-swagger-ui:$swaggerVersion"
+        api "io.matrix:matrix-spring-boot-starter:$matrixVersion"
+        api "io.matrix:matrix-toolkit:$matrixVersion"
     }
 }
 
