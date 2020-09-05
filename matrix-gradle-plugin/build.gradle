@@ -1,0 +1,40 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.4.0'
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+}
+
+group = 'io.matrix.dependency-management'
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+    compile "io.spring.gradle:dependency-management-plugin:$dependencyManagementVersion"
+}
+
+gradlePlugin{
+    plugins{
+        matrix {
+            id = "$group"
+            implementationClass = 'io.matrix.gradle.dependencymanagement.MatrixPlugin'
+        }
+    }
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId 'dependency-management-plugin'
+            version "$version"
+            from components.kotlin
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+                username "$repoUsername"
+                password "$repoPassword"
+            }
+            url = version.endsWith('SNAPSHOT') ? "$snapshotRepoUrl" : "$releaseRepoUrl"
+        }
+    }
+}
