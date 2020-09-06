@@ -14,6 +14,7 @@ public class ResponseEntity<T> {
     private String code;
     private String message;
     private T data;
+    private String redirectUri;
 
     public ResponseEntity() {
         this(OK, null, null);
@@ -61,6 +62,14 @@ public class ResponseEntity<T> {
         this.data = data;
     }
 
+    public String getRedirectUri() {
+        return redirectUri;
+    }
+
+    public void setRedirectUri(String redirectUri) {
+        this.redirectUri = redirectUri;
+    }
+
     public boolean getSuccess() {
         return OK.equals(code);
     }
@@ -99,6 +108,7 @@ public class ResponseEntity<T> {
                 "code='" + code + '\'' +
                 ", success=" + getSuccess() +
                 ", message='" + message + '\'' +
+                ", redirectUri='" + redirectUri + '\'' +
                 ", data=" + data +
                 '}';
     }
