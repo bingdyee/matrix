@@ -1,5 +1,5 @@
 /**
- * Java Agent
+ * Java Agent(探针)
  *
  * (JVM动态加载时依赖 tools.jar)
  * 手动引入或设置CLASSPATH
