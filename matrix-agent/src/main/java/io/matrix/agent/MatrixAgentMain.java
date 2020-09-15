@@ -25,7 +25,7 @@ public class MatrixAgentMain {
     /**
      * JVM启动时加载
      *
-     * @param agentArgs 探针配置：-javaagent:**-agent.jar=[optional]=[value],[optional]=[value]
+     * @param agentArgs 探针配置：-javaagent:**-agent.jar=[<optional>=<value>, ...]
      * @param inst 动态改变和操作类的定义
      */
     public static void premain(String agentArgs, Instrumentation inst) {
@@ -41,14 +41,14 @@ public class MatrixAgentMain {
                 .installOn(inst);
     }
 
-//    /**
-//     * JVM运行时加载
-//     *
-//     * @param agentArgs
-//     * @param inst
-//     */
-//    public static void agentmain(String agentArgs, Instrumentation inst) {
-//        System.err.println("[agentmain]: Hai, Java Agent.");
-//    }
+    /**
+     * JVM运行时加载
+     *
+     * @param agentArgs String
+     * @param inst Instrumentation
+     */
+    public static void agentmain(String agentArgs, Instrumentation inst) {
+        System.err.println("[agentmain]: Hello, Java Agent.");
+    }
 
 }
