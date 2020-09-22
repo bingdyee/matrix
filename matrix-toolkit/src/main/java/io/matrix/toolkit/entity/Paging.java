@@ -3,7 +3,6 @@ package io.matrix.toolkit.entity;
 import org.springframework.data.domain.Pageable;
 
 import java.util.*;
-import java.util.function.Consumer;
 
 /**
  * @author Noa Swartz

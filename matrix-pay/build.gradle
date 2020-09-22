@@ -1,0 +1,24 @@
+plugins {
+    id "maven"
+    id "java"
+}
+
+group 'io.matrix'
+version '1.0.0-SNAPSHOT'
+
+sourceCompatibility = 11
+
+repositories {
+    mavenLocal()
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+dependencies {
+    implementation(platform("io.matrix:matrix-parent:$version"))
+    testImplementation('org.junit.jupiter:junit-jupiter')
+}
+
+test {
+    useJUnitPlatform()
+}
