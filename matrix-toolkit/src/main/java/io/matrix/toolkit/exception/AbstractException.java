@@ -8,6 +8,10 @@ public abstract class AbstractException extends RuntimeException {
 
     protected String errorCode;
 
+    public AbstractException(String message) {
+        this(DefaultErrorCode.INTERNAL_SERVER_ERROR.as(message));
+    }
+
     public AbstractException(ErrorInfo errorInfo) {
         this(errorInfo.getCode(), errorInfo.getReason());
     }

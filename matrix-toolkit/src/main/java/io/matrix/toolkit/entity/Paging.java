@@ -13,11 +13,11 @@ public class Paging<T> implements Iterable<T> {
     private final Long total;
 
     /** current page */
-    private Integer number;
+    private final Integer number;
     /** page size */
-    private Integer size;
+    private final Integer size;
     /** page data */
-    private List<T> content;
+    private final List<T> content;
 
     public Paging(List<T> content, Pageable pageable, Long total) {
         this.total = total;
