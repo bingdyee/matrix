@@ -3,36 +3,40 @@ package io.matrix.toolkit.entity;
 import io.matrix.toolkit.exception.DefaultErrorCode;
 import io.matrix.toolkit.exception.ErrorInfo;
 
+import java.io.Serializable;
+
 /**
  * @author Noa Swartz
- * @date 2020/09/01
+ * @date 2020/09/25
  */
-public class ResponseEntity<T> {
+public class ResponseResult<E> implements Serializable {
 
     public static final String OK = "00000";
 
+    private static final long serialVersionUID = -1162713822470138564L;
+
     private String code;
     private String message;
-    private T data;
+    private E data;
     private String redirectUri;
 
-    public ResponseEntity() {
+    public ResponseResult() {
         this(OK, null, null);
     }
 
-    public ResponseEntity(T data) {
+    public ResponseResult(E data) {
         this(OK, null, data);
     }
 
-    public ResponseEntity(StatusInfo statusInfo) {
+    public ResponseResult(StatusInfo statusInfo) {
         this(statusInfo.getCode(), statusInfo.getReason(), null);
     }
 
-    public ResponseEntity(String code, String message) {
+    public ResponseResult(String code, String message) {
         this(code, message, null);
     }
 
-    public ResponseEntity(String code, String message, T data) {
+    public ResponseResult(String code, String message, E data) {
         this.code = code;
         this.message = message;
         this.data = data;
@@ -54,11 +58,11 @@ public class ResponseEntity<T> {
         this.message = message;
     }
 
-    public T getData() {
+    public E getData() {
         return data;
     }
 
-    public void setData(T data) {
+    public void setData(E data) {
         this.data = data;
     }
 
@@ -74,37 +78,37 @@ public class ResponseEntity<T> {
         return OK.equals(code);
     }
 
-    public static<T> ResponseEntity<T> ok() {
-        return new ResponseEntity<>();
+    public static<T> ResponseResult<T> ok() {
+        return new ResponseResult<>();
     }
 
-    public static<T> ResponseEntity<T> ok(T data) {
-        return new ResponseEntity<>(data);
+    public static<T> ResponseResult<T> ok(T data) {
+        return new ResponseResult<>(data);
     }
 
-    public static<T> ResponseEntity<T> error(ErrorInfo error) {
-        return new ResponseEntity<>(error);
+    public static<T> ResponseResult<T> error(ErrorInfo error) {
+        return new ResponseResult<>(error);
     }
 
-    public static<T> ResponseEntity<T> error(String message) {
-        return new ResponseEntity<>(DefaultErrorCode.INTERNAL_SERVER_ERROR.as(message));
+    public static<T> ResponseResult<T> error(String message) {
+        return new ResponseResult<>(DefaultErrorCode.INTERNAL_SERVER_ERROR.as(message));
     }
 
-    public static<T> ResponseEntity<T> of(StatusInfo statusInfo) {
-        return new ResponseEntity<>(statusInfo);
+    public static<T> ResponseResult<T> of(StatusInfo statusInfo) {
+        return new ResponseResult<>(statusInfo);
     }
 
-    public static<T> ResponseEntity<T> of(String code, String message) {
-        return new ResponseEntity<>(code, message);
+    public static<T> ResponseResult<T> of(String code, String message) {
+        return new ResponseResult<>(code, message);
     }
 
-    public static<T> ResponseEntity<T> of(String code, String message, T data) {
-        return new ResponseEntity<>(code, message, data);
+    public static<T> ResponseResult<T> of(String code, String message, T data) {
+        return new ResponseResult<>(code, message, data);
     }
 
     @Override
     public String toString() {
-        return "ResponseEntity{" +
+        return "ResponseResult{" +
                 "code='" + code + '\'' +
                 ", success=" + getSuccess() +
                 ", message='" + message + '\'' +
@@ -114,6 +118,3 @@ public class ResponseEntity<T> {
     }
 
 }
-
-
-

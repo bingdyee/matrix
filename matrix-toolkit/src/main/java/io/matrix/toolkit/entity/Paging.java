@@ -8,7 +8,7 @@ import java.util.*;
  * @author Noa Swartz
  * @date 2020/09/20
  */
-public class Paging<T> implements Iterable<T> {
+public class Paging<E> implements Iterable<E> {
 
     private final Long total;
 
@@ -17,9 +17,9 @@ public class Paging<T> implements Iterable<T> {
     /** page size */
     private final Integer size;
     /** page data */
-    private final List<T> content;
+    private final List<E> content;
 
-    public Paging(List<T> content, Pageable pageable, Long total) {
+    public Paging(List<E> content, Pageable pageable, Long total) {
         this.total = total;
         this.content = content == null ? new ArrayList<>() : content;
         this.size = pageable.isPaged() ? pageable.getPageSize() : this.content.size();
@@ -42,7 +42,7 @@ public class Paging<T> implements Iterable<T> {
         return this.number;
     }
 
-    public List<T> getContent() {
+    public List<E> getContent() {
         return Collections.unmodifiableList(content);
     }
 
@@ -51,7 +51,7 @@ public class Paging<T> implements Iterable<T> {
     }
 
     @Override
-    public Iterator<T> iterator() {
+    public Iterator<E> iterator() {
         return this.content.iterator();
     }
 
