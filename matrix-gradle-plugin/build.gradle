@@ -1,7 +1,7 @@
 plugins {
     id 'java-gradle-plugin'
-    id 'groovy'
-    id 'maven'
+    id 'maven-publish'
+    id 'java'
 }
 
 group = 'io.matrix.dependency-management'
@@ -20,16 +20,21 @@ gradlePlugin{
     }
 }
 
-uploadArchives {
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId 'dependency-management-plugin'
+            version "$version"
+            from components.java
+        }
+    }
     repositories {
-        mavenDeployer {
-//            repository(url: uri('../repo'))
-            repository(url: "$releaseRepoUrl") {
-                authentication(userName: "$repoUsername", password: "$repoPassword")
+        maven {
+            credentials {
+                username "$repoUsername"
+                password "$repoPassword"
             }
-            snapshotRepository(url: "$snapshotRepoUrl") {
-                authentication(userName: "$repoUsername", password: "$repoPassword")
-            }
+            url = version.endsWith('SNAPSHOT') ? "$snapshotRepoUrl" : "$releaseRepoUrl"
         }
     }
 }
