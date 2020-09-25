@@ -1,7 +1,7 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.4.0'
     id 'java-gradle-plugin'
-    id 'maven-publish'
+    id 'groovy'
+    id 'maven'
 }
 
 group = 'io.matrix.dependency-management'
@@ -12,29 +12,24 @@ dependencies {
 }
 
 gradlePlugin{
-    plugins{
+    plugins {
         matrix {
-            id = "$group"
+            id = 'io.matrix.dependency-management'
             implementationClass = 'io.matrix.gradle.dependencymanagement.MatrixPlugin'
         }
     }
 }
 
-publishing {
-    publications {
-        maven(MavenPublication) {
-            artifactId 'dependency-management-plugin'
-            version "$version"
-            from components.kotlin
-        }
-    }
+uploadArchives {
     repositories {
-        maven {
-            credentials {
-                username "$repoUsername"
-                password "$repoPassword"
+        mavenDeployer {
+//            repository(url: uri('../repo'))
+            repository(url: "$releaseRepoUrl") {
+                authentication(userName: "$repoUsername", password: "$repoPassword")
             }
-            url = version.endsWith('SNAPSHOT') ? "$snapshotRepoUrl" : "$releaseRepoUrl"
+            snapshotRepository(url: "$snapshotRepoUrl") {
+                authentication(userName: "$repoUsername", password: "$repoPassword")
+            }
         }
     }
 }
