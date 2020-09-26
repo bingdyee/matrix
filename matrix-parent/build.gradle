@@ -1,0 +1,73 @@
+plugins {
+    id "com.jfrog.artifactory" version "4.17.1"
+    id 'java-platform'
+    id 'maven-publish'
+}
+
+ext{
+    set('matrixVersion', "$version")
+}
+
+javaPlatform {
+    allowDependencies()
+}
+
+dependencies {
+    api platform("io.matrix:matrix-parent:$matrixVersion")
+    constraints {
+        api "io.matrix:matrix-spring-boot-starter:$matrixVersion"
+        api "io.matrix:matrix-toolkit:$matrixVersion"
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            group = "io.matrix.cloud"
+            artifactId = "matrix-cloud-dependencies"
+            from components.javaPlatform
+            pom {
+                afterEvaluate {
+                    name = "Matrix Cloud Dependencies"
+                    description = "Matrix Cloud (Bill of Materials)"
+                }
+                url = "https://github.com/vbintx/matrix-cloud"
+                organization {
+                    name = "Mebiux"
+                    url = "https://github.com/mebiux-cloud"
+                }
+                developers {
+                    developer {
+                        id = "vbintx"
+                        name = "Noa Swartz"
+                        email = "fetaxyu@gmail.com"
+                    }
+                }
+                licenses {
+                    license {
+                        name = "Apache License, Version 2.0"
+                        url = "https://www.apache.org/licenses/LICENSE-2.0"
+                        distribution = "repo"
+                    }
+                }
+                issueManagement {
+                    system = "GitHub Issues"
+                    url = "https://github.com/vbintx/matrix-cloud/issues"
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+                username "$repoUsername"
+                password "$repoPassword"
+            }
+            url = version.endsWith('SNAPSHOT') ? "$snapshotRepoUrl" : "$releaseRepoUrl"
+        }
+    }
+}
+
+artifactoryPublish {
+    publications(publishing.publications.mavenJava)
+}
