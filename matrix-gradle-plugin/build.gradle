@@ -20,6 +20,12 @@ gradlePlugin{
     }
 }
 
+jar {
+    manifest {
+        attributes("Implementation-Version": "$version")
+    }
+}
+
 publishing {
     publications {
         maven(MavenPublication) {
