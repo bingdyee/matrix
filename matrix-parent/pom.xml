@@ -264,6 +264,14 @@
                 <version>${swagger.version}</version>
             </dependency>
             <!-- swagger dependencies end -->
+
+            <!-- matrix dependencies start -->
+            <dependency>
+                <groupId>io.matrix</groupId>
+                <artifactId>matrix-toolkit</artifactId>
+                <version>>${revision}</version>
+            </dependency>
+            <!-- matrix dependencies end -->
         </dependencies>
     </dependencyManagement>
 
