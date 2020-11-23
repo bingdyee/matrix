@@ -73,6 +73,7 @@
         <swagger.version>3.0.0</swagger.version>
         <junit-jupiter.version>5.6.2</junit-jupiter.version>
         <approvaltests.version>9.3.0</approvaltests.version>
+		<pdfbox.version>2.0.21</pdfbox.version>
         <!-- Plugin versions -->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
@@ -239,11 +240,17 @@
                 <artifactId>validation-api</artifactId>
                 <version>${javax-validation.version}</version>
             </dependency>
+			<dependency>
+				<groupId>org.apache.pdfbox</groupId>
+				<artifactId>pdfbox</artifactId>
+				<version>${pdfbox.version}</version>
+			</dependency>
+
             <!-- tools dependencies end -->
             <!-- test dependencies start -->
             <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter</artifactId>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
                 <version>${junit-jupiter.version}</version>
             </dependency>
             <dependency>
@@ -253,16 +260,11 @@
             </dependency>
             <!-- test dependencies start -->
             <!-- swagger dependencies start -->
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>${swagger.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>${swagger.version}</version>
-            </dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-boot-starter</artifactId>
+				<version>${swagger.version}</version>
+			</dependency>
             <!-- swagger dependencies end -->
             <!-- matrix dependencies start -->
             <dependency>
