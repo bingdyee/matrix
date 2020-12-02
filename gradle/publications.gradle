@@ -1,0 +1,46 @@
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            pom {
+                afterEvaluate {
+                    name = project.description
+                    description = project.description
+                }
+                url = 'https://github.com/vbintx/matrix'
+                organization {
+                    name = 'MatricsCloud'
+                    url = 'https://github.com/MatricsCloud'
+                }
+                developers {
+                    developer {
+                        id = 'vbintx'
+                        name = 'Noa Swartz'
+                        email = 'fetaxyu@gmail.com'
+                    }
+                }
+                licenses {
+                    license {
+                        name = 'Apache License, Version 2.0'
+                        url = 'https://www.apache.org/licenses/LICENSE-2.0'
+                        distribution = 'repo'
+                    }
+                }
+                issueManagement {
+                    system = 'GitHub Issues'
+                    url = 'https://github.com/vbintx/matrix/issues'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+                username "$repoUsername"
+                password "$repoPassword"
+            }
+            url = version.endsWith('SNAPSHOT') ? "$snapshotRepoUrl" : "$releaseRepoUrl"
+        }
+    }
+}

@@ -1,6 +1,6 @@
 package io.github.matrix.kits.validation.annotation;
 
-import io.matrix.toolkit.validation.IDCardValidator;
+import io.github.matrix.kits.validation.IDCardValidator;
 
 import javax.validation.Constraint;
 import java.lang.annotation.Documented;

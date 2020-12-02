@@ -1,6 +1,6 @@
 package io.github.matrix.kits.validation.annotation;
 
-import io.matrix.toolkit.validation.MobileValidator;
+import io.github.matrix.kits.validation.MobileValidator;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

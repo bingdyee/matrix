@@ -24,6 +24,11 @@ public class BeanConverter {
 
     private static final Map<String, BeanCopier> BEAN_COPIER_CACHE = new ConcurrentHashMap<>();
 
+    public static void copyProperties(Object source, Object target) {
+        BeanCopier copier = getBeanCopier(source.getClass(), target.getClass(), null);
+        copier.copy(source, target, null);
+    }
+
     public static <T, V> V convert(T source, Class<V> targetClass) {
         if (Objects.isNull(source) || Objects.isNull(targetClass)) {
             return null;
@@ -60,9 +65,9 @@ public class BeanConverter {
         BeanCopier copier = getBeanCopier(source.getClass(), targetClass, converter);
         V target = null;
         try {
-            target = targetClass.newInstance();
+            target = targetClass.getDeclaredConstructor().newInstance();
             copier.copy(source, target, converter);
-        } catch (InstantiationException | IllegalAccessException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return target;
