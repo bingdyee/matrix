@@ -4,7 +4,9 @@ plugins {
 }
 
 ext {
-    moduleProjects = subprojects.findAll { it.name.startsWith("matrix-") }
+    moduleProjects = subprojects.findAll {
+        it.name.startsWith("matrix-") && !it.name.endsWith('elastic')
+    }
     javaProjects = subprojects - project(":framework-bom")
 }
 
@@ -63,10 +65,9 @@ configure(allprojects) { project ->
     }
 }
 
-configure(moduleProjects) { project ->
+configure(javaProjects) { project ->
 
     apply plugin: "java"
-    apply from: "$rootDir/gradle/publications.gradle"
 
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
@@ -74,6 +75,12 @@ configure(moduleProjects) { project ->
     test {
         useJUnitPlatform()
     }
+
+}
+
+configure(moduleProjects) { project ->
+
+    apply from: "$rootDir/gradle/publications.gradle"
 
     publishing {
         publications {
@@ -92,3 +99,5 @@ configure(moduleProjects) { project ->
     }
 
 }
+
+

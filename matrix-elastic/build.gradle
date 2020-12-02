@@ -1,4 +1,4 @@
-description = "Matrix Elastic Plugins"
+description = "Matrix Elasticsearch Plugins"
 
 buildscript {
     repositories {
@@ -15,7 +15,7 @@ apply plugin: 'elasticsearch.esplugin'
 
 esplugin {
     name "matrix-elastic"
-    description "Matrix Elastic Plugins"
+    description "Matrix Elasticsearch Plugin"
     classname "io.github.matrix.elastic.MatrixElasticPlugin"
     licenseFile = rootProject.file('LICENSE')
     noticeFile = rootProject.file('NOTICE.txt')
