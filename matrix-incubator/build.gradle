@@ -1,54 +1,14 @@
 plugins {
-    id "org.springframework.boot" version "2.3.6.RELEASE"
-    id "io.spring.dependency-management" version '1.0.10.RELEASE'
-    id "java"
-    id "idea"
-    id "maven"
+    id 'java'
 }
 
-ext {
-    set('springCloudVersion', 'Hoxton.SR6')
-    set('mysqlVersion', '8.0.22')
-    set('springdocVersion', '1.5.0')
-    set('guavaVersion', '29.0-jre')
+group 'io.github.matrix'
+version '1.0.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
 }
 
-configure(allprojects) { project ->
-    group 'io.matrix'
-    version '1.0.0-SNAPSHOT'
-
-    apply plugin: 'io.spring.dependency-management'
-
-    sourceCompatibility(11)
-
-    repositories {
-        mavenLocal()
-        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
-        mavenCentral()
-    }
-
-    configurations.all {
-        resolutionStrategy.cacheChangingModulesFor 0, "seconds"
-        resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
-    }
-
-    dependencyManagement {
-        resolutionStrategy {
-            cacheChangingModulesFor 0, "seconds"
-        }
-        applyMavenExclusions = false
-        generatedPomCustomization {
-            enabled = false
-        }
-        overriddenByDependencies = false
-        imports {
-            mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
-        }
-        dependencies {
-            dependency "mysql:mysql-connector-java:$mysqlVersion"
-            dependency "org.springdoc:springdoc-openapi-ui:$springdocVersion"
-            dependency "com.google.guava:guava:$guavaVersion"
-        }
-    }
-
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
 }

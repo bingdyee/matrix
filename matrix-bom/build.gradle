@@ -1,0 +1,117 @@
+plugins {
+    id "com.jfrog.artifactory" version "4.18.0"
+    id 'java-platform'
+    id 'maven-publish'
+}
+
+ext {
+    set('springMybatisVersion', '2.1.4')
+    set('nettyVersion', '4.1.51.Final')
+    set('redissonVersion', '3.13.4')
+    set('fstVersion', '2.57')
+    set('curatorVersion', '5.1.0')
+    set('zkVersion', '3.6.1')
+    set('elasticVersion', '7.9.1')
+    set('jedisVersion', '3.3.0')
+    set('mysqlVersion', '8.0.21')
+    set('guavaVersion', '29.0-jre')
+    set('cglibVersion', '3.3.0')
+    set('fastjsonVersion', '1.2.75')
+    set('commonsLang3Version', '3.11')
+    set('zxingVersion', '3.4.1')
+    set('velocityVersion', '1.7')
+    set('reflectasmVersion', '1.11.9')
+    set('jnaVersion', '5.6.0')
+    set('openjdkJolVersion', '0.14')
+    set('lombokVersion', '1.18.16')
+    set('javaxValidationVersion', '2.0.1.Final')
+    set('swaggerVersion', '3.0.0')
+    set('springdocVersion', '1.5.0')
+    set('junitJupiterVersion', '5.7.0')
+    set('approvaltestsVersion', '9.4.0')
+    set('pdfboxVersion', '2.0.21')
+}
+
+group 'io.github.matrix'
+
+javaPlatform {
+    allowDependencies()
+}
+
+dependencies {
+    api platform("org.junit:junit-bom:$junitJupiterVersion")
+    constraints {
+        api "org.mybatis.spring.boot:mybatis-spring-boot-starter:$springMybatisVersion"
+        runtime  "mysql:mysql-connector-java:$mysqlVersion"
+        api "io.netty:netty-all:$nettyVersion"
+        api "org.apache.curator:curator-recipes:$curatorVersion"
+        api "org.redisson:redisson:$redissonVersion"
+        api "redis.clients:jedis:$jedisVersion"
+        api "org.apache.zookeeper:zookeeper:$zkVersion"
+        api "org.elasticsearch:elasticsearch:$elasticVersion"
+        api "cglib:cglib:$cglibVersion"
+        api "com.google.guava:guava:$guavaVersion"
+        api "com.alibaba:fastjson:$fastjsonVersion"
+        api "com.google.zxing:core:$zxingVersion"
+        api "com.google.zxing:javase:$zxingVersion"
+        api "net.java.dev.jna:jna:$jnaVersion"
+        api "org.openjdk.jol:jol-core:$openjdkJolVersion"
+        api "com.esotericsoftware:reflectasm:$reflectasmVersion"
+        api "org.apache.commons:commons-lang3:$commonsLang3Version"
+        api "org.apache.velocity:velocity:$velocityVersion"
+        api "javax.validation:validation-api:$javaxValidationVersion"
+    }
+
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            group = "io.github.matrix"
+            artifactId = "matrix-bom"
+            from components.javaPlatform
+            pom {
+                afterEvaluate {
+                    name = 'Matrix Bom'
+                    description = 'Matrix(Bill of Materials)'
+                }
+                url = 'https://github.com/vbintx/matrix'
+                organization {
+                    name = 'MatricsCloud'
+                    url = 'https://github.com/MatricsCloud'
+                }
+                developers {
+                    developer {
+                        id = 'vbintx'
+                        name = 'Noa Swartz'
+                        email = 'fetaxyu@gmail.com'
+                    }
+                }
+                licenses {
+                    license {
+                        name = 'Apache License, Version 2.0'
+                        url = 'https://www.apache.org/licenses/LICENSE-2.0'
+                        distribution = 'repo'
+                    }
+                }
+                issueManagement {
+                    system = 'GitHub Issues'
+                    url = 'https://github.com/vbintx/matrix/issues'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+                username "$repoUsername"
+                password "$repoPassword"
+            }
+            url = version.endsWith('SNAPSHOT') ? "$snapshotRepoUrl" : "$releaseRepoUrl"
+        }
+    }
+}
+
+artifactoryPublish {
+    publications(publishing.publications.mavenJava)
+}

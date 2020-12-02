@@ -1,0 +1,50 @@
+plugins {
+    id 'maven-publish'
+    id 'java'
+}
+
+group 'io.github.matrix'
+version '1.0.0-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor  0,'minutes'
+}
+
+dependencies {
+    implementation enforcedPlatform("io.github.matrix:matrix-bom:$version")
+    implementation(
+            'com.google.guava:guava',
+            'com.google.zxing:core',
+            'com.google.zxing:javase',
+            'cglib:cglib',
+            'javax.validation:validation-api'
+    )
+    testImplementation('org.junit.jupiter:junit-jupiter')
+}
+
+test {
+    useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        kitsPublish(MavenPublication){
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+                username "$repoUsername"
+                password "$repoPassword"
+            }
+            url = version.endsWith('SNAPSHOT') ? "$snapshotRepoUrl" : "$releaseRepoUrl"
+        }
+    }
+}

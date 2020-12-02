@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Created-By: 1.8.0_261 (Matrix Project)
-Premain-Class: io.matrix.agent.MatrixAgentMain
-Agent-Class: io.matrix.agent.MatrixAgentMain
-Can-Redefine-Classes: true
-Can-Retransform-Classes: true
