@@ -1,0 +1,27 @@
+description = "Matrix Elastic Plugins"
+
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url "https://maven.aliyun.com/repository/public" }
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.elasticsearch.gradle:build-tools:7.9.1"
+    }
+}
+
+apply plugin: 'elasticsearch.esplugin'
+
+esplugin {
+    name "matrix-elastic"
+    description "Matrix Elastic Plugins"
+    classname "io.github.matrix.elastic.MatrixElasticPlugin"
+    licenseFile = rootProject.file('LICENSE')
+    noticeFile = rootProject.file('NOTICE.txt')
+}
+
+dependencies {
+    compileOnly 'org.elasticsearch:elasticsearch'
+    testCompile 'org.junit.jupiter:junit-jupiter'
+}

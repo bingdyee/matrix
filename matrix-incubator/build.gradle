@@ -1,5 +1,5 @@
 description = "Matrix Incubator Projects"
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation('org.junit.jupiter:junit-jupiter')
 }
