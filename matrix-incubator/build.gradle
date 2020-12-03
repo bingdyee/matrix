@@ -1,5 +1,0 @@
-description = "Matrix Incubator Projects"
-
-dependencies {
-    testImplementation('org.junit.jupiter:junit-jupiter')
-}

@@ -1,7 +1,8 @@
 rootProject.name = 'matrix'
 include 'framework-bom'
 include 'matrix-kits'
-include 'matrix-spring-boot-starter'
-include 'matrix-incubator'
-include 'matrix-elastic'
+// Incubator Projects
+include 'matrix-incubator:matrix-elastic'
+include 'matrix-incubator:matrix-spring-boot-starter'
+include 'matrix-incubator:matrix-tutorials'
 

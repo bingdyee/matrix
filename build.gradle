@@ -5,7 +5,7 @@ plugins {
 
 ext {
     moduleProjects = subprojects.findAll {
-        it.name.startsWith("matrix-") && !it.name.endsWith('elastic')
+        it.name.startsWith("matrix-") && !it.path.startsWith(':matrix-incubator')
     }
     javaProjects = subprojects - project(":framework-bom")
 }
