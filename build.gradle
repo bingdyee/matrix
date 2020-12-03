@@ -63,6 +63,7 @@ configure(allprojects) { project ->
             cacheDynamicVersionsFor 0, "seconds"
         }
     }
+
 }
 
 configure(javaProjects) { project ->
@@ -99,5 +100,4 @@ configure(moduleProjects) { project ->
     }
 
 }
-
 
