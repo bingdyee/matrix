@@ -1,6 +1,11 @@
 description = "Matrix FastDFS"
 
 dependencies {
-    implementation 'com.github.tobato:fastdfs-client'
-    testCompile 'org.junit.jupiter:junit-jupiter'
+    implementation(
+            'org.springframework.boot:spring-boot-starter',
+            'com.github.tobato:fastdfs-client'
+    )
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
 }
