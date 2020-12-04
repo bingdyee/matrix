@@ -9,6 +9,8 @@ ext {
     }
     javaProjects = subprojects - project(":framework-bom")
 }
+// https://mvnrepository.com/artifact/com.github.tobato/fastdfs-client
+compile group: 'com.github.tobato', name: 'fastdfs-client', version: '1.27.2'
 
 configure(allprojects) { project ->
     group = "io.github.matrix"
@@ -43,6 +45,7 @@ configure(allprojects) { project ->
             dependency "org.apache.commons:commons-lang3:3.11"
             dependency "org.apache.velocity:velocity:1.7"
             dependency "javax.validation:validation-api:2.0.1.Final"
+            dependency "com.github.tobato:fastdfs-client:1.27.2"
         }
         generatedPomCustomization {
             enabled = false
@@ -69,6 +72,7 @@ configure(allprojects) { project ->
 configure(javaProjects) { project ->
 
     apply plugin: "java"
+    apply plugin: 'idea'
 
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
