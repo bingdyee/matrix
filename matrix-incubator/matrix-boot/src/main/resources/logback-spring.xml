@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="LOG_PATH" value="logs"/>
+    <property name="LOG_FILE" value="${LOG_PATH}/matrix-brave.log"/>
+    <property name="LOG_ARCHIVE" value="${LOG_PATH}/archive" />
+    <property name="LOG_FILE_MAX_HISTORY" value="30"/>
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+    <include resource="org/springframework/boot/logging/logback/file-appender.xml"/>
+
+    <appender name="FILE-LOG-ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>2048</queueSize>
+        <appender-ref ref="FILE"/>
+    </appender>
+
+    <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
+
+    <logger name="org.apache" level="WARN"/>
+    <logger name="org.springframework.web" level="ERROR"/>
+    <logger name="io.matrix" level="INFO" />
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE-LOG-ASYNC"/>
+    </root>
+
+</configuration>

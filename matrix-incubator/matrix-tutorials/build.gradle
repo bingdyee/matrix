@@ -1,5 +1,10 @@
 description = "Matrix Tutorials"
 
 dependencies {
+    implementation(
+            'org.apache.kafka:kafka-clients',
+            'com.fasterxml.jackson.core:jackson-databind',
+            'ch.qos.logback:logback-classic'
+    )
     testCompile 'org.junit.jupiter:junit-jupiter'
 }

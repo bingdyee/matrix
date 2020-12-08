@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: matrix-boot
+  profiles:
+    active: dev
