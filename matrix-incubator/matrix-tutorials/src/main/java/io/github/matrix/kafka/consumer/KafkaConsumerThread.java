@@ -24,7 +24,9 @@ public class KafkaConsumerThread extends Thread {
     private final ExecutorService executorService;
 
     public KafkaConsumerThread(Properties props, String topic, int threadNumber) {
-        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
+        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
+        props.put(ConsumerConfig.INTERCEPTOR_CLASSES_CONFIG, ConsumerTTLInterceptor.class.getName());
+        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         kafkaConsumer = new KafkaConsumer<>(props);
         kafkaConsumer.subscribe(Collections.singletonList(topic));
         executorService = new ThreadPoolExecutor(threadNumber, threadNumber, 0L, TimeUnit.MILLISECONDS,
@@ -43,9 +45,6 @@ public class KafkaConsumerThread extends Thread {
             while (true) {
                 ConsumerRecords<String, String> records = kafkaConsumer.poll(Duration.ofMillis(100));
                 if (!records.isEmpty()) {
-                    if (logger.isDebugEnabled()) {
-                        logger.debug("Poll records - " + records.count());
-                    }
                     executorService.execute(new RecordsHandler(records));
                 }
             }
@@ -64,7 +63,7 @@ public class KafkaConsumerThread extends Thread {
 
         @Override
         public void run() {
-            records.forEach(record -> logger.info("[" + record.topic() + "-" + record.partition() + ":" + record.offset() + "]" + record.value()));
+            records.forEach(record -> logger.info("[" + record.topic() + "-" + record.partition() + ":" + record.offset() + "] - " + record.value()));
         }
 
     }

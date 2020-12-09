@@ -36,7 +36,6 @@ public final class KafkaHelper {
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaHelper.BROKERS);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, KafkaHelper.GROUP_ID);
-        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
         return props;
     }
 
