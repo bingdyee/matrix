@@ -11,7 +11,7 @@ public class Node<E> {
     public Node<E> next;
     public Node<E> prev;
 
-    private Node() { }
+    public Node() { }
 
     public Node(E item) {
         this(item, null, null);
