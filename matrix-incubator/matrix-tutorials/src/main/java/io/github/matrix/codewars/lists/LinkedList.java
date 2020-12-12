@@ -52,7 +52,7 @@ public class LinkedList {
         Node<E> merged = new Node<>();
         Node<E> temp = merged;
         while (first != null  && second != null) {
-            if (first.item.compareTo(second.item) < 0) {
+            if (first.val.compareTo(second.val) < 0) {
                 temp.next = first;
                 temp = first;
                 first  = first.next;

@@ -1,6 +1,5 @@
 package io.github.matrix.codewars.lists;
 
-import io.github.matrix.codewars.others.SubStringSearch;
 import io.github.matrix.codewars.common.Node;
 import org.junit.jupiter.api.Test;
 

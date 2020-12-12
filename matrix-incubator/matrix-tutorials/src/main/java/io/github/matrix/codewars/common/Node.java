@@ -7,7 +7,7 @@ package io.github.matrix.codewars.common;
  */
 public class Node<E> {
 
-    public E item;
+    public E val;
     public Node<E> next;
     public Node<E> prev;
 
@@ -22,17 +22,17 @@ public class Node<E> {
     }
 
     public Node (E item, Node<E> next, Node<E> prev) {
-        this.item = item;
+        this.val = item;
         this.next = next;
         this.prev = prev;
     }
 
     @Override
     public String toString() {
-        StringBuilder str = new StringBuilder(item + "");
+        StringBuilder str = new StringBuilder(val + "");
         Node<E> current = this.next;
         while (current != null) {
-            str.append("->").append(current.item);
+            str.append("->").append(current.val);
             current = current.next;
         }
         return str.toString();
