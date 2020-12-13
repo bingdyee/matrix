@@ -2,6 +2,8 @@ package io.github.matrix.codewars.lists;
 
 import io.github.matrix.codewars.common.Node;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Random;
 
@@ -11,6 +13,8 @@ import java.util.Random;
  */
 public class LinkedListTest {
 
+    public static final Logger logger = LoggerFactory.getLogger(LinkedListTest.class);
+
     private static final Random RANDOM = new Random();
 
     private static final int SPAN = 5;
@@ -18,19 +22,19 @@ public class LinkedListTest {
     @Test
     public void testReverseList() {
         Node<Integer> head = randomLinkedList(9, false);
-        System.err.println("Pre: " + head);
+        logger.info("pre: {}", head);
         Node<Integer> result = LinkedList.reverseList(head);
-        System.err.println("Post: " + result);
+        logger.info("post: {}", result);
     }
 
     @Test
     public void testMergeLists() {
         Node<Integer> first = randomLinkedList(5, true);
         Node<Integer> second = randomLinkedList(5, true);
-        System.err.println("First: " + first);
-        System.err.println("Second: " + second);
+        logger.info("First: {}", first);
+        logger.info("Second: {}", second);
         Node<Integer> result = LinkedList.mergeLists(first, second);
-        System.err.println("Merged: " + result);
+        logger.info("Merged: {}", result);
     }
 
     private Node<Integer> randomLinkedList(int num, boolean sorted) {
