@@ -6,5 +6,8 @@ dependencies {
             'com.fasterxml.jackson.core:jackson-databind',
             'ch.qos.logback:logback-classic'
     )
+    implementation('org.apache.mahout:mahout-mr') {
+        exclude group: 'org.slf4j'
+    }
     testCompile 'org.junit.jupiter:junit-jupiter'
 }

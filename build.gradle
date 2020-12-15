@@ -47,6 +47,9 @@ configure(allprojects) { project ->
 			dependency "org.apache.pdfbox:pdfbox:2.0.21"
             dependency "org.apache.kafka:kafka-clients:2.6.0"
             dependency "org.apache.kafka:kafka-streams:2.6.0"
+            dependency "org.scala-lang:scala-library:2.13.4"
+            dependency "org.scalatest:scalatest_2.13:3.2.3"
+            dependency "org.apache.mahout:mahout-mr:0.13.0"
         }
         generatedPomCustomization {
             enabled = false
