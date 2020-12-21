@@ -25,7 +25,8 @@ configure(allprojects) { project ->
         }
         dependencies {
             dependency "org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4"
-            dependency  "mysql:mysql-connector-java:8.0.21"
+            dependency "com.baomidou:mybatis-plus-boot-starter:3.4.1"
+            dependency "mysql:mysql-connector-java:8.0.21"
             dependency "io.netty:netty-all:4.1.51.Final"
             dependency "org.apache.curator:curator-recipes:5.1.0"
             dependency "org.redisson:redisson:3.13.4"
