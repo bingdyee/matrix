@@ -50,6 +50,7 @@ configure(allprojects) { project ->
             dependency "org.scala-lang:scala-library:2.13.4"
             dependency "org.scalatest:scalatest_2.13:3.2.3"
             dependency "org.apache.mahout:mahout-mr:0.13.0"
+            dependency "org.apache.flink:flink-clients_2.12:1.11.2"
         }
         generatedPomCustomization {
             enabled = false
@@ -76,7 +77,6 @@ configure(allprojects) { project ->
 configure(javaProjects) { project ->
 
     apply plugin: "java"
-    apply plugin: 'idea'
 
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11

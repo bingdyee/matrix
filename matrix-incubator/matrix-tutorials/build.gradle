@@ -1,10 +1,10 @@
-description = "Matrix Tutorials"
-
 dependencies {
     implementation(
             'org.apache.kafka:kafka-clients',
             'com.fasterxml.jackson.core:jackson-databind',
-            'ch.qos.logback:logback-classic'
+            'ch.qos.logback:logback-classic',
+            'org.apache.flink:flink-clients_2.12',
+            'org.scala-lang:scala-library:2.12.12'
     )
     implementation('org.apache.mahout:mahout-mr') {
         exclude group: 'org.slf4j'

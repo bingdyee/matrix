@@ -30,6 +30,7 @@
   </appender>
 
   <logger name="org.apache.kafka" level="ERROR"/>
+  <logger name="org.apache.flink" level="ERROR"/>
 
   <root level="DEBUG">
     <appender-ref ref="STDOUT" />
