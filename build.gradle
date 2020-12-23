@@ -45,7 +45,7 @@ configure(allprojects) { project ->
             dependency "org.apache.velocity:velocity:1.7"
             dependency "javax.validation:validation-api:2.0.1.Final"
             dependency "com.github.tobato:fastdfs-client:1.27.2"
-	    dependency "org.apache.pdfbox:pdfbox:2.0.21"
+	        dependency "org.apache.pdfbox:pdfbox:2.0.21"
             dependency "org.apache.kafka:kafka-clients:2.6.0"
             dependency "org.apache.kafka:kafka-streams:2.6.0"
             dependency "org.scala-lang:scala-library:2.13.4"
