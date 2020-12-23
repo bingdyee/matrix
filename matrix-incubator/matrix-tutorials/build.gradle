@@ -6,10 +6,16 @@ dependencies {
             'com.fasterxml.jackson.core:jackson-databind',
             'ch.qos.logback:logback-classic',
             'org.apache.flink:flink-clients_2.12',
+            'org.apache.flink:flink-connector-kafka_2.12',
             'org.scala-lang:scala-library:2.12.12'
     )
     implementation('org.apache.mahout:mahout-mr') {
         exclude group: 'org.slf4j'
     }
+    runtimeOnly 'mysql:mysql-connector-java'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
     testCompile 'org.junit.jupiter:junit-jupiter'
 }

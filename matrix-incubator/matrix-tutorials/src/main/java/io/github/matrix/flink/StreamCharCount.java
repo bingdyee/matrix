@@ -11,14 +11,14 @@ public class StreamCharCount {
 
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        String path = "D:\\nltk_data\\corpora\\words\\en-basic";
+        // String path = "D:\\nltk_data\\corpora\\words\\en-basic";
         // DataStream<String> dataStream = env.readTextFile(path);
         DataStream<String> dataStream = env.socketTextStream("localhost", 8888);
         dataStream.flatMap(new CharCounterFlatMapper())
                 .keyBy(value -> value.f0)
                 .sum(1)
                 .print();
-        env.execute("Window WordCount");
+        env.execute("CharCount Job");
     }
 
 }

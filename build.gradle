@@ -37,6 +37,7 @@ configure(allprojects) { project ->
             dependency "com.alibaba:fastjson:1.2.75"
             dependency "com.google.zxing:core:3.4.1"
             dependency "com.google.zxing:javase:3.4.1"
+            dependency "org.projectlombok:lombok:1.18.16"
             dependency "net.java.dev.jna:jna:5.6.0"
             dependency "org.openjdk.jol:jol-core:0.14"
             dependency "com.esotericsoftware:reflectasm:1.11.9"
@@ -51,6 +52,8 @@ configure(allprojects) { project ->
             dependency "org.scalatest:scalatest_2.13:3.2.3"
             dependency "org.apache.mahout:mahout-mr:0.13.0"
             dependency "org.apache.flink:flink-clients_2.12:1.11.2"
+            dependency "org.apache.flink:flink-connector-kafka_2.12:1.11.2"
+            dependency "org.apache.flink:flink-connector-elasticsearch7_2.12:1.11.2"
         }
         generatedPomCustomization {
             enabled = false
