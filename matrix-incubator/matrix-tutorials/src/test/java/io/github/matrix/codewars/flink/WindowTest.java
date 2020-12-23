@@ -126,7 +126,7 @@ public class WindowTest {
 
     static class LengthChangedWarning extends RichFlatMapFunction<RandomData, Tuple3<Integer, Integer, Integer>> {
 
-        private Integer threshold;
+        private final Integer threshold;
 
         private ValueState<Integer> lastLenState;
 
@@ -135,8 +135,8 @@ public class WindowTest {
         }
 
         @Override
-        public void open(Configuration parameters) throws Exception {
-            lastLenState = getRuntimeContext().getState(new ValueStateDescriptor<Integer>("last-len", Integer.class));
+        public void open(Configuration parameters) {
+            lastLenState = getRuntimeContext().getState(new ValueStateDescriptor<>("last-len", Integer.class));
         }
 
         @Override
@@ -151,7 +151,7 @@ public class WindowTest {
         }
 
         @Override
-        public void close() throws Exception {
+        public void close() {
             lastLenState.clear();
         }
 
