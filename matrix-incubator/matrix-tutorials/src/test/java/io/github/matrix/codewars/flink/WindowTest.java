@@ -22,15 +22,23 @@ import org.apache.flink.streaming.api.functions.ProcessFunction;
 import org.apache.flink.streaming.api.functions.timestamps.BoundedOutOfOrdernessTimestampExtractor;
 import org.apache.flink.streaming.api.windowing.assigners.TumblingProcessingTimeWindows;
 import org.apache.flink.streaming.api.windowing.time.Time;
+import org.apache.flink.table.api.EnvironmentSettings;
 import org.apache.flink.table.api.Table;
+import org.apache.flink.table.api.TableEnvironment;
+import org.apache.flink.table.api.TableResult;
 import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 import org.apache.flink.table.expressions.Expression;
 import org.apache.flink.table.expressions.ExpressionParser;
 import org.apache.flink.types.Row;
 import org.apache.flink.util.Collector;
+import org.apache.flink.util.FileUtils;
 import org.apache.flink.util.OutputTag;
 import org.junit.jupiter.api.Test;
 
+import static org.apache.flink.table.api.Expressions.$;
+
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 
 /**
@@ -44,7 +52,7 @@ public class WindowTest {
     @Test
     public void testWindow() throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
+//        env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
         DataStream<String> stream = env.addSource(new RandomStringSource());
         DataStream<RandomData> dataStream = stream.map(value -> {
             RandomData data = new RandomData();
@@ -211,6 +219,31 @@ public class WindowTest {
     @Test
     public void testTable_01() throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
+
+        String contents = "20,14,27ba536fd84ec1,1608866313161\n" +
+                "28,14,07f94b235a6de8,1608866313171\n" +
+                "33,15,a08fc975d6e1243,1608866313174\n" +
+                "20,14,0f1a29bed486c3,1608866313173\n" +
+                "15,14,164e95b7203da8,1608866313172\n" +
+                "8,15,1064a7bc3d5e29f,1608866313173\n" +
+                "27,14,ac02b934ed567f,1608866313174\n" +
+                "25,14,365e098c12ad74,1608866313174";
+
+        String path = createTempFile(contents);
+        System.err.println(path);
+        tableEnv.executeSql("CREATE TABLE random_data(id INT, length INT, data STRING, ts BIGINT) WITH " +
+                "('connector.type'='filesystem', 'connector.path'='" +
+                path + "', 'format.type'='csv')");
+
+        Table result = tableEnv.sqlQuery("SELECT COUNT(*) cnt, MAX(length) len FROM random_data GROUP BY id");
+        tableEnv.toRetractStream(result, Row.class).print();
+        env.execute();
+    }
+
+    @Test
+    public void testTable_02() throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
         DataStream<String> stream = env.addSource(new RandomStringSource());
         DataStream<RandomData> dataStream = stream.map(value -> {
@@ -221,13 +254,17 @@ public class WindowTest {
             data.setData(fields[2]);
             data.setTimestamp(Long.parseLong(fields[3]));
             return data;
-        });
+        }).assignTimestampsAndWatermarks(WatermarkStrategy
+                .<RandomData>forBoundedOutOfOrderness(Duration.ofSeconds(3))
+                .withTimestampAssigner((element, recordTimestamp) -> element.getTimestamp() * 1000L));
         StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
-
-
-//        tableEnv.toAppendStream(table, Row.class).print();
+        Table table = tableEnv.fromDataStream(dataStream,
+                $("id"), $("length"), $("data"), $("timestamp"));
+        table.printSchema();
+        tableEnv.toAppendStream(table, Row.class).print();
         env.execute();
     }
+
 
     static class LengthChangedWarning extends RichFlatMapFunction<RandomData, Tuple3<Integer, Integer, Integer>> {
 
@@ -304,6 +341,13 @@ public class WindowTest {
         public void close() {
             lastLenState.clear();
         }
+    }
+
+    private static String createTempFile(String contents) throws IOException {
+        File tempFile = File.createTempFile("random_data", ".csv");
+        tempFile.deleteOnExit();
+        FileUtils.writeFileUtf8(tempFile, contents);
+        return tempFile.toURI().toString();
     }
 
 }
