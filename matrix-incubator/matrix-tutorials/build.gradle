@@ -10,7 +10,10 @@ dependencies {
             'org.apache.flink:flink-table-api-java-bridge_2.12',
             'org.apache.flink:flink-table-planner-blink_2.12',
             'org.apache.flink:flink-csv',
-            'org.scala-lang:scala-library:2.12.12'
+            'org.scala-lang:scala-library:2.12.12',
+            'javax.xml.bind:jaxb-api:2.3.1',
+            'org.glassfish.jaxb:jaxb-runtime:2.3.3',
+            'javax.activation:activation:1.1.1'
     )
     implementation('org.apache.mahout:mahout-mr') {
         exclude group: 'org.slf4j'
