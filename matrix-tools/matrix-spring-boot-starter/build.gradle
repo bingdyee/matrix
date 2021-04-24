@@ -1,12 +1,16 @@
 plugins {
     id 'org.springframework.boot'
     id 'io.spring.dependency-management'
-    id 'java'
+    id 'java-matrix-library'
 }
 
 dependencies {
     implementation(
-            'org.springframework.boot:spring-boot-autoconfigure'
+            'org.springframework.boot:spring-boot-autoconfigure',
+            'org.springframework:spring-webmvc',
+            'com.fasterxml.jackson.datatype:jackson-datatype-jsr310',
+            'javax.servlet:javax.servlet-api',
+            project(":matrix-tools:matrix-commons")
     )
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {

@@ -1,12 +1,11 @@
 plugins {
     id 'java-matrix-library'
-    id 'java'
 }
 
 description = "A repository of reusable Java components"
 
 dependencies {
-    implementation(
+    compile(
             'com.fasterxml.jackson.core:jackson-databind',
             'javax.validation:validation-api',
             'com.google.guava:guava',
