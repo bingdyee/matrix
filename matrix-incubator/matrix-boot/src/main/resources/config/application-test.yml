@@ -1,9 +1,0 @@
-server:
-  port: 8088
-  shutdown: graceful
-  compression:
-    enabled: true
-
-spring:
-  jackson:
-    default-property-inclusion: non_null

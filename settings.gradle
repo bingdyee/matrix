@@ -1,8 +1,6 @@
 rootProject.name = 'matrix'
-include 'framework-bom'
-include 'matrix-kits'
-// Incubator Projects
-include 'matrix-incubator:matrix-elastic'
-include 'matrix-incubator:matrix-spring-boot-starter'
+include 'matrix-dependencies'
+include 'matrix-tools:matrix-commons'
+include 'matrix-tools:matrix-gradle-plugin'
 include 'matrix-incubator:matrix-tutorials'
-include 'matrix-incubator:matrix-boot'
+

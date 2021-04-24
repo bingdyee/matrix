@@ -1,7 +1,0 @@
-server:
-  port: 8081
-  shutdown: graceful
-
-spring:
-  jackson:
-    default-property-inclusion: non_null

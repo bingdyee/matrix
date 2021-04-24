@@ -1,119 +1,47 @@
-plugins {
-    id 'org.springframework.boot' version '2.3.6.RELEASE' apply false
-    id 'io.spring.dependency-management' version '1.0.10.RELEASE' apply false
-}
+allprojects {
+    group "io.github.matrix"
 
-ext {
-    set('flinkVersion', '1.11.2')
-    moduleProjects = subprojects.findAll {
-        it.name.startsWith("matrix-") && !it.path.startsWith(':matrix-incubator')
-    }
-    javaProjects = subprojects - project(":framework-bom")
-}
-
-configure(allprojects) { project ->
-    group = "io.github.matrix"
-
-    apply plugin: "io.spring.dependency-management"
-
-    dependencyManagement {
-        imports {
-            mavenBom "org.springframework.boot:spring-boot-dependencies:2.3.6.RELEASE"
-            mavenBom "org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR9"
-            mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:2.2.3.RELEASE"
-            mavenBom "io.netty:netty-bom:4.1.51.Final"
-            mavenBom "org.junit:junit-bom:5.7.0"
-        }
-        dependencies {
-            dependency "org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4"
-            dependency "com.baomidou:mybatis-plus-boot-starter:3.4.1"
-            dependency "mysql:mysql-connector-java:8.0.21"
-            dependency "org.apache.curator:curator-recipes:5.1.0"
-            dependency "org.redisson:redisson:3.13.4"
-            dependency "redis.clients:jedis:3.3.0"
-            dependency "org.apache.zookeeper:zookeeper:3.6.1"
-            dependency "org.elasticsearch:elasticsearch:7.9.1"
-            dependency "cglib:cglib:3.3.0"
-            dependency "com.google.guava:guava:29.0-jre"
-            dependency "com.alibaba:fastjson:1.2.75"
-            dependency "com.google.zxing:core:3.4.1"
-            dependency "com.google.zxing:javase:3.4.1"
-            dependency "org.projectlombok:lombok:1.18.16"
-            dependency "net.java.dev.jna:jna:5.6.0"
-            dependency "org.openjdk.jol:jol-core:0.14"
-            dependency "com.esotericsoftware:reflectasm:1.11.9"
-            dependency "org.apache.commons:commons-lang3:3.11"
-            dependency "org.apache.velocity:velocity:1.7"
-            dependency "javax.validation:validation-api:2.0.1.Final"
-            dependency "com.github.tobato:fastdfs-client:1.27.2"
-            dependency "org.apache.pdfbox:pdfbox:2.0.21"
-            dependency "org.apache.kafka:kafka-clients:2.6.0"
-            dependency "org.apache.kafka:kafka-streams:2.6.0"
-            dependency "org.scala-lang:scala-library:2.13.4"
-            dependency "org.scalatest:scalatest_2.13:3.2.3"
-            dependency "org.apache.mahout:mahout-mr:0.13.0"
-            dependency "org.apache.flink:flink-clients_2.12:$flinkVersion"
-            dependency "org.apache.flink:flink-connector-kafka_2.12:$flinkVersion"
-            dependency "org.apache.flink:flink-connector-elasticsearch7_2.12:$flinkVersion"
-            dependency "org.apache.flink:flink-table-api-java-bridge_2.12:$flinkVersion"
-            dependency "org.apache.flink:flink-table-planner-blink_2.12:$flinkVersion"
-            dependency "org.apache.flink:flink-table-planner_2.12:$flinkVersion"
-            dependency "org.apache.flink:flink-csv:$flinkVersion"
-        }
-        generatedPomCustomization {
-            enabled = false
-        }
-        resolutionStrategy {
-            cacheChangingModulesFor 0, "seconds"
-        }
-        repositories {
-            mavenLocal()
-            maven { url "https://maven.aliyun.com/repository/public" }
-            mavenCentral()
-        }
+    repositories {
+        mavenLocal()
+        maven { url "https://maven.aliyun.com/repository/public" }
+        mavenCentral()
     }
 
     configurations.all {
-        resolutionStrategy {
-            cacheChangingModulesFor 0, "seconds"
-            cacheDynamicVersionsFor 0, "seconds"
-        }
+        resolutionStrategy.cacheChangingModulesFor 0, "minutes"
     }
-
 }
 
-configure(javaProjects) { project ->
-
-    apply plugin: "java"
-
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
-
-    test {
-        useJUnitPlatform()
-    }
-
-}
-
-configure(moduleProjects) { project ->
+subprojects {
 
     apply from: "$rootDir/gradle/publications.gradle"
 
-    publishing {
-        publications {
-            mavenJava(MavenPublication) {
-                from components.java
-                versionMapping {
-                    usage('java-api') {
-                        fromResolutionOf('runtimeClasspath')
-                    }
-                    usage('java-runtime') {
-                        fromResolutionResult()
+    plugins.withType(JavaPlugin) {
+
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+
+        publishing {
+            publications {
+                mavenJava(MavenPublication) {
+                    version "$version"
+                    from components.java
+                    versionMapping {
+                        usage('java-api') {
+                            fromResolutionOf('runtimeClasspath')
+                        }
+                        usage('java-runtime') {
+                            fromResolutionResult()
+                        }
                     }
                 }
             }
         }
+
+        test {
+            useJUnitPlatform()
+        }
+
     }
 
 }
-
