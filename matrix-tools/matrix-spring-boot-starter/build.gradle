@@ -1,6 +1,4 @@
 plugins {
-    id 'org.springframework.boot'
-    id 'io.spring.dependency-management'
     id 'java-matrix-library'
 }
 
@@ -12,7 +10,7 @@ dependencies {
             'javax.servlet:javax.servlet-api',
             project(":matrix-tools:matrix-commons")
     )
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor:$springBootVersion"
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
