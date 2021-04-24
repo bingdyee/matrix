@@ -8,16 +8,16 @@ publishing {
                     name = project.description
                     description = project.description
                 }
-                url = 'https://github.com/vbintx/matrix'
+                url = 'https://github.com/bingdyee/matrix'
                 organization {
-                    name = 'MatricsCloud'
+                    name = 'Matrix Cloud'
                     url = 'https://github.com/MatricsCloud'
                 }
                 developers {
                     developer {
-                        id = 'vbintx'
-                        name = 'Noa Swartz'
-                        email = 'fetaxyu@gmail.com'
+                        id = 'bingdyee'
+                        name = 'Bing D. Yee'
+                        email = 'bingdyee@gmail.com'
                     }
                 }
                 licenses {
@@ -29,12 +29,15 @@ publishing {
                 }
                 issueManagement {
                     system = 'GitHub Issues'
-                    url = 'https://github.com/vbintx/matrix/issues'
+                    url = 'https://github.com/bingdyee/matrix/issues'
                 }
             }
         }
     }
     repositories {
+        maven {
+            url = "$buildDir/repos"
+        }
         maven {
             credentials {
                 username "$repoUsername"

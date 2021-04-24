@@ -3,4 +3,6 @@ include 'matrix-dependencies'
 include 'matrix-tools:matrix-commons'
 include 'matrix-tools:matrix-gradle-plugin'
 include 'matrix-incubator:matrix-tutorials'
+include 'matrix-tools:matrix-spring-boot-starter'
+findProject(':matrix-tools:matrix-spring-boot-starter')?.name = 'matrix-spring-boot-starter'
 

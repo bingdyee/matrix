@@ -21,7 +21,6 @@ ext {
     tinypinyinVersion = '2.0.3'
     pagehelperVersion = '1.3.0'
     lombokVersion = '1.18.20'
-    activitiVersion = '7.1.0.M6'
 	flinkVersion = '1.11.2'
 	nettyVersion = '4.1.51.Final'
 	junitVersion = '5.7.0'
@@ -37,6 +36,7 @@ ext {
     reflectasmVersion = '1.11.9'
     velocityVersion = '1.7'
     flinkVersion = '1.11.2'
+    activitiVersion = '7.1.0-M10'
 }
 
 dependencies {
