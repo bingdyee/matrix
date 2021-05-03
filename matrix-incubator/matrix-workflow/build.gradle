@@ -1,0 +1,16 @@
+plugins {
+    id 'org.springframework.boot'
+    id 'java-matrix-library'
+    id 'java'
+}
+
+dependencies {
+    implementation(
+            'org.springframework.boot:spring-boot-starter-web',
+            'org.springframework.boot:spring-boot-starter-jdbc',
+            'org.springframework.boot:spring-boot-starter-validation',
+            "org.activiti:activiti-spring-boot-starter"
+    )
+    runtimeOnly('mysql:mysql-connector-java:8.0.20')
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}

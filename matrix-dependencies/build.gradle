@@ -36,20 +36,20 @@ ext {
     reflectasmVersion = '1.11.9'
     velocityVersion = '1.7'
     flinkVersion = '1.11.2'
-    activitiVersion = '7.1.0-M10'
+    activitiVersion = '7.1.0-M12'
 }
 
 dependencies {
     api platform("org.springframework.boot:spring-boot-dependencies:$springBootVersion")
     api platform("org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion")
     api platform("com.alibaba.cloud:spring-cloud-alibaba-dependencies:$alibabaCloudVersion")
+    api platform("org.activiti:activiti-dependencies:$activitiVersion")
 	api platform("io.netty:netty-bom:$nettyVersion")
     api platform("org.junit:junit-bom:$junitVersion")
     constraints {
         api "org.mybatis.spring.boot:mybatis-spring-boot-starter:$mybatisBootVersion"
         api "com.github.pagehelper:pagehelper-spring-boot-starter:$pagehelperVersion"
 		api "com.baomidou:mybatis-plus-boot-starter:$mybatisPlusVersion"
-        api "org.activiti:activiti-spring-boot-starter:$activitiVersion"
         api "org.mybatis:mybatis:$mybatisVersion"
         api "mysql:mysql-connector-java:$mysqlVersion"
         api "cglib:cglib:$cglibVersion"

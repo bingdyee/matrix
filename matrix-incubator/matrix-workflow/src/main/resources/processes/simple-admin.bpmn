@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:process id="Leave_application_process" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1c1ssnc</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1c1ssnc" sourceRef="StartEvent_1" targetRef="commit_materials" />
+    <bpmn:userTask id="commit_materials" name="提交申请" camunda:assignee="guest" camunda:candidateGroups="USER">
+      <bpmn:incoming>Flow_1c1ssnc</bpmn:incoming>
+      <bpmn:outgoing>Flow_0mksa1l</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_0mksa1l" sourceRef="commit_materials" targetRef="bank_manager_audit" />
+    <bpmn:userTask id="bank_manager_audit" name="经理审核" camunda:assignee="user" camunda:candidateGroups="MANAGER">
+      <bpmn:incoming>Flow_0mksa1l</bpmn:incoming>
+      <bpmn:outgoing>Flow_1rdpspj</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1rdpspj" sourceRef="bank_manager_audit" targetRef="gov_audit" />
+    <bpmn:userTask id="gov_audit" name="总裁审核" camunda:assignee="admin" camunda:candidateGroups="ADMIN">
+      <bpmn:incoming>Flow_1rdpspj</bpmn:incoming>
+      <bpmn:outgoing>Flow_0d5f4mt</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_130vj2u">
+      <bpmn:incoming>Flow_0d5f4mt</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0d5f4mt" sourceRef="gov_audit" targetRef="Event_130vj2u" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Leave_application_process">
+      <bpmndi:BPMNEdge id="Flow_0d5f4mt_di" bpmnElement="Flow_0d5f4mt">
+        <di:waypoint x="910" y="120" />
+        <di:waypoint x="1112" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1rdpspj_di" bpmnElement="Flow_1rdpspj">
+        <di:waypoint x="710" y="120" />
+        <di:waypoint x="810" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0mksa1l_di" bpmnElement="Flow_0mksa1l">
+        <di:waypoint x="460" y="120" />
+        <di:waypoint x="610" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1c1ssnc_di" bpmnElement="Flow_1c1ssnc">
+        <di:waypoint x="209" y="120" />
+        <di:waypoint x="360" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="173" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0hbh21n_di" bpmnElement="commit_materials">
+        <dc:Bounds x="360" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0stldws_di" bpmnElement="bank_manager_audit">
+        <dc:Bounds x="610" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1kfswae_di" bpmnElement="gov_audit">
+        <dc:Bounds x="810" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_130vj2u_di" bpmnElement="Event_130vj2u">
+        <dc:Bounds x="1112" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
