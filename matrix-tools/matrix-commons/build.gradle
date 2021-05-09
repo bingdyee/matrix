@@ -8,6 +8,7 @@ dependencies {
     compile(
             'com.fasterxml.jackson.core:jackson-databind',
             'javax.validation:validation-api',
+            'com.zaxxer:HikariCP',
             'com.google.guava:guava',
             'com.google.zxing:core',
             'com.google.zxing:javase',

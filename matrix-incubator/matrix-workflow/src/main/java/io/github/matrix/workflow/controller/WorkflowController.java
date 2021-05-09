@@ -40,7 +40,7 @@ public class WorkflowController {
      * @param key 流程Key
      * @return
      */
-    @PostMapping("/start/{key}")
+    @PostMapping("/deploy/{key}")
     public ProcessInstance startProcess(@PathVariable String key) {
         return  processRuntime.start(ProcessPayloadBuilder.start()
                 .withProcessDefinitionKey(key)

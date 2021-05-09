@@ -1,5 +1,6 @@
 package io.github.matrix.workflow.config;
 
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,9 +27,9 @@ public class AppConfigurer {
     public UserDetailsService userDetailsService() {
         InMemoryUserDetailsManager inMemoryUserDetailsManager = new InMemoryUserDetailsManager();
         String[][] userInfos = {
-                {"admin", "admin123", "USER_ADMIN", "GROUPS_ADMIN"},
-                {"user", "user123", "USER_ADMIN", "GROUPS_MANAGER"},
-                {"guest", "guest123", "USER_GUEST", "GROUPS_USER"}
+                {"admin", "admin123", "USER_ADMIN", "GROUP_ADMIN"},
+                {"user", "user123", "USER_ADMIN", "GROUP_MANAGER"},
+                {"guest", "guest123", "USER_GUEST", "GROUP_USER"}
         };
         for (String[] userInfo : userInfos) {
             List<SimpleGrantedAuthority> authorities = Arrays.asList(Arrays.copyOfRange(userInfo, 2, userInfo.length)).stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
