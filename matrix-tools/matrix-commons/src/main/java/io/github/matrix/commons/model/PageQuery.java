@@ -11,6 +11,8 @@ public class PageQuery {
 
     private int size = 10;
 
+    private int sort = 1;
+
     public int getPage() {
         return page;
     }
@@ -26,4 +28,13 @@ public class PageQuery {
     public void setSize(int size) {
         this.size = size;
     }
+
+    public int getSort() {
+        return sort;
+    }
+
+    public void setSort(int sort) {
+        this.sort = sort;
+    }
+
 }

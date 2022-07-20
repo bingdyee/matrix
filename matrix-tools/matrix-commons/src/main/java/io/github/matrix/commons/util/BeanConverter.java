@@ -3,21 +3,23 @@ package io.github.matrix.commons.util;
 import net.sf.cglib.beans.BeanCopier;
 import net.sf.cglib.core.Converter;
 
+import java.beans.PropertyDescriptor;
 import java.io.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 /**
- *
+ * 对象转换
  *
  * @author Bing D. Yee
- * @date 2020/08/16
+ * @version 2021/04/07
  */
-public class BeanConverter {
+public final class BeanConverter {
+
+    private BeanConverter() { }
 
     private static final Map<String, BeanCopier> BEAN_COPIER_CACHE = new ConcurrentHashMap<>();
 
@@ -26,17 +28,31 @@ public class BeanConverter {
         copier.copy(source, target, null);
     }
 
+    public static void copyIgnoreNullProperties(Object source, Object target) {
+        Converter converter = (value, targetClass, context) -> {
+            if (value == null) {
+                try {
+                    String fieldName = ((String) context).substring(3).toLowerCase();
+                    PropertyDescriptor descriptor = new PropertyDescriptor(fieldName, target.getClass());
+                    value = descriptor.getReadMethod().invoke(target);
+                } catch (Exception ignored) {}
+            }
+            return value;
+        };
+        BeanCopier copier = getBeanCopier(source.getClass(), target.getClass(), converter);
+        copier.copy(source, target, converter);
+    }
+
+
     public static <T, V> V convert(T source, Class<V> targetClass) {
-        if (Objects.isNull(source) || Objects.isNull(targetClass)) {
-            return null;
-        }
+        Asserts.assertNotNull(source, "Source must not be null");
+        Asserts.assertNotNull(targetClass, "Target must not be null");
         return copy(source, targetClass, null);
     }
 
     public static <T, V> V convert(T source, Class<V> targetClass, Converter converter) {
-        if (Objects.isNull(source) || Objects.isNull(targetClass)) {
-            return null;
-        }
+        Asserts.assertNotNull(source, "Source must not be null");
+        Asserts.assertNotNull(targetClass, "Target must not be null");
         return copy(source, targetClass, converter);
     }
 
@@ -93,5 +109,6 @@ public class BeanConverter {
         }
         return null;
     }
+
 
 }

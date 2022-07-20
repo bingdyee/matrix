@@ -1,10 +1,19 @@
 package io.github.matrix.commons.util;
 
+import com.google.common.base.Joiner;
+import com.google.common.base.Splitter;
+
+import java.util.List;
+
 /**
+ * 字符串工具
+ *
  * @author Bing D. Yee
- * @since 2021/04/07
+ * @since 2022/01/12
  */
-public final class StringUtils {
+public final class Strings {
+
+    public static final String DEFAULT_SPLIT_SEPARATOR = ",";
 
     public static boolean isEmpty(final CharSequence cs) {
         return cs == null || cs.length() == 0;
@@ -19,7 +28,7 @@ public final class StringUtils {
         if (cs == null || (strLen = cs.length()) == 0) {
             return true;
         }
-        for (int i = 0; i < strLen; i++) {
+        for (int i = 0; i < strLen; ++i) {
             if (!Character.isWhitespace(cs.charAt(i))) {
                 return false;
             }
@@ -34,5 +43,15 @@ public final class StringUtils {
     public static String trim(final String str) {
         return str == null ? null : str.trim();
     }
+
+    public static String join(Iterable<?> parts, String separator) {
+        return Joiner.on(separator).join(parts);
+    }
+
+    public static List<String> split(String str) {
+        return Splitter.on(DEFAULT_SPLIT_SEPARATOR).splitToList(str);
+    }
+
+    private Strings() { }
 
 }

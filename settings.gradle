@@ -5,3 +5,5 @@ include 'matrix-tools:matrix-gradle-plugin'
 include 'matrix-incubator:matrix-tutorials'
 include 'matrix-tools:matrix-spring-boot-starter'
 include 'matrix-incubator:matrix-workflow'
+include 'matrix-spring-boot-web'
+

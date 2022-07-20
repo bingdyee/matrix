@@ -31,7 +31,7 @@ public final class DataMasker {
     }
 
     public static String mask(String value, int left, int right, String masker) {
-        if (StringUtils.isBlank(value)) {
+        if (Strings.isBlank(value)) {
             throw new IllegalArgumentException();
         }
         StringBuilder rs = new StringBuilder();
